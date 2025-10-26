@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="pl">
-    <head>
-        <meta charset="utf-8">
-        <title>GeneRozkaz</title>
-        <meta name="description" content="Generator online dla nowych kolejowych rozkazów pisemnych">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="index.css">
-    </head>
-    <body class="font">
+
+<head>
+    <meta charset="utf-8">
+    <title>GeneRozkaz</title>
+    <meta name="description" content="Generator online dla nowych kolejowych rozkazów pisemnych">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body class="font">
+    <div class="margin-center">
         <table id="rozkaz-normalny">
             <thead>
                 <tr>
@@ -77,14 +80,14 @@
                 <tr>
                     <th id="nr21_15" class="checkbox-col" colspan="1"></th>
                     <th class="roz-content" colspan="3">
-                        <strong>Zezwalam na wjazd</strong> z toru nr 
+                        <strong>Zezwalam na wjazd</strong> z toru nr
                         <div class="inline tor"></div>
                         do
                         <div class="inline post"></div>
                         na tor nr
                         <div class="inline tor"></div>
                         <br>
-                        Pominięcie sygnałów 
+                        Pominięcie sygnałów
                         <div class="inline sem"></div>
                         i
                         <div class="inline sem"></div>
@@ -104,13 +107,14 @@
                         <br>
                         <strong style="text-decoration: 1px underline;">wskazania semaforów SBL są nieważne.</strong>
                         <br>
-                        <span style="text-decoration: 1px underline;">Zachować ostrożność od semafora ze wskaźnikiem <strong>W18.</strong></span>
+                        <span style="text-decoration: 1px underline;">Zachować ostrożność od semafora ze wskaźnikiem
+                            <strong>W18.</strong></span>
                     </th>
                 </tr>
                 <tr>
                     <th id="nr21_25" class="checkbox-col" colspan="1"></th>
                     <th class="roz-content" colspan="3">
-                        Zezwalam przejechać za (wskaźnik W5/ostatni rozjazd) w kierunku 
+                        Zezwalam przejechać za (wskaźnik W5/ostatni rozjazd) w kierunku
                         <div class="inline post"></div>
                         <br>
                         torem
@@ -124,7 +128,7 @@
                 <tr>
                     <th id="nr21_35" class="checkbox-col" colspan="1"></th>
                     <th class="roz-content" colspan="3">
-                        <strong>Zezwalam na kontynuacje jazdy</strong> po torze nr 
+                        <strong>Zezwalam na kontynuacje jazdy</strong> po torze nr
                         <div class="inline tor"></div>
                         w kierunku
                         <div class="inline post"></div>
@@ -133,14 +137,14 @@
                 <tr>
                     <th id="nr21_40" class="checkbox-col" colspan="1"></th>
                     <th class="roz-content" colspan="3">
-                        <strong>Zatrzymanie pociągu</strong> na posterunku/szlaku 
+                        <strong>Zatrzymanie pociągu</strong> na posterunku/szlaku
                         <div class="inline post"></div>
                         |
                         <div class="inline post"></div>
                         <br>
-                        w km 
+                        w km
                         <div class="inline km"></div>
-                        celem 
+                        celem
                         <div class="inline inne">
                             <input id="nr21_40-96-input" type="text">
                             <label for="nr21_40-96-input">x.96 inne</label>
@@ -150,7 +154,7 @@
                 <tr>
                     <th id="nr21_45" class="checkbox-col" colspan="1"></th>
                     <th class="roz-content" colspan="3">
-                        Na 
+                        Na
                         <div class="inline post"></div>
                         na sygnalizatorze
                         <div class="inline sem"></div>
@@ -189,12 +193,12 @@
                     <th class="roz-content" colspan="3">
                         <strong>Zmiana trasy</strong> na odcinku od
                         <div class="inline post"></div>
-                        do 
+                        do
                         <div class="inline post"></div>
                         <br>
                         jazda przez
                         <div class="inline post"></div>
-                        linią 
+                        linią
                         <div class="inline linia"></div>
                         z prędkością
                         <div class="inline kmh"></div>
@@ -232,7 +236,7 @@
                         <br>
                         do km
                         <div class="inline km"></div>
-                        zjazd do 
+                        zjazd do
                         <div class="inline post"></div>
                         do godz.
                         <div class="inline godz"></div>
@@ -249,7 +253,7 @@
                     <th class="roz-content" colspan="3">
                         <strong>Na torze pracuje pociąg</strong>
                         <div class="inline numpoc"></div>
-                        w km 
+                        w km
                         <div class="inline km"></div>
                     </th>
                 </tr>
@@ -281,7 +285,7 @@
                     <th class="roz-content all-bold" colspan="3">
                         &ensp; Nie przekraczać prędkości i zachować ostrożność:
                         <br><br>
-                        1. Na posterunku/szlaku 
+                        1. Na posterunku/szlaku
                         <div class="inline post"></div>
                         /
                         <div class="inline post"></div>
@@ -300,7 +304,7 @@
                         </div>
                         <br>
 
-                        2. Na posterunku/szlaku 
+                        2. Na posterunku/szlaku
                         <div class="inline post"></div>
                         /
                         <div class="inline post"></div>
@@ -319,7 +323,7 @@
                         </div>
                         <br>
 
-                        3. Na posterunku/szlaku 
+                        3. Na posterunku/szlaku
                         <div class="inline post"></div>
                         /
                         <div class="inline post"></div>
@@ -375,11 +379,13 @@
                 </tr>
             </tbody>
         </table>
+    </div>
 
-        <table id="rozkaz-europejski" style="display: none;">
-            <!-- TODO: Add ETCS version -->
-        </table>
+    <table id="rozkaz-europejski" style="display: none;">
+        <!-- TODO: Add ETCS version -->
+    </table>
 
-        <script src="index.js" async defer></script>
-    </body>
+    <script src="index.js" async defer></script>
+</body>
+
 </html>

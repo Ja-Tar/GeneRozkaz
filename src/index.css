@@ -163,3 +163,9 @@ div.inline {
 .text-area {
     padding-bottom: 3vh;
 }
+
+.margin-center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+}
