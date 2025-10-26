@@ -66,13 +66,18 @@ function addInputsToDivs(tableID) {
         const labels = rozContent.querySelectorAll("label");
         const numberOfInputs = inputs.length;
         
+        let minusNum = 0
         for (let l = 0; l < numberOfInputs; l++) {
-            updateInputIdAndLabel(l, inputs, checkbox, labels);
+            if (labels[l].innerText.includes("x.0")) {
+                updateInputIdAndLabel(l, minusNum, inputs, checkbox, labels);
+            } else {
+                minusNum += 1;
+            }
         }
     }
 
-    function updateInputIdAndLabel(l, inputs, checkbox, labels) {
-        const inputNumber = l + 1;
+    function updateInputIdAndLabel(l, minusNum, inputs, checkbox, labels) {
+        const inputNumber = l + 1 - minusNum;
         let inputElement = inputs[l];
         const idToSet = checkbox.id + "-" + inputNumber + "-input";
         inputElement.id = idToSet;

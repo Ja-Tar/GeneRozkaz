@@ -35,7 +35,7 @@ thead th {
 .top-info th {
     padding-top: 1vh;
     padding-left: 2vw;
-    padding-right: 10vw;
+    padding-right: 8vw;
     font-size: small;
 }
 
@@ -75,6 +75,10 @@ table input[type="checkbox"]:checked {
     width: 8%;
 }
 
+.all-bold {
+    font-weight: bold;
+}
+
 .roz-content {
     font-size: small;
     padding-left: 1vw;
@@ -82,6 +86,7 @@ table input[type="checkbox"]:checked {
 
 .roz-content label {
     font-size: smaller;
+    font-weight: normal;
 }
 
 div.inline {
@@ -115,10 +120,46 @@ div.inline {
     width: 6em;
 }
 
+.numpoc input {
+    width: 8em;
+}
+
 .post input, .godz input {
     width: auto;
 }
 
+.prz input, .prz label{
+    width: 150%;
+}
+
 .inne input, .inne label {
     width: 250%;
+}
+
+.inne-dl input {
+    width: 380%;
+}
+
+/* other */
+
+.tor-zamkniety {
+    background-color: lightgray;
+}
+
+.tor-zamkniety input {
+    background-color: lightgray;
+}
+
+.normal-font {
+    font-size: small;
+    font-weight: normal;
+}
+
+.text-area textarea {
+    text-align: justify;
+    resize: none;
+}
+
+.text-area {
+    padding-bottom: 3vh;
 }
