@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,800;1,800&display=swap');
+
+body {
+    font-family: Calibri, "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    font-size-adjust: cap-height 0.63
+}
+
+table {
+    table-layout: fixed;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 0.2vh 0.5vw;
+    font-weight: normal;
+    text-align: left;
+}
+
+thead th {
+    font-weight: bold;
+}
+
+.center th {
+    width: 33%;
+}
+
+.top-info th {
+    padding-top: 1vh;
+    padding-left: 2vw;
+    padding-right: 10vw;
+    font-size: small;
+}
+
+.top-info input {
+    border: none;
+    width: 100%;
+    border-bottom: 2px dotted black;
+    margin-bottom: 0.5vh;
+}
+
+table input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #ffc000;
+    border: 1px solid #000;
+    width: 10px;
+    height: 10px;
+    padding-bottom: 5px;
+}
+
+table input[type="checkbox"]:checked {
+    background-image: url("./tick.svg");
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.checkbox-col {
+    line-height: 80%;
+    font-size: small;
+    font-weight: 800;
+    padding-left: 2vw;
+}

@@ -1,15 +1,62 @@
 <!DOCTYPE html>
-<html lang="PL">
+<html lang="pl">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>GeneRozkaz</title>
-        <meta name="description" content="">
+        <meta name="description" content="Generator online dla nowych kolejowych rozkazów pisemnych">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="index.css">
     </head>
-    <body>
-        
-        <script src="" async defer></script>
+    <body class="font">
+        <table id="rokaz-normalny">
+            <thead>
+                <tr>
+                    <th colspan="4">Rozkaz pisemny</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="center top-info">
+                    <th id="norm-A" colspan="2">
+                        <input id="norm-A-input" type="text"><br>
+                        A Nr pociągu | składu manewrowego
+                    </th>
+                    <th id="norm-B" colspan="2">
+                        <input id="norm-B-input" type="date"><br>
+                        B Data
+                    </th>
+                </tr>
+                <tr class="center top-info">
+                    <th id="norm-C" colspan="2">
+                        <input id="norm-C-input" type="text"><br>
+                        C Lokalizacja pociągu | składu manewrowego
+                    </th>
+                    <th id="norm-D" colspan="2">
+                        <input id="norm-D-input" type="text"><br>
+                        D Lokalizacja nadawcy
+                    </th>
+                </tr>
+                <tr class="center first-row">
+                    <th id="nr22_00" class="checkbox-col">
+                        <input type="checkbox"><br>
+                        22.00
+                    </th>
+                    <th>
+                        oki
+                    </th>
+                    <th>
+                        tss
+                    </th>
+                    <th>
+                        sda
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+
+        <table id="rozkaz-europejski" style="display: none;">
+            <!-- TODO: Add ETCS version -->
+        </table>
+
+        <script src="index.js" async defer></script>
     </body>
 </html>
