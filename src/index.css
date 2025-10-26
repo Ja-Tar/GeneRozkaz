@@ -76,13 +76,11 @@ table input[type="checkbox"]:checked {
 }
 
 .roz-content {
-    font-weight: bold;
     font-size: small;
 }
 
 .roz-content label {
     font-size: smaller;
-    font-weight: normal;
 }
 
 div.inline {
