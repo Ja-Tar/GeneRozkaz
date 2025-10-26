@@ -11,7 +11,7 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 - [ ] Generowanie tekstowej wersji rozkazu (np. dla symulatorów)
 
 ## Obsługiwane wersje rozkazu
-- [ ] Normalna
+- [x] Normalna
 - [ ] ETCS
 
 # EN 🇬🇧
@@ -26,5 +26,5 @@ Online generator for new Polish written orders
 - [ ] Generation of a text version of the order (e.g. for simulators)
 
 # Supported written order versions
-- [ ] Normal
+- [x] Normal
 - [ ] ETCS
