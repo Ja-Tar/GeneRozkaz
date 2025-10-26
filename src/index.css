@@ -103,8 +103,12 @@ div.inline {
 
 /* input widths */
 
-.tor input, .km input {
-    width: 3em
+.tor input, .kmh input, .linia input {
+    width: 3em;
+}
+
+.km input {
+    width:5em;
 }
 
 .sem input {
