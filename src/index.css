@@ -71,7 +71,7 @@ table input[type="checkbox"]:checked {
     line-height: 80%;
     font-size: small;
     font-weight: 800;
-    padding-left: 2vw;
+    padding-left: 1vw;
     width: 8%;
 }
 
@@ -81,6 +81,37 @@ table input[type="checkbox"]:checked {
 }
 
 .roz-content label {
-    font-size:  small;
+    font-size: smaller;
     font-weight: normal;
+}
+
+div.inline {
+    display: inline-flex;
+    flex-direction: column;
+    width: auto;
+    min-width: 0;
+}
+
+.inline * {
+    width: auto;
+    min-width: 0;
+    text-align: center;
+}
+
+.inline input {
+    height: 1em;
+}
+
+/* input widths */
+
+.tor input {
+    width: 3em
+}
+
+.sem input {
+    width: 6em;
+}
+
+.post input {
+    width: auto;
 }
