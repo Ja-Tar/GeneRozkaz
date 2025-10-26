@@ -95,6 +95,23 @@ function addInputsToDivs(tableID) {
     }
 }
 
+function handleClick(from) {
+    const numbersRegex = /nr(\d{2})_(\d{2})-input/;
+    const clickedNumber = from.id.replace(numbersRegex, "$1.$2")
+    console.log(from.checked, clickedNumber);
+
+    // TODO Load data to validate checkboxes nad inputs
+}
+
+function addClickEventToCheckboxes() {
+    const checkboxes = document.querySelectorAll('table input[type="checkbox"]');
+    for (let i = 0; i < checkboxes.length; i++) {
+        const checkbox = checkboxes[i];
+        checkbox.setAttribute("onclick", "handleClick(this)")
+    }
+}
+
 loadInputTypes().then(() => {
     addInputsToDivs("rozkaz-normalny");
+    addClickEventToCheckboxes();
 });
