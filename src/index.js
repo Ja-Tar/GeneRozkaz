@@ -1,12 +1,13 @@
 async function loadInputTypes() {
-    const data = sessionStorage.getItem("savedData");
+    //let data = sessionStorage.getItem("savedData");
+    let data = null // REMOVE
     if (!data) {
         const url = document.baseURI + "/input_types.html";
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
-        const data = await response.text();
+        data = await response.text();
         sessionStorage.setItem("savedData", data);
     }
     let dom = document.createElement("div");
@@ -48,7 +49,6 @@ function addInputsToDivs(tableID) {
         const inputs = rozContent.querySelectorAll("input");
         const labels = rozContent.querySelectorAll("label");
         const numberOfInputs = inputs.length;
-        console.log(checkbox.id);
         
         for (let l = 0; l < numberOfInputs; l++) {
             const inputNumber = l + 1;
@@ -57,7 +57,6 @@ function addInputsToDivs(tableID) {
             inputElement.id = idToSet;
             labels[l].setAttribute("for", idToSet);
             labels[l].innerText = labels[l].innerText.replace("x.0", "x." + inputNumber);
-            console.log(labels[l].innerText);
         }
     }
 }
