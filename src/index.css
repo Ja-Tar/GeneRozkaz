@@ -7,7 +7,7 @@ body {
     font-style: normal;
     font-variation-settings:
         "wdth" 100;
-    font-size-adjust: cap-height 0.62
+    font-size-adjust: cap-height 0.62;
 }
 
 table {
@@ -19,7 +19,7 @@ th,
 td {
     border: 1px solid black;
     border-collapse: collapse;
-    padding: 0.2vh 0.5vw;
+    padding: 0.05em 0.2em;
     font-weight: normal;
     text-align: left;
 }
@@ -33,16 +33,15 @@ thead th {
 }
 
 .top-info th {
-    padding-top: 1vh;
-    padding-left: 2vw;
-    padding-right: 8vw;
+    padding-top: 0.5em;
+    padding-left: 1.5em;
+    padding-right: 5em;
     font-size: small;
 }
 
 input {
     border: none;
     border-bottom: 2px dotted black;
-    margin-bottom: 0.5vh;
 }
 
 .top-info input {
@@ -71,7 +70,7 @@ table input[type="checkbox"]:checked {
     line-height: 80%;
     font-size: small;
     font-weight: 700;
-    padding-left: 1vw;
+    padding-left: 0.8em;
     width: 8%;
 }
 
@@ -81,7 +80,7 @@ table input[type="checkbox"]:checked {
 
 .roz-content {
     font-size: small;
-    padding-left: 1vw;
+    padding-left: 1em;
 }
 
 .roz-content label {
@@ -161,7 +160,9 @@ div.inline {
 }
 
 .text-area {
-    padding-bottom: 3vh;
+    padding-bottom: 3em;
+    padding-right: 1em;
+    box-sizing: border-box;
 }
 
 .margin-center {
