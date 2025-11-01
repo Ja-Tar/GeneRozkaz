@@ -1,15 +1,27 @@
 const mainApiUrl = window.location.origin + "/api"
 
+/**
+ * @param {string} endpointUrl 
+ * @returns {Promise<string>}
+ */
 async function getRequestText(endpointUrl) {
     const response = await getRequest(endpointUrl);
     return await response.text();
 }
 
+/**
+ * @param {string} endpointUrl 
+ * @returns {Promise<JSON>}
+ */
 async function getRequestJSON(endpointUrl) {
     const response = await getRequest(endpointUrl);
     return await response.json();
 }
 
+/**
+ * @param {string} endpointUrl 
+ * @returns {Promise<Response>}
+ */
 async function getRequest(endpointUrl) {
     if (!endpointUrl) throw TypeError("No URL specified!");
     const url = mainApiUrl + endpointUrl;
@@ -39,6 +51,9 @@ async function loadInputTypes() {
     console.log(window.inputTypes);
 }
 
+/**
+ * @param {string} tableID 
+ */
 function addInputsToDivs(tableID) {
     let table = document.getElementById(tableID);
     let parentsOfReplacedElements = [];
@@ -76,6 +91,9 @@ function addInputsToDivs(tableID) {
         updateFieldInfo(parent);
     }
 
+    /**
+     * @param {Element} parent 
+     */
     function updateFieldInfo(parent) {
         const checkbox = parent.getElementsByClassName("checkbox-col")[0];
         const rozContent = parent.getElementsByClassName("roz-content")[0];
@@ -93,6 +111,13 @@ function addInputsToDivs(tableID) {
         }
     }
 
+    /**
+     * @param {Number} l 
+     * @param {Number} minusNum 
+     * @param {NodeListOf<HTMLInputElement>} inputs 
+     * @param {Element} checkbox 
+     * @param {NodeListOf<HTMLLabelElement>} labels 
+     */
     function updateInputIdAndLabel(l, minusNum, inputs, checkbox, labels) {
         const inputNumber = l + 1 - minusNum;
         let inputElement = inputs[l];
@@ -102,6 +127,9 @@ function addInputsToDivs(tableID) {
         labels[l].innerText = labels[l].innerText.replace("x.0", "x." + inputNumber);
     }
 
+    /**
+     * @param {Element} parent 
+     */
     function updateCheckboxInfo(parent) {
         const checkboxTH = parent.getElementsByClassName("checkbox-col")[0];
         const checkboxInput = parent.querySelector('input[type="checkbox"]');
@@ -112,6 +140,9 @@ function addInputsToDivs(tableID) {
     }
 }
 
+/**
+ * @param {Element} from 
+ */
 function handleClick(from) {
     const numbersRegex = /nr(\d{2})(?:|_(\d{2}))-input/;
     let clickedNumber = from.id.replace(numbersRegex, "$1.$2")
@@ -131,21 +162,75 @@ function addClickEventToCheckboxes() {
 
 // FIELDS VALIDATION
 
+/**
+ * @param {string} name 
+ * @returns {Element | null}
+ */
+function getSection(name) {
+    // name [str] - name of written order section, like:
+    // '22.00'; 'normal'; '99'
+
+    processSectionName();
+
+    return document.getElementById(`nr${name}`).parentElement;
+
+    function processSectionName() {
+        let splitName = name.split(".");
+
+        if (splitName.length > 2) {
+            throw SyntaxError(`Wrong section name: ${name}`);
+        } else {
+            splitName = splitName.filter((val) => /^\d+$/.test(val))
+            if (splitName.length !== 2) {
+                throw SyntaxError(`Wrong section name - splitting error: ${name}`);
+            }
+            name = splitName.join("_")
+        }
+    }
+}
+
+/**
+ * @param {string} name 
+ * @param {string} section 
+ */
+function getField(name, section) {
+    // name [str] - name of field like:
+    // '1', 'A', '96'
+
+    processFieldName();
+
+    const inputFields = document.querySelectorAll('input[id*="21_10"]');
+    for (let i = 0; i < inputFields.length; i++) {
+        const element = inputFields[i];
+        console.log(element.id);
+        // TODO Finish this!!! 
+    }
+
+    function processFieldName() {
+        sectionAliases = { // INFO: Add aliases if needed
+            "normal": "norm"
+        }
+ 
+        if (name in sectionAliases) {
+            name = sectionAliases[name];
+        }
+    }
+}
+
 async function loadFieldValidation() {
     window.fieldsValJSON = await getRequestJSON("/field_validation.json");
 
+    console.log(getSection("21.10"));
+    getField();
     // TODO Add first time highlight and validation
 }
 
 // START LOADING DATA ***
 
-async function loadAllData() {
-    await loadInputTypes();
-    await loadFieldValidation();
-}
-
-loadAllData().then(() => {
+loadInputTypes().then(() => {
     addInputsToDivs("rozkaz-normalny");
     addClickEventToCheckboxes();
-    console.log("DONE");
+    loadFieldValidation().then(() => {
+        console.log("DONE");
+    })
 });

@@ -1,4 +1,17 @@
 {
+    "normal": {
+        "fieldsNeeded": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "V",
+            "Y",
+            "W",
+            "Y",
+            "Z"
+        ]
+    },
     "22.00": {
         "fieldsNeeded": [],
         "instructionsDisallowed": []
