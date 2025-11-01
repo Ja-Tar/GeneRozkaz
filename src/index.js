@@ -1,39 +1,50 @@
 const mainApiUrl = window.location.origin + "/api"
 
-async function loadInputTypes() {
-    const url = mainApiUrl + "/input_types.html";
+async function getRequestText(endpointUrl) {
+    const response = await getRequest(endpointUrl);
+    return await response.text();
+}
+
+async function getRequestJSON(endpointUrl) {
+    const response = await getRequest(endpointUrl);
+    return await response.json();
+}
+
+async function getRequest(endpointUrl) {
+    if (!endpointUrl) throw TypeError("No URL specified!");
+    const url = mainApiUrl + endpointUrl;
     const response = await fetch(url);
     if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
     }
-    data = await response.text();
-    
-    initializeInputTypes();
+    return response;
+}
 
-    function initializeInputTypes() {
-        let dom = document.createElement("div");
-        dom.innerHTML = data;
-        document.inputsDOM = dom.children;
-        document.inputTypes = [];
-        for (let i = 0; i < dom.children.length; i++) {
-            const domChild = dom.children[i];
-            if (domChild.nodeName === "TABLE") {
-                console.log(domChild);
-                document.inputTypes.push("checkbox-col");
-                continue;
-            }
-            document.inputTypes.push(domChild.classList[1]);
+// INPUT FIELDS LOADING ***
+
+async function loadInputTypes() {
+    let dom = document.createElement("div");
+    dom.innerHTML = await getRequestText("/input_types.html");
+    document.inputsDOM = dom.children;
+    window.inputTypes = [];
+    for (let i = 0; i < dom.children.length; i++) {
+        const domChild = dom.children[i];
+        if (domChild.nodeName === "TABLE") {
+            console.log(domChild);
+            window.inputTypes.push("checkbox-col");
+            continue;
         }
-        console.log(document.inputTypes);
+        window.inputTypes.push(domChild.classList[1]);
     }
+    console.log(window.inputTypes);
 }
 
 function addInputsToDivs(tableID) {
     let table = document.getElementById(tableID);
     let parentsOfReplacedElements = [];
 
-    for (let i = 0; i < document.inputTypes.length; i++) {
-        const element = document.inputTypes[i];
+    for (let i = 0; i < window.inputTypes.length; i++) {
+        const element = window.inputTypes[i];
         divs = table.getElementsByClassName(element);
         for (let l = 0; l < divs.length; l++) {
             const element = divs[l];
@@ -102,8 +113,9 @@ function addInputsToDivs(tableID) {
 }
 
 function handleClick(from) {
-    const numbersRegex = /nr(\d{2})_(\d{2})-input/;
-    const clickedNumber = from.id.replace(numbersRegex, "$1.$2")
+    const numbersRegex = /nr(\d{2})(?:|_(\d{2}))-input/;
+    let clickedNumber = from.id.replace(numbersRegex, "$1.$2")
+    if (clickedNumber.endsWith(".")) clickedNumber = clickedNumber.slice(0, -1)
     console.log(from.checked, clickedNumber);
 
     // TODO Load data to validate checkboxes nad inputs
@@ -117,7 +129,23 @@ function addClickEventToCheckboxes() {
     }
 }
 
-loadInputTypes().then(() => {
+// FIELDS VALIDATION
+
+async function loadFieldValidation() {
+    window.fieldsValJSON = await getRequestJSON("/field_validation.json");
+
+    // TODO Add first time highlight and validation
+}
+
+// START LOADING DATA ***
+
+async function loadAllData() {
+    await loadInputTypes();
+    await loadFieldValidation();
+}
+
+loadAllData().then(() => {
     addInputsToDivs("rozkaz-normalny");
     addClickEventToCheckboxes();
+    console.log("DONE");
 });
