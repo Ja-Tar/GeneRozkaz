@@ -1,29 +1,31 @@
+const mainApiUrl = window.location.origin + "/api"
+
 async function loadInputTypes() {
-    //let data = sessionStorage.getItem("savedData");
-    let data = null // REMOVE
-    if (!data) {
-        const url = document.baseURI + "/input_types.html";
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-        data = await response.text();
-        sessionStorage.setItem("savedData", data);
+    const url = mainApiUrl + "/input_types.html";
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
     }
-    let dom = document.createElement("div");
-    dom.innerHTML = data;
-    document.inputsDOM = dom.children;
-    document.inputTypes = [];
-    for (let i = 0; i < dom.children.length; i++) {
-        const domChild = dom.children[i];
-        if (domChild.nodeName === "TABLE") {
-            console.log(domChild);
-            document.inputTypes.push("checkbox-col")
-            continue;
+    data = await response.text();
+    
+    initializeInputTypes();
+
+    function initializeInputTypes() {
+        let dom = document.createElement("div");
+        dom.innerHTML = data;
+        document.inputsDOM = dom.children;
+        document.inputTypes = [];
+        for (let i = 0; i < dom.children.length; i++) {
+            const domChild = dom.children[i];
+            if (domChild.nodeName === "TABLE") {
+                console.log(domChild);
+                document.inputTypes.push("checkbox-col");
+                continue;
+            }
+            document.inputTypes.push(domChild.classList[1]);
         }
-        document.inputTypes.push(domChild.classList[1]);
+        console.log(document.inputTypes);
     }
-    console.log(document.inputTypes);
 }
 
 function addInputsToDivs(tableID) {
@@ -58,15 +60,19 @@ function addInputsToDivs(tableID) {
     for (let i = 0; i < parentsOfReplacedElements.length; i++) {
         const parent = parentsOfReplacedElements[i];
         if (parent.children[0].innerText.includes("NUM-HERE")) {
-            updateCheckboxIdAndLabel(parent);
+            updateCheckboxInfo(parent);
         }
+        updateFieldInfo(parent);
+    }
+
+    function updateFieldInfo(parent) {
         const checkbox = parent.getElementsByClassName("checkbox-col")[0];
         const rozContent = parent.getElementsByClassName("roz-content")[0];
         const inputs = rozContent.querySelectorAll("input");
         const labels = rozContent.querySelectorAll("label");
         const numberOfInputs = inputs.length;
-        
-        let minusNum = 0
+
+        let minusNum = 0;
         for (let l = 0; l < numberOfInputs; l++) {
             if (labels[l].innerText.includes("x.0")) {
                 updateInputIdAndLabel(l, minusNum, inputs, checkbox, labels);
@@ -85,7 +91,7 @@ function addInputsToDivs(tableID) {
         labels[l].innerText = labels[l].innerText.replace("x.0", "x." + inputNumber);
     }
 
-    function updateCheckboxIdAndLabel(parent) {
+    function updateCheckboxInfo(parent) {
         const checkboxTH = parent.getElementsByClassName("checkbox-col")[0];
         const checkboxInput = parent.querySelector('input[type="checkbox"]');
         checkboxInput.id = checkboxTH.id + "-input";
