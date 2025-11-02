@@ -12,12 +12,22 @@
             "Z"
         ]
     },
-    "22.00": {
-        "fieldsNeeded": [],
-        "instructionsDisallowed": []
-    },
+    "22.00": {},
     "99": {
-        "fieldsNeeded": ["1"],
-        "instructionsDisallowed": []
+        "fieldsNeeded": [
+            "1"
+        ]
+    },
+    "21.10": {
+        "fieldsNeeded": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+        ],
+        "instructionsDisallowed": [
+            "21.15"
+        ]
     }
 }
