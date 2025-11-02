@@ -7,6 +7,7 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 ## Funkcje
 - [ ] Walidacja poprawności wypełnienia rozkazu (w ograniczonym zakresie)
 - [ ] Informacja o ty co należy wpisać w danym polu
+- [ ] Tryb integracji z symulatorem TD2 (automatyczne uzupełnianie pól)
 - [ ] Tryb drukowania
 - [ ] Generowanie tekstowej wersji rozkazu (np. dla symulatorów)
 
@@ -22,6 +23,7 @@ Online generator for new Polish written orders
 ## Functions
 - [ ] Validation of input fields (limited)
 - [ ] Information about what to enter in a given field
+- [ ] Integration with TD2 simulator (autocomplete fields)
 - [ ] Print mode
 - [ ] Generation of a text version of the order (e.g. for simulators)
 
