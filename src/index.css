@@ -24,15 +24,19 @@ td {
     text-align: left;
 }
 
+tr {
+    position: relative;
+}
+
 thead th {
     font-weight: 700;
 }
 
-.center th {
+.center td {
     width: 50%;
 }
 
-.top-info th {
+.top-info td {
     padding-top: 0.5em;
     padding-left: 1.5em;
     padding-right: 5em;
@@ -142,8 +146,9 @@ div.inline {
 
 /* other */
 
-.tor-zamkniety {
-    background-color: lightgray;
+.tor-zamkniety td,
+.tor-zamkniety th {
+    background: lightgray padding-box;
 }
 
 .tor-zamkniety input {
@@ -180,4 +185,20 @@ input.required:invalid {
 
 input.optional:invalid {
     background-color: lightblue;
+}
+
+/* overlays */
+
+.overlay-disallowed {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url(./bar.svg);
+    background-repeat: repeat;
+    background-size: contain;
+    background-color: lightgray;
+    opacity: 0.5;
+    cursor: not-allowed;
 }

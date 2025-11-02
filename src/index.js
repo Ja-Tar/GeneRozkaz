@@ -42,13 +42,12 @@ async function loadInputTypes() {
     for (let i = 0; i < dom.children.length; i++) {
         const domChild = dom.children[i];
         if (domChild.nodeName === "TABLE") {
-            console.log(domChild);
             window.inputTypes.push("checkbox-col");
             continue;
         }
         window.inputTypes.push(domChild.classList[1]);
     }
-    console.log(window.inputTypes);
+    console.debug(window.inputTypes);
 }
 
 /**
@@ -149,15 +148,28 @@ function handleClick(from) {
     if (clickedNumber.endsWith(".")) clickedNumber = clickedNumber.slice(0, -1)
     console.log(from.checked, clickedNumber); // REMOVE
 
-    if (from.checked) {
-        const neededFields = window.fieldsValJSON[clickedNumber]?.fieldsNeeded
-        if (neededFields) {
-            highlightFields(neededFields, clickedNumber);
+    toggleFieldHighlights();
+    toggleDisallowedInstructions();
+
+    function toggleFieldHighlights() {
+        if (from.checked) {
+            const neededFields = window.fieldsValJSON[clickedNumber]?.fieldsNeeded;
+            if (neededFields) {
+                highlightFields(neededFields, clickedNumber);
+            } else {
+                console.warn(`Fields to highlight in ${clickedNumber} not found`);
+            }
         } else {
-            console.warn(`Fields to highlight in ${clickedNumber} not found`);
+            removeHighlights(clickedNumber);
         }
-    } else {
-        removeHighlights(clickedNumber);
+    }
+
+    function toggleDisallowedInstructions() {
+        if (from.checked) {
+            addDisallowedOverlay(clickedNumber)
+        } else {
+            removeDisallowedOverlay(clickedNumber)
+        }
     }
 }
 
@@ -238,7 +250,7 @@ function formatNameFromId(elementId) {
 function getField(name, section) {
     // name [str] - name of field like:
     // '1', 'A', '96'
-    
+
     section = formatSectionName(section);
 
     const inputFields = document.querySelectorAll(`input[id*="${section}"]`);
@@ -288,7 +300,8 @@ function highlightFields(neededFields, section) {
 
         for (let i = 0; i < remainingFields.length; i++) {
             const field = remainingFields[i];
-            highlightOneField(field, section, "optional");
+            field.classList.add("optional");
+            field.setAttribute("required", "")
         }
     }
 }
@@ -326,16 +339,54 @@ function loadDefaultHighlights() {
     highlightFields(fieldsValJSON.normal.fieldsNeeded, "normal")
 }
 
+/**
+ * @param {string} clickedNumber 
+ */
+function addDisallowedOverlay(clickedNumber) {
+    const disallowed = window.fieldsValJSON[clickedNumber]?.instructionsDisallowed;
+    
+    for (let i = 0; i < disallowed.length; i++) {
+        const item = disallowed[i];
+        const itemElement = getSection(item);
+        if (!(itemElement instanceof Element)) {
+            return;
+        }
+        const overlayDiv = document.createElement("div");
+        overlayDiv.classList.add("overlay-disallowed")
+        itemElement.appendChild(overlayDiv);
+    }
+}
+
+/**
+ * @param {string} clickedNumber 
+ */
+function removeDisallowedOverlay(clickedNumber) {
+    const disallowed = window.fieldsValJSON[clickedNumber]?.instructionsDisallowed;
+    
+    for (let i = 0; i < disallowed.length; i++) {
+        const item = disallowed[i];
+        const itemElement = getSection(item);
+        if (!(itemElement instanceof Element)) {
+            return;
+        }
+        itemElement.querySelector(".overlay-disallowed").remove();
+    }
+}
+
 function checkForCheckedCheckboxes() {
     const checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
-    
-    for (let i = 0; i < checkboxes.length; i++) {
-        const boxID = formatNameFromId(checkboxes[i].id);
-        const neededFields = window.fieldsValJSON[boxID]?.fieldsNeeded
-        if (neededFields) {
-            highlightFields(neededFields, boxID);
-        } else {
-            console.warn(`Fields to highlight in ${boxID} not found`);
+
+    highlightCheckedFields();
+
+    function highlightCheckedFields() {
+        for (let i = 0; i < checkboxes.length; i++) {
+            const boxID = formatNameFromId(checkboxes[i].id);
+            const neededFields = window.fieldsValJSON[boxID]?.fieldsNeeded;
+            if (neededFields) {
+                highlightFields(neededFields, boxID);
+            } else {
+                console.warn(`Fields to highlight in ${boxID} not found`);
+            }
         }
     }
 }
@@ -348,6 +399,6 @@ loadInputTypes().then(() => {
     loadFieldValidation().then(() => {
         loadDefaultHighlights();
         checkForCheckedCheckboxes();
-        console.log("DONE");
+        console.info("LOADING DONE");
     })
 });
