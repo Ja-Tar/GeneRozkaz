@@ -1,4 +1,12 @@
 {
     "liveServer.settings.multiRootWorkspaceName": "GeneRozkaz",
-    "liveServer.settings.root": "/src"
+    "liveServer.settings.root": "/src",
+    "json.schemas": [
+    {
+        "fileMatch": [
+            "**/field_validation.json"
+        ],
+        "url": "./src/api/schema/field_v.json"
+    }
+]
 }
