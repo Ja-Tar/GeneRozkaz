@@ -15,6 +15,24 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 - [x] Normalna
 - [ ] ETCS
 
+## Oznaczenia
+### Kolor pola
+- To pole jest wymagane
+
+  <img width="348" height="52" alt="obraz" src="https://github.com/user-attachments/assets/fb0b5924-d775-48cf-9529-58aac9d11b62" />
+- To pole może być wypełnione (w zależności od potrzeb)
+
+  <img width="234" height="50" alt="obraz" src="https://github.com/user-attachments/assets/8635b917-616a-4a96-acdf-a996981756b2" />
+
+> [!WARNING]
+> Pozostałe pola (nie oznaczene kolorem i nie wypełnione) powinny zostać puste!
+
+### Oznaczenie wiersza
+- Ta instrukcja nie może być wydana równocześnie z inną zaznaczoną instrukcją
+
+  <img width="900" height="98" alt="obraz" src="https://github.com/user-attachments/assets/e9547a47-8e5a-45c1-8a8c-baba1203d712" />
+
+
 # EN 🇬🇧
 Online generator for new Polish written orders
 
@@ -30,3 +48,20 @@ Online generator for new Polish written orders
 # Supported written order versions
 - [x] Normal
 - [ ] ETCS
+
+## Markings
+### Field background
+- This field is required
+
+  <img width="348" height="52" alt="obraz" src="https://github.com/user-attachments/assets/fb0b5924-d775-48cf-9529-58aac9d11b62" />
+- This field is optional (as applicable)
+
+  <img width="234" height="50" alt="obraz" src="https://github.com/user-attachments/assets/8635b917-616a-4a96-acdf-a996981756b2" />
+
+> [!WARNING]
+> The rest of the fields (without text and background) should not be filled in!
+
+### Row indicators 
+- This instruction and other one can´t be selected simultaneously
+  
+  <img width="900" height="98" alt="obraz" src="https://github.com/user-attachments/assets/e9547a47-8e5a-45c1-8a8c-baba1203d712" />
