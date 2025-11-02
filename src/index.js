@@ -147,9 +147,18 @@ function handleClick(from) {
     const numbersRegex = /nr(\d{2})(?:|_(\d{2}))-input/;
     let clickedNumber = from.id.replace(numbersRegex, "$1.$2")
     if (clickedNumber.endsWith(".")) clickedNumber = clickedNumber.slice(0, -1)
-    console.log(from.checked, clickedNumber);
+    console.log(from.checked, clickedNumber); // REMOVE
 
-    // TODO Load data to validate checkboxes nad inputs
+    if (from.checked) {
+        const neededFields = window.fieldsValJSON[clickedNumber]?.fieldsNeeded
+        if (neededFields) {
+            highlightFields(neededFields, clickedNumber);
+        } else {
+            console.warn(`Fields to highlight in ${clickedNumber} not found`);
+        }
+    } else {
+        removeHighlights(clickedNumber);
+    }
 }
 
 function addClickEventToCheckboxes() {
@@ -160,69 +169,175 @@ function addClickEventToCheckboxes() {
     }
 }
 
-// FIELDS VALIDATION
+// FIELDS VALIDATION AND HIGHLIGHTING
 
 /**
  * @param {string} name 
- * @returns {Element | null}
+ * @returns {Element | null | HTMLCollectionOf<Element>}
  */
 function getSection(name) {
     // name [str] - name of written order section, like:
     // '22.00'; 'normal'; '99'
 
-    processSectionName();
+    name = formatSectionName(name);
 
-    return document.getElementById(`nr${name}`).parentElement;
-
-    function processSectionName() {
-        let splitName = name.split(".");
-
-        if (splitName.length > 2) {
-            throw SyntaxError(`Wrong section name: ${name}`);
-        } else {
-            splitName = splitName.filter((val) => /^\d+$/.test(val))
-            if (splitName.length !== 2) {
-                throw SyntaxError(`Wrong section name - splitting error: ${name}`);
-            }
-            name = splitName.join("_")
-        }
+    if (name === "norm") {
+        return document.getElementsByClassName("top-info");
+    } else if (name === "etcs") {
+        throw Error("Not implemented"); // TODO add proper list
     }
+
+    return document.getElementById(`${name}`).parentElement;
+}
+
+/**
+ * @param {string} name 
+ * @returns 
+ */
+function formatSectionName(name) {
+    sectionAliases = {
+        "normal": "norm"
+    };
+
+    if (name.startsWith("nr") || Object.values(sectionAliases).includes(name)) {
+        return name; // already formatted
+    }
+
+    let splitName = name.split(".");
+
+    if (splitName.length > 2) {
+        throw SyntaxError(`Wrong section name: ${name}`);
+    } else if (name in sectionAliases) {
+        name = sectionAliases[name];
+    } else {
+        splitName = splitName.filter((val) => /^\d+$/.test(val))
+        if (splitName.length < 1) {
+            throw SyntaxError(`Wrong section name - splitting error: ${name}`);
+        }
+        name = "nr" + splitName.join("_")
+    }
+
+    return name;
+}
+
+/**
+ * @param {string} elementId 
+ * @returns {string}
+ */
+function formatNameFromId(elementId) {
+    elementId = elementId.replaceAll("-input", "")
+    const name = elementId.replaceAll("nr", "")
+    return name;
 }
 
 /**
  * @param {string} name 
  * @param {string} section 
+ * @returns {Element | null}
  */
 function getField(name, section) {
     // name [str] - name of field like:
     // '1', 'A', '96'
+    
+    section = formatSectionName(section);
 
-    processFieldName();
-
-    const inputFields = document.querySelectorAll('input[id*="21_10"]');
+    const inputFields = document.querySelectorAll(`input[id*="${section}"]`);
     for (let i = 0; i < inputFields.length; i++) {
         const element = inputFields[i];
-        console.log(element.id);
-        // TODO Finish this!!! 
+        if (element.id.split("-")[1] === name) {
+            return element;
+        }
     }
 
-    function processFieldName() {
-        sectionAliases = { // INFO: Add aliases if needed
-            "normal": "norm"
-        }
- 
-        if (name in sectionAliases) {
-            name = sectionAliases[name];
-        }
-    }
+    return null;
 }
 
 async function loadFieldValidation() {
     window.fieldsValJSON = await getRequestJSON("/field_validation.json");
+}
 
-    console.log(getSection("21.10"));
-    getField();
-    // TODO Add first time highlight and validation
+/**
+ * @param {string[]} neededFields
+ * @param {string} section 
+ */
+function highlightFields(neededFields, section) {
+    section = formatSectionName(section);
+
+    for (let i = 0; i < neededFields.length; i++) {
+        const field = neededFields[i];
+        highlightOneField(field, section, "required")
+    }
+
+    const sectionElement = getSection(section);
+    if (sectionElement instanceof Element) {
+        highlightOptionalFields(sectionElement);
+    } else if (sectionElement instanceof HTMLCollection) {
+        for (let i = 0; i < sectionElement.length; i++) {
+            const element = sectionElement[i];
+            highlightOptionalFields(element);
+        }
+    } else {
+        console.error(`Section not found! ${section}`)
+    }
+
+    /**
+     * @param {Element} sectionElement 
+     */
+    function highlightOptionalFields(sectionElement) {
+        const remainingFields = sectionElement.querySelectorAll(`input:not([type="checkbox"]):not(.required)`);
+
+        for (let i = 0; i < remainingFields.length; i++) {
+            const field = remainingFields[i];
+            highlightOneField(field, section, "optional");
+        }
+    }
+}
+
+/**
+ * @param {string} field 
+ * @param {string} section 
+ * @param {string} className 
+ */
+function highlightOneField(field, section, className) {
+    const input = document.getElementById(`${section}-${field}-input`);
+    input.classList.add(className);
+    input.setAttribute("required", "")
+}
+
+/**
+ * @param {string} section 
+ */
+function removeHighlights(section) {
+    const sectionElement = getSection(section)
+    if (!(sectionElement instanceof Element)) {
+        throw Error("Not implemented!")
+    }
+
+    const inputFields = sectionElement.querySelectorAll("input:not([type='checkbox'])");
+
+    for (let i = 0; i < inputFields.length; i++) {
+        const element = inputFields[i];
+        element.classList.remove(["required", "optional"]);
+        element.removeAttribute("required");
+    }
+}
+
+function loadDefaultHighlights() {
+    highlightFields(fieldsValJSON.normal.fieldsNeeded, "normal")
+}
+
+function checkForCheckedCheckboxes() {
+    const checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
+    
+    for (let i = 0; i < checkboxes.length; i++) {
+        const boxID = formatNameFromId(checkboxes[i].id);
+        const neededFields = window.fieldsValJSON[boxID]?.fieldsNeeded
+        if (neededFields) {
+            highlightFields(neededFields, boxID);
+        } else {
+            console.warn(`Fields to highlight in ${boxID} not found`);
+        }
+    }
 }
 
 // START LOADING DATA ***
@@ -231,6 +346,8 @@ loadInputTypes().then(() => {
     addInputsToDivs("rozkaz-normalny");
     addClickEventToCheckboxes();
     loadFieldValidation().then(() => {
+        loadDefaultHighlights();
+        checkForCheckedCheckboxes();
         console.log("DONE");
     })
 });

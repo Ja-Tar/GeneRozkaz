@@ -71,7 +71,8 @@ table input[type="checkbox"]:checked {
     font-size: small;
     font-weight: 700;
     padding-left: 0.8em;
-    width: 8%;
+    padding-right: 0.5em;
+    width: 5%;
 }
 
 .all-bold {
@@ -169,4 +170,14 @@ div.inline {
     margin-left: auto;
     margin-right: auto;
     width: 700px;
+}
+
+/* section highlights */
+
+input.required:invalid {
+    background-color: lightcoral;
+}
+
+input.optional:invalid {
+    background-color: lightblue;
 }

@@ -17,7 +17,7 @@
         "instructionsDisallowed": []
     },
     "99": {
-        "fieldsNeeded": [],
+        "fieldsNeeded": ["1"],
         "instructionsDisallowed": []
     }
 }
