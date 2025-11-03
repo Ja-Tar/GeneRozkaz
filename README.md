@@ -5,7 +5,10 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 <img width="697" height="417" alt="obraz" src="https://github.com/user-attachments/assets/112305da-8c60-4c37-be8b-0692a6399099" />
 
 ## Funkcje
-- [ ] Walidacja poprawności wypełnienia rozkazu (w ograniczonym zakresie)
+- [ ] Walidacja poprawności wypełnienia rozkazu
+  - [x] Zaznaczanie pól wymaganych i opcjonalnych
+  - [x] Zablokowanie możliwości wydania wykluczonych instrukcji
+  - [ ] Walidacja niektórych pól względem schematu (w ograniczonym zakresie)
 - [ ] Informacja o ty co należy wpisać w danym polu
 - [ ] Tryb integracji z symulatorem TD2 (automatyczne uzupełnianie pól)
 - [ ] Tryb drukowania
@@ -39,7 +42,10 @@ Online generator for new Polish written orders
 <img width="697" height="417" alt="obraz" src="https://github.com/user-attachments/assets/112305da-8c60-4c37-be8b-0692a6399099" />
 
 ## Functions
-- [ ] Validation of input fields (limited)
+- [ ] Validation of input fields
+  - [x] Highlight of required and optional fields
+  - [x] Blocking the possibility of issuing incompatible instructions (like `21.10` and `21.15`)
+  - [ ] Validation of certain fields against the schema (limited)
 - [ ] Information about what to enter in a given field
 - [ ] Integration with TD2 simulator (autocomplete fields)
 - [ ] Print mode
