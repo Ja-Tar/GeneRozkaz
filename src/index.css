@@ -187,6 +187,15 @@ input.optional:invalid {
     background-color: lightblue;
 }
 
+input[type="text"]:disabled {
+    text-decoration: line-through;
+}
+
+input::placeholder {
+    color: #000;
+    text-decoration: none;
+}
+
 /* overlays */
 
 .overlay-disallowed {

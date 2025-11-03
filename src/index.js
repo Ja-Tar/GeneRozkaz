@@ -222,11 +222,11 @@ function formatSectionName(name) {
     } else if (name in sectionAliases) {
         name = sectionAliases[name];
     } else {
-        splitName = splitName.filter((val) => /^\d+$/.test(val))
+        splitName = splitName.filter((val) => /^\d+$/.test(val));
         if (splitName.length < 1) {
             throw SyntaxError(`Wrong section name - splitting error: ${name}`);
         }
-        name = "nr" + splitName.join("_")
+        name = "nr" + splitName.join("_");
     }
 
     return name;
@@ -236,10 +236,36 @@ function formatSectionName(name) {
  * @param {string} elementId 
  * @returns {string}
  */
-function formatNameFromId(elementId) {
-    elementId = elementId.replaceAll("-input", "")
-    const name = elementId.replaceAll("nr", "")
+function formatSectionIdFromId(elementId) {
+    elementId = elementId.replaceAll("-input", "");
+    const name = elementId.replaceAll("nr", "");
     return name;
+}
+
+/**
+ * @param {string} elementId 
+ * @returns {string}
+ */
+function formatInstructionIdFromId(elementId) {
+    elementId = elementId = formatSectionIdFromId(elementId);
+    elementId = elementId.split("-")[0];
+    let splitInstructionId  = elementId.split("_");
+    splitInstructionId = splitInstructionId.filter((val) => /^\d+$/.test(val));
+    if (splitInstructionId.length === 2) {
+        return splitInstructionId.join(".");
+    }
+    console.error("Element id is wrong for this conversion: %s", elementId);
+    return "";
+}
+
+/**
+ * @param {string} elementId 
+ * @returns {string}
+ */
+function formatFieldIdFromId(elementId) {
+    elementId = formatSectionIdFromId(elementId);
+    const nameSplit = elementId.split("-");
+    return nameSplit[1];
 }
 
 /**
@@ -277,7 +303,8 @@ function highlightFields(neededFields, section) {
 
     for (let i = 0; i < neededFields.length; i++) {
         const field = neededFields[i];
-        highlightOneField(field, section, "required")
+        const input = document.getElementById(`${section}-${field}-input`);
+        highlightElement(input, "required")
     }
 
     const sectionElement = getSection(section);
@@ -300,21 +327,37 @@ function highlightFields(neededFields, section) {
 
         for (let i = 0; i < remainingFields.length; i++) {
             const field = remainingFields[i];
-            field.classList.add("optional");
-            field.setAttribute("required", "")
+            highlightElement(field, "optional");
+            checkIfDashNeeded(field, section);
         }
     }
 }
 
 /**
- * @param {string} field 
- * @param {string} section 
+ * @param {Element} field 
  * @param {string} className 
  */
-function highlightOneField(field, section, className) {
-    const input = document.getElementById(`${section}-${field}-input`);
-    input.classList.add(className);
-    input.setAttribute("required", "")
+function highlightElement(field, className) {
+    field.classList.add(className);
+    field.required = true;
+    field.disabled = false;
+}
+
+/**
+ * @param {Element} field 
+ * @param {string} section 
+ */
+function checkIfDashNeeded(field) {
+    const sectionId = formatInstructionIdFromId(field.id);
+    /** @type {string[] | null} */
+    const fieldsWithDash = window.fieldsValJSON[sectionId]?.fieldsDashedWhenEmpty;
+
+    if (fieldsWithDash) {
+        const fieldId = formatFieldIdFromId(field.id);
+        if (fieldsWithDash.includes(fieldId)) {
+            field.placeholder = "―";
+        }
+    }
 }
 
 /**
@@ -331,7 +374,9 @@ function removeHighlights(section) {
     for (let i = 0; i < inputFields.length; i++) {
         const element = inputFields[i];
         element.classList.remove(["required", "optional"]);
-        element.removeAttribute("required");
+        element.required = false;
+        element.disabled = true;
+        element.removeAttribute("placeholder");
     }
 }
 
@@ -345,6 +390,11 @@ function loadDefaultHighlights() {
 function addDisallowedOverlay(clickedNumber) {
     const disallowed = window.fieldsValJSON[clickedNumber]?.instructionsDisallowed;
     
+    if (!disallowed) {
+        console.info("No disallowed instructions found for %s", clickedNumber);
+        return;
+    }
+
     for (let i = 0; i < disallowed.length; i++) {
         const item = disallowed[i];
         const itemElement = getSection(item);
@@ -353,7 +403,7 @@ function addDisallowedOverlay(clickedNumber) {
         }
         const overlayDiv = document.createElement("div");
         overlayDiv.classList.add("overlay-disallowed")
-        itemElement.appendChild(overlayDiv);
+        itemElement.children[0].appendChild(overlayDiv);
     }
 }
 
@@ -363,6 +413,11 @@ function addDisallowedOverlay(clickedNumber) {
 function removeDisallowedOverlay(clickedNumber) {
     const disallowed = window.fieldsValJSON[clickedNumber]?.instructionsDisallowed;
     
+    if (!disallowed) {
+        console.info("No disallowed instructions found for %s", clickedNumber);
+        return;
+    }
+
     for (let i = 0; i < disallowed.length; i++) {
         const item = disallowed[i];
         const itemElement = getSection(item);
@@ -380,7 +435,7 @@ function checkForCheckedCheckboxes() {
 
     function highlightCheckedFields() {
         for (let i = 0; i < checkboxes.length; i++) {
-            const boxID = formatNameFromId(checkboxes[i].id);
+            const boxID = formatSectionIdFromId(checkboxes[i].id);
             const neededFields = window.fieldsValJSON[boxID]?.fieldsNeeded;
             if (neededFields) {
                 highlightFields(neededFields, boxID);
