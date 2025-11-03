@@ -20,8 +20,16 @@
     },
     "definitions": {
         "field": {
+            "required": ["fieldsNeeded"],
             "properties": {
                 "fieldsNeeded": {
+                    "type": "array",
+                    "items": {
+                        "pattern": "^\\d+$",
+                        "type": "string"
+                    }
+                },
+                "fieldsDashedWhenEmpty": {
                     "type": "array",
                     "items": {
                         "pattern": "^\\d+$",
@@ -38,6 +46,7 @@
             }
         },
         "main": {
+            "required": ["fieldsNeeded"],
             "properties": {
                 "fieldsNeeded": {
                     "type": "array",
