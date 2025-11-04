@@ -30,6 +30,9 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 > [!TIP]
 > Żeby edytować pola kliknij na kwadracik (checkbox) danej instrukcji.
 
+> [!IMPORTANT]
+> Jeśli kolor nie zniknie po wpisaniu rzeczy to oznacza że pole jest nieprawidłowo wypełnione.
+
 ### Oznaczenie wiersza
 - Ta instrukcja nie może być wydana równocześnie z inną zaznaczoną instrukcją
 
@@ -65,7 +68,10 @@ Online generator for new Polish written orders
   <img width="234" height="50" alt="obraz" src="https://github.com/user-attachments/assets/8635b917-616a-4a96-acdf-a996981756b2" />
 
 > [!TIP]
-> To enable fields click on the instruction checkbox.
+> To enable fields click on the instruction checkbox
+
+> [!IMPORTANT]
+> If background doesn't disappear, the field is wrongly fild in!
 
 ### Row indicators 
 - This instruction and other one can´t be selected simultaneously
