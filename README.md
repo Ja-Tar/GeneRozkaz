@@ -27,8 +27,8 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 
   <img width="234" height="50" alt="obraz" src="https://github.com/user-attachments/assets/8635b917-616a-4a96-acdf-a996981756b2" />
 
-> [!WARNING]
-> Pozostałe pola (nie oznaczene kolorem i nie wypełnione) powinny zostać puste!
+> [!TIP]
+> Żeby edytować pola kliknij na kwadracik (checkbox) danej instrukcji.
 
 ### Oznaczenie wiersza
 - Ta instrukcja nie może być wydana równocześnie z inną zaznaczoną instrukcją
@@ -64,8 +64,8 @@ Online generator for new Polish written orders
 
   <img width="234" height="50" alt="obraz" src="https://github.com/user-attachments/assets/8635b917-616a-4a96-acdf-a996981756b2" />
 
-> [!WARNING]
-> The rest of the fields (without text and background) should not be filled in!
+> [!TIP]
+> To enable fields click on the instruction checkbox.
 
 ### Row indicators 
 - This instruction and other one can´t be selected simultaneously
