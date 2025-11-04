@@ -10,10 +10,7 @@
             "W",
             "Y",
             "Z"
-        ],
-        "fieldPatterns": {
-            "A": ""
-        }
+        ]
     },
     "22.00": {
         "fieldsNeeded": []

@@ -24,7 +24,9 @@
     "definitions": {
         "field": {
             "title": "Nr instrukcji",
-            "required": ["fieldsNeeded"],
+            "required": [
+                "fieldsNeeded"
+            ],
             "properties": {
                 "fieldsNeeded": {
                     "title": "Pola wymagane w danej instrukcji",
@@ -47,14 +49,16 @@
                     "title": "Instrukcje które nie mogą być na jednym rozkazie w tym samym momencie co dana instrukcja",
                     "items": {
                         "pattern": "^\\d+(?:$|\\.\\d+$)",
-                        "type":"string"
+                        "type": "string"
                     }
                 }
             }
         },
         "main": {
             "title": "Identyfikator pól nagłówka",
-            "required": ["fieldsNeeded"],
+            "required": [
+                "fieldsNeeded"
+            ],
             "properties": {
                 "fieldsNeeded": {
                     "title": "Pola wymagane w danej instrukcji",

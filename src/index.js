@@ -323,12 +323,12 @@ function highlightFields(neededFields, section) {
      * @param {Element} sectionElement 
      */
     function highlightOptionalFields(sectionElement) {
-        const remainingFields = sectionElement.querySelectorAll(`input:not([type="checkbox"]):not(.required)`);
+        const remainingFields = sectionElement.querySelectorAll('input:not([type="checkbox"]):not(.required)');
 
         for (let i = 0; i < remainingFields.length; i++) {
             const field = remainingFields[i];
             highlightElement(field, "optional");
-            checkIfDashNeeded(field, section);
+            checkIfDashNeeded(field);
         }
     }
 }
