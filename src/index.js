@@ -458,17 +458,17 @@ function adjustTableSize() {
     }
 
     if (currentTableDiv) {
-        console.log(`1: ${currentTableDiv.scrollWidth}, ${currentTableDiv.clientWidth}; 2: ${instructionBox.scrollWidth}, ${instructionBox.clientWidth}`)
-        if (!currentTableDiv.style.scale) {
-            currentTableDiv.style.scale = tableScale;
-        }
         while (700 * tableScale < instructionBox.clientWidth * 0.9) {
             tableScale += 0.001;
         }
-        currentTableDiv.style.scale = tableScale;
-        console.log(`${currentTableDiv.clientWidth} * ${tableScale} = ${currentTableDiv.clientWidth * tableScale} VS ${instructionBox.scrollWidth}`)
+        document.documentElement.style.setProperty("--scale-instruction", tableScale);
+        document.documentElement.style.setProperty("--toolbox-hight", currentTableDiv.clientHeight + "px");
     }
 }
+
+// TOOLBAR ***
+
+// TODO Add here functions
 
 // START LOADING DATA ***
 

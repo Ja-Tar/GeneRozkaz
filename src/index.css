@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
+:root {
+    --scale-instruction: 1;
+    --toolbox-hight: 100%;
+}
+
 body {
     font-family: Calibri, "Open Sans", sans-serif;
     font-optical-sizing: auto;
@@ -8,6 +13,11 @@ body {
     font-variation-settings:
         "wdth" 100;
     font-size-adjust: cap-height 0.62;
+
+    margin-bottom: 0;
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
 }
 
 table {
@@ -171,14 +181,17 @@ div.inline {
     box-sizing: border-box;
 }
 
-#instructionBox {
+#instruction-box {
     width: 100%;
 }
 
 .fill-page {
     width: 700px;
     padding-bottom: 5px;
+    padding-top: 5px;
     transform-origin: left top;
+    transition: scale 1s ease-in-out;
+    scale: var(--scale-instruction);
 }
 
 /* section highlights */
@@ -215,3 +228,26 @@ input::placeholder {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+/* toolbar */
+
+#toolbar-box {
+    display: none;/* block;*/
+    width: 10%;
+    height: calc(var(--toolbox-hight) * var(--scale-instruction) + 5px)
+}
+
+#toolbar-flex {
+    display: flex;
+    position: sticky;
+    top: 10px;
+    height: 98vh;
+}
+
+#toolbar-grid {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
