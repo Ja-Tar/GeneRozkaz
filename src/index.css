@@ -171,10 +171,14 @@ div.inline {
     box-sizing: border-box;
 }
 
-.margin-center {
-    margin-left: auto;
-    margin-right: auto;
+#instructionBox {
+    width: 100%;
+}
+
+.fill-page {
     width: 700px;
+    padding-bottom: 5px;
+    transform-origin: left top;
 }
 
 /* section highlights */

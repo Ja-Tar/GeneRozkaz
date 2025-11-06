@@ -446,6 +446,30 @@ function checkForCheckedCheckboxes() {
     }
 }
 
+// AUTO RESIZE ***
+
+function adjustTableSize() {
+    const currentTableDiv = document.querySelector(".fill-page:not([style*='none'])");
+    const instructionBox = document.getElementById("instruction-box");
+    let tableScale = 1
+
+    if (window.innerWidth < 900) {
+        return;
+    }
+
+    if (currentTableDiv) {
+        console.log(`1: ${currentTableDiv.scrollWidth}, ${currentTableDiv.clientWidth}; 2: ${instructionBox.scrollWidth}, ${instructionBox.clientWidth}`)
+        if (!currentTableDiv.style.scale) {
+            currentTableDiv.style.scale = tableScale;
+        }
+        while (700 * tableScale < instructionBox.clientWidth * 0.9) {
+            tableScale += 0.001;
+        }
+        currentTableDiv.style.scale = tableScale;
+        console.log(`${currentTableDiv.clientWidth} * ${tableScale} = ${currentTableDiv.clientWidth * tableScale} VS ${instructionBox.scrollWidth}`)
+    }
+}
+
 // START LOADING DATA ***
 
 loadInputTypes().then(() => {
@@ -454,6 +478,8 @@ loadInputTypes().then(() => {
     loadFieldValidation().then(() => {
         loadDefaultHighlights();
         checkForCheckedCheckboxes();
+        adjustTableSize();
+        addEventListener('resize', adjustTableSize)
         console.info("LOADING DONE");
     })
 });
