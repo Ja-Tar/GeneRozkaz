@@ -7,7 +7,7 @@
     <label for="add-ID-HERE">x.0 posterunek</label>
 </div>
 <div class="inline sem">
-    <input id="add-ID-HERE" type="text" disabled>
+    <input id="add-ID-HERE" type="text" pattern="[A-Z](?:$|\d+)$|D-?1 ?[\\\/] ?\d+[\.,]\d+" disabled>
     <label for="add-ID-HERE">x.0 sygnalizator</label>
 </div>
 <div class="inline numpoc">
@@ -15,7 +15,7 @@
     <label for="add-ID-HERE">x.0 numer pociągu</label>
 </div>
 <div class="inline km">
-    <input id="add-ID-HERE" type="text" inputmode="numeric" pattern="\d+\.\d+" disabled>
+    <input id="add-ID-HERE" type="text" inputmode="decimal" pattern="\d+[\.,]\d+" disabled>
     <label for="add-ID-HERE">x.0 km</label>
 </div>
 <div class="inline kmh">
