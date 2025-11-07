@@ -300,6 +300,7 @@ input::placeholder {
 
 #tools-box {
     width: 300px;
+    font-size: large;
     display: grid;
     align-items: center;
     justify-content: center;
@@ -307,3 +308,10 @@ input::placeholder {
     min-height: 190px;
 }
 
+/* TEMPORARY MOBILE */
+
+@media only screen and (max-width: 800px) {
+    #toolbar-box {
+        display: none;
+    }
+}

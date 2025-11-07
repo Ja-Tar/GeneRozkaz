@@ -458,10 +458,6 @@ function adjustTableSize() {
     const currentTableDiv = document.querySelector(".fill-page:not([style*='none'])");
     const instructionBox = document.getElementById("instruction-box");
 
-    if (window.innerWidth < 900) {
-        return;
-    }
-
     if (currentTableDiv) {
         const tableWidth = 774;
 
