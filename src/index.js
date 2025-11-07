@@ -58,18 +58,24 @@ function addInputsToDivs(tableID) {
     let parentsOfReplacedElements = [];
 
     for (let i = 0; i < window.inputTypes.length; i++) {
-        const element = window.inputTypes[i];
-        divs = table.getElementsByClassName(element);
+        /** @type {string} */
+        const inputType = window.inputTypes[i];
+        const divs = table.getElementsByClassName(inputType);
         for (let l = 0; l < divs.length; l++) {
             const element = divs[l];
             if (element.innerHTML) {
                 continue;
             }
+            /** @type {Element} */
             let newElement = document.inputsDOM[i].cloneNode(true);
+
             let tr = null;
             if (newElement.nodeName === "TABLE") {
                 newElement = newElement.querySelector("th");
                 newElement.id = element.id;
+                if (element.classList.length > 0) { // Add lost classes if needed.
+                    newElement.setAttribute("class", element.classList.toString())
+                }
                 element.parentElement.replaceChild(newElement, element);
                 tr = newElement.parentElement;
             } else {
@@ -249,7 +255,7 @@ function formatSectionIdFromId(elementId) {
 function formatInstructionIdFromId(elementId) {
     elementId = elementId = formatSectionIdFromId(elementId);
     elementId = elementId.split("-")[0];
-    let splitInstructionId  = elementId.split("_");
+    let splitInstructionId = elementId.split("_");
     splitInstructionId = splitInstructionId.filter((val) => /^\d+$/.test(val));
     if (splitInstructionId.length === 2) {
         return splitInstructionId.join(".");
@@ -389,7 +395,7 @@ function loadDefaultHighlights() {
  */
 function addDisallowedOverlay(clickedNumber) {
     const disallowed = window.fieldsValJSON[clickedNumber]?.instructionsDisallowed;
-    
+
     if (!disallowed) {
         console.info("No disallowed instructions found for %s", clickedNumber);
         return;
@@ -412,7 +418,7 @@ function addDisallowedOverlay(clickedNumber) {
  */
 function removeDisallowedOverlay(clickedNumber) {
     const disallowed = window.fieldsValJSON[clickedNumber]?.instructionsDisallowed;
-    
+
     if (!disallowed) {
         console.info("No disallowed instructions found for %s", clickedNumber);
         return;
@@ -451,26 +457,99 @@ function checkForCheckedCheckboxes() {
 function adjustTableSize() {
     const currentTableDiv = document.querySelector(".fill-page:not([style*='none'])");
     const instructionBox = document.getElementById("instruction-box");
-    let tableScale = 1
 
     if (window.innerWidth < 900) {
         return;
     }
 
     if (currentTableDiv) {
-        while (700 * tableScale < instructionBox.clientWidth * 0.9) {
-            tableScale += 0.001;
-        }
-        document.documentElement.style.setProperty("--scale-instruction", tableScale);
-        document.documentElement.style.setProperty("--toolbox-hight", currentTableDiv.clientHeight + "px");
+        const tableWidth = 774;
+
+        let tableScale = Math.max(1, instructionBox.clientWidth / tableWidth);
+        tableScale = Math.round(tableScale * 1000) / 1000;
+
+        requestAnimationFrame(() => {
+            document.documentElement.style.setProperty("--scale-instruction", tableScale);
+            document.documentElement.style.setProperty("--toolbox-hight", currentTableDiv.clientHeight + "px");
+        });
     }
 }
 
 // TOOLBAR ***
 
+const ToolbarState = Object.freeze({
+    CLOSED: 0,
+    OPEN: 1,
+});
+
+const toolbarGrid = document.getElementById("toolbar-inner-box");
+const sizeHolder = document.getElementById("size-holder");
+const toolbarHandle = document.getElementById("toolbar-handle");
+// TODO Add option to hold handle to adjust toolbar size
+
+function hideToolbar() {
+    sizeHolder.style.width = "0"
+    
+    localStorage.setItem("toolbar-state", ToolbarState.CLOSED);
+    setTimeout(() => {
+        toolbarGrid.style.display = "none"
+    }, 550);
+}
+
+function showToolbar() {
+    toolbarGrid.style.display = "grid";
+
+    setTimeout(() => {
+        sizeHolder.style.width = "300px"
+    }, 50);
+
+    localStorage.setItem("toolbar-state", ToolbarState.OPEN)
+}
+
+function toggleToolBar() {
+    const toolbarState = parseInt(localStorage.getItem("toolbar-state")) ?? ToolbarState.OPEN;
+
+    if (toolbarState) {
+        hideToolbar();
+    } else {
+        showToolbar();
+    }
+    setTimeout(adjustTableSize, 600)
+}
+
 // TODO Add here functions
 
 // START LOADING DATA ***
+
+/**
+ * Delay function call until time passed.
+ * @param {Function} fn 
+ * @param {number} [wait = 100]
+ * @returns {Function & {cancel: Function}} 
+ */
+function limitFunction(fn, wait = 100) {
+    let timeoutId = null;
+
+    function limited(...args) {
+        if (timeoutId !== null) {
+            clearTimeout(timeoutId);
+        }
+
+        timeoutId = setTimeout(() => {
+            timeoutId = null;
+            fn.apply(this, args);
+        }, wait);
+    }
+
+    limited.cancel = () => {
+        if (timeoutId !== null) {
+            clearTimeout(timeoutId);
+            timeoutId = null;
+        }
+    };
+
+    return limited;
+}
 
 loadInputTypes().then(() => {
     addInputsToDivs("rozkaz-normalny");
@@ -479,7 +558,10 @@ loadInputTypes().then(() => {
         loadDefaultHighlights();
         checkForCheckedCheckboxes();
         adjustTableSize();
-        addEventListener('resize', adjustTableSize)
+
+        addEventListener('resize', limitFunction(adjustTableSize, 120));
+        toolbarHandle.addEventListener('click', limitFunction(toggleToolBar, 120));
+
         console.info("LOADING DONE");
     })
 });

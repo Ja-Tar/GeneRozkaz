@@ -34,6 +34,11 @@ td {
     text-align: left;
 }
 
+.bottom-double-line {
+    border-bottom-style: double;
+    border-bottom-width: 4px;
+}
+
 tr {
     position: relative;
 }
@@ -190,7 +195,7 @@ div.inline {
     padding-bottom: 5px;
     padding-top: 5px;
     transform-origin: left top;
-    transition: scale 1s ease-in-out;
+    transition: scale 0.5s ease-in-out;
     scale: var(--scale-instruction);
 }
 
@@ -232,9 +237,9 @@ input::placeholder {
 /* toolbar */
 
 #toolbar-box {
-    display: none;/* block;*/
-    width: 10%;
-    height: calc(var(--toolbox-hight) * var(--scale-instruction) + 5px)
+    display: block;
+    width: auto;
+    height: calc(var(--toolbox-hight) * var(--scale-instruction) + 5px);
 }
 
 #toolbar-flex {
@@ -242,12 +247,63 @@ input::placeholder {
     position: sticky;
     top: 10px;
     height: 98vh;
+    z-index: 10;
+    pointer-events: none;
 }
 
-#toolbar-grid {
+/* CSS for bar on right */
+
+#toolbar-flex {
+    direction: rtl;
+}
+
+#toolbar-flex > * {
+    direction: ltr;
+}
+
+/* === */
+
+#toolbar-handle-box {
+    display: flex;
+    align-items: center;
+    pointer-events: all;
+}
+
+#toolbar-handle {
+    width: 2em;
+    padding-left: 5px;
+}
+
+#toolbar-inner-box {
+    width: 100%;
+    transition: 
+        width 0.5s ease-in;
     display: grid;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+#size-holder {
+    border: 5px solid #808080;
+    opacity: 1;
+    width: 300px;
+    border-radius: 8px;
+    transition: 
+        opacity 0.5s ease-in, 
+        width 0.5s ease-in;
+    background-color: white;
+    pointer-events: all;
+    overflow: hidden;
+}
+
+#tools-box {
+    width: 300px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 190px;
 }
 
