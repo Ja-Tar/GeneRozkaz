@@ -1,6 +1,17 @@
 const mainApiUrl = window.location.origin + "/api"
 
 /**
+ * @type {{inputTypes: string[], inputsDOM: null | HTMLCollection}}
+ */
+const FIELDS = {
+    inputTypes: [],
+    inputsDOM: null,
+}
+
+// See schema !!!
+let VALIDATION = {}
+
+/**
  * @param {string} endpointUrl 
  * @returns {Promise<string>}
  */
@@ -37,17 +48,17 @@ async function getRequest(endpointUrl) {
 async function loadInputTypes() {
     let dom = document.createElement("div");
     dom.innerHTML = await getRequestText("/input_types.html");
-    document.inputsDOM = dom.children;
-    window.inputTypes = [];
+    FIELDS.inputsDOM = dom.children;
+    FIELDS.inputTypes = [];
     for (let i = 0; i < dom.children.length; i++) {
         const domChild = dom.children[i];
         if (domChild.nodeName === "TABLE") {
-            window.inputTypes.push("checkbox-col");
+            FIELDS.inputTypes.push("checkbox-col");
             continue;
         }
-        window.inputTypes.push(domChild.classList[1]);
+        FIELDS.inputTypes.push(domChild.classList[1]);
     }
-    console.debug(window.inputTypes);
+    console.debug(FIELDS.inputTypes);
 }
 
 /**
@@ -57,9 +68,9 @@ function addInputsToDivs(tableID) {
     let table = document.getElementById(tableID);
     let parentsOfReplacedElements = [];
 
-    for (let i = 0; i < window.inputTypes.length; i++) {
+    for (let i = 0; i < FIELDS.inputTypes.length; i++) {
         /** @type {string} */
-        const inputType = window.inputTypes[i];
+        const inputType = FIELDS.inputTypes[i];
         const divs = table.getElementsByClassName(inputType);
         for (let l = 0; l < divs.length; l++) {
             const element = divs[l];
@@ -67,7 +78,7 @@ function addInputsToDivs(tableID) {
                 continue;
             }
             /** @type {Element} */
-            let newElement = document.inputsDOM[i].cloneNode(true);
+            let newElement = FIELDS.inputsDOM[i].cloneNode(true);
 
             let tr = null;
             if (newElement.nodeName === "TABLE") {
@@ -159,7 +170,8 @@ function handleClick(from) {
 
     function toggleFieldHighlights() {
         if (from.checked) {
-            const neededFields = window.fieldsValJSON[clickedNumber]?.fieldsNeeded;
+            /** @type {string[] | null} */
+            const neededFields = VALIDATION[clickedNumber]?.fieldsNeeded;
             if (neededFields) {
                 highlightFields(neededFields, clickedNumber);
             } else {
@@ -213,7 +225,7 @@ function getSection(name) {
  * @returns 
  */
 function formatSectionName(name) {
-    sectionAliases = {
+    const sectionAliases = {
         "normal": "norm"
     };
 
@@ -297,7 +309,7 @@ function getField(name, section) {
 }
 
 async function loadFieldValidation() {
-    window.fieldsValJSON = await getRequestJSON("/field_validation.json");
+    VALIDATION = await getRequestJSON("/field_validation.json");
 }
 
 /**
@@ -356,7 +368,7 @@ function highlightElement(field, className) {
 function checkIfDashNeeded(field) {
     const sectionId = formatInstructionIdFromId(field.id);
     /** @type {string[] | null} */
-    const fieldsWithDash = window.fieldsValJSON[sectionId]?.fieldsDashedWhenEmpty;
+    const fieldsWithDash = VALIDATION[sectionId]?.fieldsDashedWhenEmpty;
 
     if (fieldsWithDash) {
         const fieldId = formatFieldIdFromId(field.id);
@@ -387,14 +399,15 @@ function removeHighlights(section) {
 }
 
 function loadDefaultHighlights() {
-    highlightFields(fieldsValJSON.normal.fieldsNeeded, "normal")
+    highlightFields(VALIDATION.normal.fieldsNeeded, "normal")
 }
 
 /**
  * @param {string} clickedNumber 
  */
 function addDisallowedOverlay(clickedNumber) {
-    const disallowed = window.fieldsValJSON[clickedNumber]?.instructionsDisallowed;
+    /** @type {string[] | null} */
+    const disallowed = VALIDATION[clickedNumber]?.instructionsDisallowed;
 
     if (!disallowed) {
         console.info("No disallowed instructions found for %s", clickedNumber);
@@ -417,7 +430,8 @@ function addDisallowedOverlay(clickedNumber) {
  * @param {string} clickedNumber 
  */
 function removeDisallowedOverlay(clickedNumber) {
-    const disallowed = window.fieldsValJSON[clickedNumber]?.instructionsDisallowed;
+    /** @type {string[] | null} */
+    const disallowed = VALIDATION[clickedNumber]?.instructionsDisallowed;
 
     if (!disallowed) {
         console.info("No disallowed instructions found for %s", clickedNumber);
@@ -442,7 +456,8 @@ function checkForCheckedCheckboxes() {
     function highlightCheckedFields() {
         for (let i = 0; i < checkboxes.length; i++) {
             const boxID = formatSectionIdFromId(checkboxes[i].id);
-            const neededFields = window.fieldsValJSON[boxID]?.fieldsNeeded;
+            /** @type {string[] | null} */
+            const neededFields = VALIDATION[boxID]?.fieldsNeeded;
             if (neededFields) {
                 highlightFields(neededFields, boxID);
             } else {
@@ -485,7 +500,7 @@ const toolbarHandle = document.getElementById("toolbar-handle");
 
 function hideToolbar() {
     sizeHolder.style.width = "0"
-    
+
     localStorage.setItem("toolbar-state", ToolbarState.CLOSED);
     setTimeout(() => {
         toolbarGrid.style.display = "none"
