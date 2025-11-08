@@ -17,7 +17,7 @@ let VALIDATION = {}
  */
 async function getRequestText(endpointUrl) {
     const response = await getRequest(endpointUrl);
-    return await response.text();
+    return response.text();
 }
 
 /**
@@ -26,7 +26,7 @@ async function getRequestText(endpointUrl) {
  */
 async function getRequestJSON(endpointUrl) {
     const response = await getRequest(endpointUrl);
-    return await response.json();
+    return response.json();
 }
 
 /**
@@ -46,7 +46,7 @@ async function getRequest(endpointUrl) {
 // INPUT FIELDS LOADING ***
 
 async function loadInputTypes() {
-    let dom = document.createElement("div");
+    const dom = document.createElement("div");
     dom.innerHTML = await getRequestText("/input_types.html");
     FIELDS.inputsDOM = dom.children;
     FIELDS.inputTypes = [];
@@ -65,8 +65,8 @@ async function loadInputTypes() {
  * @param {string} tableID 
  */
 function addInputsToDivs(tableID) {
-    let table = document.getElementById(tableID);
-    let parentsOfReplacedElements = [];
+    const table = document.getElementById(tableID);
+    const parentsOfReplacedElements = [];
 
     for (let i = 0; i < FIELDS.inputTypes.length; i++) {
         /** @type {string} */
@@ -136,7 +136,7 @@ function addInputsToDivs(tableID) {
      */
     function updateInputIdAndLabel(l, minusNum, inputs, checkbox, labels) {
         const inputNumber = l + 1 - minusNum;
-        let inputElement = inputs[l];
+        const inputElement = inputs[l];
         const idToSet = checkbox.id + "-" + inputNumber + "-input";
         inputElement.id = idToSet;
         labels[l].setAttribute("for", idToSet);
@@ -338,10 +338,10 @@ function highlightFields(neededFields, section) {
     }
 
     /**
-     * @param {Element} sectionElement 
+     * @param {Element} _sectionElement 
      */
-    function highlightOptionalFields(sectionElement) {
-        const remainingFields = sectionElement.querySelectorAll('input:not([type="checkbox"]):not(.required)');
+    function highlightOptionalFields(_sectionElement) {
+        const remainingFields = _sectionElement.querySelectorAll('input:not([type="checkbox"]):not(.required)');
 
         for (let i = 0; i < remainingFields.length; i++) {
             const field = remainingFields[i];
