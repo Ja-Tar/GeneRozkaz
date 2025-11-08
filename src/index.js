@@ -489,7 +489,7 @@ function hideToolbar() {
     localStorage.setItem("toolbar-state", ToolbarState.CLOSED);
     setTimeout(() => {
         toolbarGrid.style.display = "none"
-    }, 550);
+    }, 510);
 }
 
 function showToolbar() {
@@ -497,7 +497,7 @@ function showToolbar() {
 
     setTimeout(() => {
         sizeHolder.style.width = "300px"
-    }, 50);
+    }, 10);
 
     localStorage.setItem("toolbar-state", ToolbarState.OPEN)
 }
