@@ -201,7 +201,7 @@ div.inline {
 
 /* section highlights */
 
-input.required:invalid {
+.required:invalid {
     background-color: lightcoral;
 }
 

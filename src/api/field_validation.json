@@ -175,6 +175,8 @@
         "fieldsNeeded": []
     },
     "23.20": {
-        "fieldsNeeded": []
+        "fieldsNeeded": [
+            "96"
+        ]
     }
 }

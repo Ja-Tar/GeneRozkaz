@@ -387,7 +387,11 @@ function removeHighlights(section) {
         throw Error("Not implemented!")
     }
 
-    const inputFields = sectionElement.querySelectorAll("input:not([type='checkbox'])");
+    if (section == "22.00") {
+        return; // Small fix for top row fields
+    }
+
+    const inputFields = sectionElement.querySelectorAll("input:not([type='checkbox']), textarea");
 
     for (let i = 0; i < inputFields.length; i++) {
         const element = inputFields[i];
