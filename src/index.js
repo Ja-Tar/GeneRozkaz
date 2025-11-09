@@ -1,4 +1,4 @@
-const mainApiUrl = window.location.origin + "/api"
+const mainApiUrl = window.location.origin + "/api";
 
 /**
  * @type {{inputTypes: string[], inputsDOM: null | HTMLCollection}}
@@ -6,10 +6,11 @@ const mainApiUrl = window.location.origin + "/api"
 const FIELDS = {
     inputTypes: [],
     inputsDOM: null,
-}
+};
 
 // See schema !!!
-let VALIDATION = {}
+let VALIDATION = {};
+let HELP = {};
 
 /**
  * @param {string} endpointUrl 
@@ -38,7 +39,7 @@ async function getRequest(endpointUrl) {
     const url = mainApiUrl + endpointUrl;
     const response = await fetch(url);
     if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
+        throw new Error(`Response status: ${response.status}, ${endpointUrl}`);
     }
     return response;
 }
@@ -308,7 +309,7 @@ function getField(name, section) {
     return null;
 }
 
-async function loadFieldValidation() {
+async function loadValidationData() {
     VALIDATION = await getRequestJSON("/field_validation.json");
 }
 
@@ -532,7 +533,112 @@ function toggleToolBar() {
     setTimeout(adjustTableSize, 600)
 }
 
-// TODO Add here functions
+// HELP BOX ***
+
+/**
+ * Download data for help functionality
+ * @param {string} documentType 
+ */
+async function loadHelpData(documentType) {
+    HELP = await getRequestJSON(`/help-${documentType}.json`)
+}
+
+function loadHelpTriggers() {
+    for (const sectionName in HELP) {
+        const sectionElement = getSection(sectionName);
+
+        if (sectionElement instanceof HTMLCollection) {
+            const fields = HELP[sectionName];
+            for (const fieldName in fields) {
+                const fieldElement = document.getElementById(`${formatSectionName(sectionName)}-${fieldName}-input`);
+                const fieldHelp = fields[fieldName];
+                
+                fieldElement.addEventListener("focusin", () => displayFieldHelp(fieldName, fieldHelp));
+                fieldElement.addEventListener("focusout", clearFieldHelp)
+            }
+        } else if (sectionElement instanceof Element) {
+            const sectionHelp = HELP[sectionName];
+            sectionElement.addEventListener("mouseenter", () => displaySectionHelp(sectionHelp))
+            sectionElement.addEventListener("mouseleave", clearSectionHelp)
+        }
+    }
+}
+
+function displaySectionHelp(sectionHelp) {
+    const sectionHelpElement = document.getElementById("section-help");
+
+    // TODO ADD INFO
+
+    triggerHelpInfo();
+}
+
+/**
+ * 
+ * @param {string} fieldElement 
+ * @param {*} fieldHelp 
+ */
+function displayFieldHelp(fieldName, fieldHelp) {
+    const filedHelpElement = document.getElementById("field-help");
+
+    const title = document.createElement("h3");
+    title.textContent = `Pole: ${fieldName}`
+    filedHelpElement.appendChild(title);
+
+    const description = document.createElement("p");
+    description.textContent = fieldHelp.docsInfo;
+    filedHelpElement.appendChild(description);
+
+    if (fieldHelp.examples) {
+        const examplesTitle = document.createElement("h4");
+        examplesTitle.textContent = "Przykłady: ";
+        filedHelpElement.appendChild(examplesTitle);
+
+        const examplesAllDiv = document.createElement("div");
+        examplesAllDiv.classList.add("allHelpExamples");
+        filedHelpElement.appendChild(examplesAllDiv);
+
+        for (const i in fieldHelp.examples) {    
+            const example = fieldHelp.examples[i]
+            const exampleDiv = document.createElement("div");
+            exampleDiv.classList.add("exampleFieldElement");
+            exampleDiv.textContent = example;
+
+            examplesAllDiv.appendChild(exampleDiv);
+        }
+    }
+
+    
+    
+    // TODO ADD INFO
+
+    triggerHelpInfo();
+}
+
+function clearSectionHelp() {
+    const sectionHelpElement = document.getElementById("section-help");
+    sectionHelpElement.innerHTML = "";
+
+    triggerHelpInfo();
+}
+
+function clearFieldHelp() {
+    const filedHelpElement = document.getElementById("field-help");
+    filedHelpElement.innerHTML = "";
+
+    triggerHelpInfo();
+}
+
+function triggerHelpInfo() {
+    const helpInfo = document.getElementById("no-help");
+    const filedHelpElement = document.getElementById("field-help");
+    const sectionHelpElement = document.getElementById("section-help");
+
+    if (filedHelpElement.innerText === "" && sectionHelpElement.innerText === "") {
+        helpInfo.style.display = "block";
+    } else {
+        helpInfo.style.display = "none"
+    }
+}
 
 // START LOADING DATA ***
 
@@ -569,7 +675,7 @@ function limitFunction(fn, wait = 100) {
 loadInputTypes().then(() => {
     addInputsToDivs("rozkaz-normalny");
     addClickEventToCheckboxes();
-    loadFieldValidation().then(() => {
+    loadValidationData().then(() => {
         loadDefaultHighlights();
         checkForCheckedCheckboxes();
         adjustTableSize();
@@ -577,6 +683,11 @@ loadInputTypes().then(() => {
         addEventListener('resize', limitFunction(adjustTableSize, 120));
         toolbarHandle.addEventListener('click', limitFunction(toggleToolBar, 120));
 
-        console.info("LOADING DONE");
-    })
+        loadHelpData("normal").then(() => {
+            loadHelpTriggers();
+
+            // TODO Add loading screen
+            console.info("LOADING DONE");
+        });
+    });
 });

@@ -310,9 +310,10 @@ input::placeholder {
         "check save"
         "help help";
     grid-template-columns: 1fr 1fr;
-    column-gap: 1em;
-    padding: 1em 1em;
     grid-template-rows: auto 1fr;
+    column-gap: 1em;
+    row-gap: 0.8em;
+    padding: 1em 1em;
 }
 
 .button {
@@ -325,6 +326,35 @@ input::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    border: 1px solid black;
+    padding: 0.5em;
+}
+
+#help-box h3 {
+    margin: 0.5em 0;
+}
+
+#help-box h4 {
+    margin: 0.3em 0;
+}
+
+#help-box p {
+    margin: 0.1em 0;
+}
+
+#field-help .allHelpExamples {
+    display: grid;
+    grid-auto-flow: column dense;
+}
+
+#field-help .exampleFieldElement {
+    justify-self: center;
+    width: fit-content;
+    height: fit-content;
+    line-height: 0.8em;
+    padding: 0 8px;
+    border-bottom: 3px dotted #000;
 }
 
 /* BUTTON TYPES */
