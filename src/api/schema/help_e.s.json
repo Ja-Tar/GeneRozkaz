@@ -1,0 +1,41 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "ExamplesInfoSchema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "tor": {
+            "$ref": "#/definitions/field"
+        },
+        "post": {
+            "$ref": "#/definitions/field"
+        },
+        "sem": {
+            "$ref": "#/definitions/field"
+        },
+        "numpoc": {
+            "$ref": "#/definitions/field"
+        },
+        "km": {
+            "$ref": "#/definitions/field"
+        },
+        "kmh": {
+            "$ref": "#/definitions/field"
+        },
+        "linia": {
+            "$ref": "#/definitions/field"
+        },
+        "godz": {
+            "$ref": "#/definitions/field"
+        }
+    },
+    "definitions": {
+        "field": {
+            "type": "array",
+            "title": "Nazwa typu przykładu",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

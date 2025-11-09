@@ -14,6 +14,12 @@
                 "**/help-normal.json"
             ],
             "url": "./src/api/schema/help.s.json"
+        },
+        {
+            "fileMatch": [
+                "**/help-examples.json"
+            ],
+            "url": "./src/api/schema/help_e.s.json"
         }
     ]
 }

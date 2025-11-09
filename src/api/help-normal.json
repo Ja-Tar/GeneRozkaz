@@ -1,0 +1,33 @@
+{
+    "normal": {
+        "A": {
+            "docsInfo": "numer pociągu lub numer składu manewrowego",
+            "examples": [
+                "13100",
+                "manewr 1"
+            ]
+        }
+    },
+    "21.10":{
+        "docsInfo": {
+            "application": {
+                "customTop": "Wyjazd (wyprawienie pociągu) z posterunku lub przejazd w obrębie posterunku w przypadku:",
+                "when": [
+                    "braku możliwości podania sygnału zezwalającego na semaforze lub semaforach wyjazdowych, wyjazdowych grupowych drogowskazowych, drogowskazowych grupowych",
+                    "braku semafora wyjazdowego przy torze, z którego ma być wyprawiony pociąg w kierunku szlaku",
+                    "braku semafora drogowskazowego lub drogowskazowego grupowego przy torze, z którego ma się odbyć przejazd w obrębie posterunku"
+                ]
+            },
+            "warnings": [
+                "W przypadku wydania rozkazu [[21.10]] na tym samym druku (tym samym identyfikatorze rozkazu) nie można wydać instrukcji: [[21.15]].",
+                "Na jednym druku (identyfikatorze rozkazu) można wydać zezwolenie na pominięcie do trzech sygnalizatorów (lub tarczy zatrzymania D1) nie nadających zezwolenia na jazdę."
+            ]
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać numer toru (w obszarze posterunku) z którego wyjeżdża pociąg (oznaczenie liczbowe lub liczbowo/literowe)",
+                "examplesType": "tor"
+            }
+        }
+    }
+}

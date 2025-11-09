@@ -1,0 +1,124 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "HelpInfoSchema",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^\\d{2}\\.\\d{2}$": {
+            "$ref": "#/definitions/instruction"
+        }
+    },
+    "properties": {
+        "normal": {
+            "$ref": "#/definitions/mainFields"
+        },
+        "etcs": {
+            "$ref": "#/definitions/mainFields"
+        },
+        "99": {
+            "$ref": "#/definitions/instruction"
+        }
+    },
+    "definitions": {
+        "mainFields": {
+            "type": "object",
+            "title": "Typ rozkazu (dla pól głównych; nagłówek i stopka)",
+            "patternProperties": {
+                "^[A-Z]$": {
+                    "type": "object",
+                    "title": "Pole",
+                    "required": [
+                        "docsInfo",
+                        "examples"
+                    ],
+                    "properties": {
+                        "docsInfo": {
+                            "type": "string",
+                            "title": "Informacja z instrukcji"
+                        },
+                        "additionalDescription": {
+                            "type": "string",
+                            "title": "Informacja dodatkowa wyjaśniająca to co jest w instrukcji"
+                        },
+                        "examples": {
+                            "type": "array",
+                            "title": "Przykłady",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "instruction": {
+            "type": "object",
+            "title": "Numer instrukcji",
+            "additionalProperties": false,
+            "properties": {
+                "docsInfo": {
+                    "type": "object",
+                    "title": "Informacje z instrukcji",
+                    "additionalProperties": false,
+                    "properties": {
+                        "application": {
+                            "type": "object",
+                            "title": "Zastosowanie instrukcji",
+                            "additionalProperties": false,
+                            "properties": {
+                                "customTop": {
+                                    "type": "string",
+                                    "title": "Zastępuje domyślne 'W przypadku:' "
+                                },
+                                "when": {
+                                    "type": "array",
+                                    "title": "Kiedy instrukcja jest stosowana",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "warnings": {
+                            "type": "array",
+                            "title": "Ostrzeżenia dotyczące stosowania instrukcji",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "fields": {
+                    "type": "object",
+                    "title": "Pola instrukcji",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                        "^\\d+$": {
+                            "type": "object",
+                            "title": "Numer pola",
+                            "additionalProperties": false,
+                            "properties": {
+                                "docsInfo": {
+                                    "type": "string",
+                                    "title": "Informacje z instrukcji"
+                                },
+                                "examplesType": {
+                                    "enum": [
+                                        "tor",
+                                        "post",
+                                        "sem",
+                                        "numpoc",
+                                        "km",
+                                        "kmh",
+                                        "linia",
+                                        "godz"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
