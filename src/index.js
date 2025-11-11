@@ -401,7 +401,7 @@ function removeHighlights(section) {
         throw Error("Not implemented!")
     }
 
-    if (section == "22.00") {
+    if (section === "22.00") {
         return; // Small fix for top row fields
     }
 
