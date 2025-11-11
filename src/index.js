@@ -223,14 +223,14 @@ function getSection(name) {
 
 /**
  * @param {string} name 
- * @returns 
+ * @returns {string}
  */
 function formatSectionName(name) {
     const sectionAliases = {
         "normal": "norm"
     };
 
-    if (name.startsWith("nr") || Object.values(sectionAliases).includes(name)) {
+    if (isSectionFormatted(name) || Object.values(sectionAliases).includes(name)) {
         return name; // already formatted
     }
 
@@ -249,6 +249,15 @@ function formatSectionName(name) {
     }
 
     return name;
+}
+
+/**
+ * @param {string} name 
+ * @returns {boolean}
+ */
+function isSectionFormatted(name) {
+    const regex = /^nr\d{2}(?:|_\d{2})$/
+    return regex.test(name);
 }
 
 /**
@@ -319,6 +328,10 @@ async function loadValidationData() {
  */
 function highlightFields(neededFields, section) {
     section = formatSectionName(section);
+
+    if (section == "nr22_00") {
+        return; // Small fix for top row fields
+    }
 
     for (let i = 0; i < neededFields.length; i++) {
         const field = neededFields[i];
@@ -474,13 +487,13 @@ function checkForCheckedCheckboxes() {
 
 // AUTO RESIZE ***
 
+const tableWidth = document.getElementById("rozkaz-normalny").getBoundingClientRect().width
+
 function adjustTableSize() {
     const currentTableDiv = document.querySelector(".fill-page:not([style*='none'])");
     const instructionBox = document.getElementById("instruction-box");
 
     if (currentTableDiv) {
-        const tableWidth = 774;
-
         let tableScale = Math.max(1, instructionBox.clientWidth / tableWidth);
         tableScale = Math.round(tableScale * 1000) / 1000;
 
