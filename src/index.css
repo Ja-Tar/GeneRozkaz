@@ -331,16 +331,21 @@ input::placeholder {
     padding: 0.5em;
 }
 
-#help-box h3 {
-    margin: 0.5em 0;
+#help-box h2 {
+    margin-top: 0;
+    margin-bottom: 0.1em;
 }
 
-#help-box h4 {
+#help-box h3 {
     margin: 0.3em 0;
 }
 
 #help-box p {
     margin: 0.1em 0;
+}
+
+#field-help {
+    font-size: medium;
 }
 
 #field-help .allHelpExamples {
@@ -352,7 +357,7 @@ input::placeholder {
     justify-self: center;
     width: fit-content;
     height: fit-content;
-    line-height: 0.8em;
+    line-height: 0.9em;
     padding: 0 8px;
     border-bottom: 3px dotted #000;
 }

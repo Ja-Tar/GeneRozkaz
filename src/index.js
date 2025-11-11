@@ -593,7 +593,7 @@ function displaySectionHelp(sectionHelp) {
 function displayFieldHelp(fieldName, fieldHelp) {
     const filedHelpElement = document.getElementById("field-help");
 
-    const title = document.createElement("h3");
+    const title = document.createElement("h2");
     title.textContent = `Pole: ${fieldName}`
     filedHelpElement.appendChild(title);
 
@@ -602,7 +602,7 @@ function displayFieldHelp(fieldName, fieldHelp) {
     filedHelpElement.appendChild(description);
 
     if (fieldHelp.examples) {
-        const examplesTitle = document.createElement("h4");
+        const examplesTitle = document.createElement("h3");
         examplesTitle.textContent = "Przykłady: ";
         filedHelpElement.appendChild(examplesTitle);
 
