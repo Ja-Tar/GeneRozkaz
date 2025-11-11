@@ -329,7 +329,7 @@ async function loadValidationData() {
 function highlightFields(neededFields, section) {
     section = formatSectionName(section);
 
-    if (section == "nr22_00") {
+    if (section === "nr22_00") {
         return; // Small fix for top row fields
     }
 
