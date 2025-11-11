@@ -4,6 +4,9 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 
 <img width="697" height="417" alt="obraz" src="https://github.com/user-attachments/assets/112305da-8c60-4c37-be8b-0692a6399099" />
 
+> [!IMPORTANT]
+> Opracowano na podstawie **instrukcji Ir-1 (zm. 18)** oraz materiałów z kanału [Michał Piątkowski](https://www.youtube.com/@MichalPiatkowski)
+
 ## Funkcje
 - [x] Walidacja poprawności wypełnienia rozkazu
   - [x] Zaznaczanie pól wymaganych i opcjonalnych
@@ -32,7 +35,7 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 > [!TIP]
 > Żeby edytować pola kliknij na kwadracik (checkbox) danej instrukcji.
 
-> [!IMPORTANT]
+> [!NOTE]
 > Jeśli kolor nie zniknie po wpisaniu rzeczy to oznacza że pole jest nieprawidłowo wypełnione.
 
 ### Oznaczenie wiersza
