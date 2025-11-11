@@ -557,12 +557,12 @@ async function loadHelpData(documentType) {
 }
 
 function loadHelpTriggers() {
-    for (const sectionName in HELP) {
+    for (const sectionName of Object.keys(HELP)) {
         const sectionElement = getSection(sectionName);
 
         if (sectionElement instanceof HTMLCollection) {
             const fields = HELP[sectionName];
-            for (const fieldName in fields) {
+            for (const fieldName of Object.keys(fields)) {
                 const fieldElement = document.getElementById(`${formatSectionName(sectionName)}-${fieldName}-input`);
                 const fieldHelp = fields[fieldName];
                 
@@ -610,7 +610,7 @@ function displayFieldHelp(fieldName, fieldHelp) {
         examplesAllDiv.classList.add("allHelpExamples");
         filedHelpElement.appendChild(examplesAllDiv);
 
-        for (const i in fieldHelp.examples) {    
+        for (const i of Object.keys(fieldHelp.examples)) {    
             const example = fieldHelp.examples[i]
             const exampleDiv = document.createElement("div");
             exampleDiv.classList.add("exampleFieldElement");
