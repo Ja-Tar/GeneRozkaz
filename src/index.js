@@ -553,7 +553,7 @@ function toggleToolBar() {
  * @param {string} documentType 
  */
 async function loadHelpData(documentType) {
-    HELP = await getRequestJSON(`/help-${documentType}.json`)
+    HELP = await getRequestJSON(`/help-${documentType}.json`);
 }
 
 function loadHelpTriggers() {
@@ -571,18 +571,35 @@ function loadHelpTriggers() {
             }
         } else if (sectionElement instanceof Element) {
             const sectionHelp = HELP[sectionName];
-            sectionElement.addEventListener("mouseenter", () => displaySectionHelp(sectionHelp))
-            sectionElement.addEventListener("mouseleave", clearSectionHelp)
+            const contentElement = sectionElement.getElementsByClassName("roz-content");
+            if (contentElement.length > 1) {
+                for (const i of Object.keys(contentElement)) {
+                    const smallerContentElement = contentElement[i];
+                    smallerContentElement.addEventListener("focusin", () => displaySectionHelp(sectionElement, sectionHelp))
+                    smallerContentElement.addEventListener("focusout", () => clearSectionHelp(sectionElement))
+                }
+            } else {
+                contentElement[0].addEventListener("focusin", () => displaySectionHelp(sectionElement, sectionHelp))
+                contentElement[0].addEventListener("focusout", () => clearSectionHelp(sectionElement))
+            }
         }
     }
 }
 
-function displaySectionHelp(sectionHelp) {
+/**
+ * @param {Element} sectionElement 
+ * @param {*} sectionHelp 
+ */
+function displaySectionHelp(sectionElement, sectionHelp) {
     const sectionHelpElement = document.getElementById("section-help");
+    console.log("Section!!!")
 
     // TODO ADD INFO
-
     triggerHelpInfo();
+}
+
+function focusToMainSectionElement() {
+
 }
 
 /**
@@ -627,9 +644,15 @@ function displayFieldHelp(fieldName, fieldHelp) {
     triggerHelpInfo();
 }
 
-function clearSectionHelp() {
+/**
+ * @param {Element} sectionElement 
+ * @returns 
+ */
+function clearSectionHelp(sectionElement) {
     const sectionHelpElement = document.getElementById("section-help");
     sectionHelpElement.innerHTML = "";
+
+    console.log("NOT IN SECTION!!!")
 
     triggerHelpInfo();
 }
@@ -650,6 +673,17 @@ function triggerHelpInfo() {
         helpInfo.style.display = "block";
     } else {
         helpInfo.style.display = "none"
+    }
+}
+
+// TAB INDEX ADDER ***
+
+function addTabIndexToTable() {
+    const cells = document.getElementsByClassName("roz-content");
+
+    for (let i = 0; i < cells.length; i++) {
+        const cell = cells[i];
+        cell.setAttribute("tabindex", "0");
     }
 }
 
@@ -691,6 +725,7 @@ loadInputTypes().then(() => {
     loadValidationData().then(() => {
         loadDefaultHighlights();
         checkForCheckedCheckboxes();
+        addTabIndexToTable()
 
         tableWidth = document.getElementById("rozkaz-normalny").getBoundingClientRect().width // adjust for fontsize and browser rendering
         adjustTableSize();
