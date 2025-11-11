@@ -6,6 +6,20 @@
                 "13100",
                 "manewr 1"
             ]
+        },
+        "B": {
+            "docsInfo": "data (w formacie DD.MM.RRRR) przekazania rozkazu pisemnego",
+            "examples": [
+                "14.12.2025"
+            ]
+        },
+        "C": {
+            "docsInfo": "nazwa stacji lub posterunku na której znajduje się pojazd kolejowy który rozkaz otrzymuje, w przypadku szlaku nazwy obu przyległych posterunków",
+            "additionalDescription": "",
+            "examples": [
+                "Kawki",
+                "Kawki - Małki"
+            ]
         }
     },
     "21.10":{

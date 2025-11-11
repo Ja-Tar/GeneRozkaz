@@ -5,7 +5,7 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 <img width="697" height="417" alt="obraz" src="https://github.com/user-attachments/assets/112305da-8c60-4c37-be8b-0692a6399099" />
 
 > [!IMPORTANT]
-> Opracowano na podstawie **instrukcji Ir-1 (zm. 18)** oraz materiałów z kanału [Michał Piątkowski](https://www.youtube.com/@MichalPiatkowski)
+> Opracowano na podstawie **instrukcji Ir-1 (zm. 18)** oraz materiałów z kanału [Michał Piątkowski](https://www.youtube.com/@MichalPiatkowski).
 
 ## Funkcje
 - [x] Walidacja poprawności wypełnienia rozkazu
@@ -49,6 +49,9 @@ Online generator for new Polish written orders
 
 <img width="697" height="417" alt="obraz" src="https://github.com/user-attachments/assets/112305da-8c60-4c37-be8b-0692a6399099" />
 
+> [!IMPORTANT]
+> Based on **Instruction Ir-1 (rev. 18)** and materials from [Michał Piątkowski's](https://www.youtube.com/@MichalPiatkowski) channel.
+
 ## Functions
 - [x] Validation of input fields
   - [x] Highlight of required and optional fields
@@ -75,9 +78,9 @@ Online generator for new Polish written orders
   <img width="234" height="50" alt="obraz" src="https://github.com/user-attachments/assets/8635b917-616a-4a96-acdf-a996981756b2" />
 
 > [!TIP]
-> To enable fields click on the instruction checkbox
+> To enable fields click on the instruction checkbox.
 
-> [!IMPORTANT]
+> [!NOTE]
 > If background doesn't disappear, the field is wrongly fild in!
 
 ### Row indicators 
