@@ -487,7 +487,7 @@ function checkForCheckedCheckboxes() {
 
 // AUTO RESIZE ***
 
-const tableWidth = document.getElementById("rozkaz-normalny").getBoundingClientRect().width
+let tableWidth = 700;
 
 function adjustTableSize() {
     const currentTableDiv = document.querySelector(".fill-page:not([style*='none'])");
@@ -691,6 +691,8 @@ loadInputTypes().then(() => {
     loadValidationData().then(() => {
         loadDefaultHighlights();
         checkForCheckedCheckboxes();
+
+        tableWidth = document.getElementById("rozkaz-normalny").getBoundingClientRect().width // adjust for fontsize and browser rendering
         adjustTableSize();
 
         addEventListener('resize', limitFunction(adjustTableSize, 120));
