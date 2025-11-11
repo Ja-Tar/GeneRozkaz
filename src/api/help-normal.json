@@ -15,10 +15,18 @@
         },
         "C": {
             "docsInfo": "nazwa stacji lub posterunku na której znajduje się pojazd kolejowy który rozkaz otrzymuje, w przypadku szlaku nazwy obu przyległych posterunków",
-            "additionalDescription": "",
+            "additionalDescription": "Lokalizacja pociągu na szlaku oznacza, że jest on poza granicą stacji (np. przed sem. wjazdowym). Podaje się wtedy nazwę obu przyległych posterunków.",
             "examples": [
                 "Kawki",
                 "Kawki - Małki"
+            ]
+        },
+        "D": {
+            "docsInfo": "nazwa posterunku z którego wydawany jest rozkaz",
+            "examples": [
+                "Czyste",
+                "LCS Kawki",
+                "MCS Małki"
             ]
         }
     },
