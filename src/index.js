@@ -48,16 +48,6 @@ async function getRequest(endpointUrl) {
     return response;
 }
 
-// other ---
-
-/**
- * @param {Element} element 
- * @returns {boolean}
- */
-function isOverflown(element) {
-  return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
-}
-
 // INPUT FIELDS LOADING ***
 
 async function loadInputTypes() {
@@ -689,37 +679,6 @@ function triggerHelpInfo() {
     } else {
         helpInfo.style.display = "none"
     }
-}
-
-/**
- * @param {number} [gridRowNumber] 
- */
-function checkOverflowGridExamples(gridRowNumber = 2) {
-    const toolsBoxElement = document.getElementById("tools-box");
-    const examplesElementList = document.getElementsByClassName("exampleFieldElement");
-
-    if (!examplesElementList) {
-        return;
-    } 
-    
-    for (const i of Object.keys(examplesElementList)) {
-        const lastI = examplesElementList.length - 1;
-        if (!isOverflown(toolsBoxElement)) {
-            return;
-        } else if (lastI - parseInt(i) === (gridRowNumber - 2)) { 
-            console.log(lastI - parseInt(i), (gridRowNumber - 2))
-            break;
-        }
-        const checkElement = examplesElementList[lastI - parseInt(i)];
-        checkElement.style.gridRow = gridRowNumber;
-        console.log(isOverflown(toolsBoxElement), gridRowNumber);
-    }
-
-    if (gridRowNumber > 10) {
-        throw Infinity;
-    }
-
-    checkOverflowGridExamples(gridRowNumber + 1);
 }
 
 // TAB INDEX ADDER ***

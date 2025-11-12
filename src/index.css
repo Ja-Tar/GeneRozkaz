@@ -353,12 +353,13 @@ input::placeholder {
 }
 
 #field-help .allHelpExamples {
-    display: grid;
-    grid-auto-flow: column dense;
+    display: flex;
+    gap: 6px 4px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #field-help .exampleFieldElement {
-    justify-self: center;
     width: fit-content;
     height: fit-content;
     line-height: 0.9em;
