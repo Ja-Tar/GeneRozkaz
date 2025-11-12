@@ -645,7 +645,6 @@ function displayFieldHelp(fieldName, fieldHelp) {
     
     // TODO ADD INFO
 
-    checkOverflowGridExamples();
     triggerHelpInfo();
 }
 
