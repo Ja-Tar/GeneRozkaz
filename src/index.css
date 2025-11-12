@@ -131,12 +131,14 @@ div.inline {
 
 /* input widths */
 
-.tor input, .kmh input, .linia input {
+.tor input,
+.kmh input,
+.linia input {
     width: 3em;
 }
 
 .km input {
-    width:5em;
+    width: 5em;
 }
 
 .sem input {
@@ -147,15 +149,18 @@ div.inline {
     width: 8em;
 }
 
-.post input, .godz input {
+.post input,
+.godz input {
     width: auto;
 }
 
-.prz input, .prz label{
+.prz input,
+.prz label {
     width: 150%;
 }
 
-.inne input, .inne label {
+.inne input,
+.inne label {
     width: 250%;
 }
 
@@ -261,7 +266,7 @@ input::placeholder {
     direction: rtl;
 }
 
-#toolbar-flex > * {
+#toolbar-flex>* {
     direction: ltr;
 }
 
@@ -280,7 +285,7 @@ input::placeholder {
 
 #toolbar-inner-box {
     width: 100%;
-    transition: 
+    transition:
         width 0.5s ease-in;
     display: grid;
     align-items: center;
@@ -294,8 +299,8 @@ input::placeholder {
     opacity: 1;
     width: 20vw;
     border-radius: 8px;
-    transition: 
-        opacity 0.5s ease-in, 
+    transition:
+        opacity 0.5s ease-in,
         width 0.5s ease-in;
     background-color: white;
     pointer-events: all;
@@ -303,11 +308,10 @@ input::placeholder {
 }
 
 #tools-box {
-    font-size: large;
     height: 100%;
     min-height: 180px;
     min-width: calc(20vw - 2em);
-    
+
     display: grid;
     align-items: center;
     grid-template-areas:
@@ -341,15 +345,15 @@ input::placeholder {
 }
 
 #help-box h3 {
-    margin: 0.3em 0;
+    margin: 0.5em 0;
 }
 
 #help-box p {
-    margin: 0.1em 0;
+    margin: 0.3em 0;
 }
 
-#field-help {
-    font-size: medium;
+#help-box {
+    font-size: larger;
 }
 
 #field-help .allHelpExamples {
@@ -417,8 +421,41 @@ input::placeholder {
 
 /* TEMPORARY MOBILE */
 
-@media only screen and (max-width: 800px) {
-    #toolbar-box {
+@media only screen and (max-width: 900px) {
+    /* #toolbar-box {
         display: none;
+    } */
+
+    #toolbar-box {
+        position: fixed;
+        right: 0;
+    }
+
+    #help-box {
+        display: none;
+    }
+
+    #size-holder {
+        min-width: 200px;
+    }
+
+    #tools-box {
+        grid-template-rows: 1fr;
+        row-gap: 0;
+        min-height: 130px;
+    }
+}
+
+@media (max-width: 1200px) {
+    #help-box h3 {
+        margin: 0.3em 0;
+    }
+
+    #help-box p {
+        margin: 0.1em 0;
+    }
+
+    #help-box {
+        font-size: medium;
     }
 }
