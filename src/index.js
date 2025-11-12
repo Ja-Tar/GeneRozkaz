@@ -12,6 +12,10 @@ const FIELDS = {
 let VALIDATION = {};
 let HELP = {};
 
+// HELPER FUNCTIONS ***
+
+// get data ---
+
 /**
  * @param {string} endpointUrl 
  * @returns {Promise<string>}
@@ -42,6 +46,16 @@ async function getRequest(endpointUrl) {
         throw new Error(`Response status: ${response.status}, ${endpointUrl}`);
     }
     return response;
+}
+
+// other ---
+
+/**
+ * @param {Element} element 
+ * @returns {boolean}
+ */
+function isOverflown(element) {
+  return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
 }
 
 // INPUT FIELDS LOADING ***
@@ -529,7 +543,7 @@ function showToolbar() {
     toolbarGrid.style.display = "grid";
 
     setTimeout(() => {
-        sizeHolder.style.width = "300px"
+        sizeHolder.style.width = "20vw"
     }, 10);
 
     localStorage.setItem("toolbar-state", ToolbarState.OPEN)
@@ -641,6 +655,7 @@ function displayFieldHelp(fieldName, fieldHelp) {
     
     // TODO ADD INFO
 
+    checkOverflowGridExamples();
     triggerHelpInfo();
 }
 
@@ -674,6 +689,37 @@ function triggerHelpInfo() {
     } else {
         helpInfo.style.display = "none"
     }
+}
+
+/**
+ * @param {number} [gridRowNumber] 
+ */
+function checkOverflowGridExamples(gridRowNumber = 2) {
+    const toolsBoxElement = document.getElementById("tools-box");
+    const examplesElementList = document.getElementsByClassName("exampleFieldElement");
+
+    if (!examplesElementList) {
+        return;
+    } 
+    
+    for (const i of Object.keys(examplesElementList)) {
+        const lastI = examplesElementList.length - 1;
+        if (!isOverflown(toolsBoxElement)) {
+            return;
+        } else if (lastI - parseInt(i) === (gridRowNumber - 2)) { 
+            console.log(lastI - parseInt(i), (gridRowNumber - 2))
+            break;
+        }
+        const checkElement = examplesElementList[lastI - parseInt(i)];
+        checkElement.style.gridRow = gridRowNumber;
+        console.log(isOverflown(toolsBoxElement), gridRowNumber);
+    }
+
+    if (gridRowNumber > 10) {
+        throw Infinity;
+    }
+
+    checkOverflowGridExamples(gridRowNumber + 1);
 }
 
 // TAB INDEX ADDER ***

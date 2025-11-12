@@ -292,7 +292,7 @@ input::placeholder {
 #size-holder {
     border: 5px solid #808080;
     opacity: 1;
-    width: 300px;
+    width: 20vw;
     border-radius: 8px;
     transition: 
         opacity 0.5s ease-in, 
@@ -306,7 +306,7 @@ input::placeholder {
     font-size: large;
     height: 100%;
     min-height: 180px;
-    min-width: calc(300px - 2em);
+    min-width: calc(20vw - 2em);
     
     display: grid;
     align-items: center;
@@ -364,6 +364,7 @@ input::placeholder {
     line-height: 0.9em;
     padding: 0 8px;
     border-bottom: 3px dotted #000;
+    white-space: nowrap;
 }
 
 /* BUTTON TYPES */
