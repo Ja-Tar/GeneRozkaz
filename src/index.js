@@ -279,13 +279,23 @@ function formatSectionIdFromId(elementId) {
  * @returns {string}
  */
 function formatInstructionIdFromId(elementId) {
-    elementId = elementId = formatSectionIdFromId(elementId);
+    elementId = formatSectionIdFromId(elementId);
     elementId = elementId.split("-")[0];
+
+    const oppositeSectionAliases = {
+        "norm": "normal"
+    };
+
+    if (elementId in oppositeSectionAliases) {
+        return oppositeSectionAliases[elementId];
+    }
+
     let splitInstructionId = elementId.split("_");
     splitInstructionId = splitInstructionId.filter((val) => /^\d+$/.test(val));
     if (splitInstructionId.length === 2) {
         return splitInstructionId.join(".");
     }
+
     console.error("Element id is wrong for this conversion: %s", elementId);
     return "";
 }
