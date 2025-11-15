@@ -289,8 +289,8 @@ input::placeholder {
         width 0.5s ease-in;
     display: grid;
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    justify-content: safe center;
+    overflow-y: scroll;
     pointer-events: none;
 }
 
@@ -304,7 +304,7 @@ input::placeholder {
         width 0.5s ease-in;
     background-color: white;
     pointer-events: all;
-    overflow: hidden;
+    overflow-x: clip;
 }
 
 #tools-box {
@@ -371,6 +371,12 @@ input::placeholder {
     border-bottom: 3px dotted #000;
     white-space: nowrap;
 }
+
+#section-help > ul {
+  margin-top: 0px;
+  padding-left: 30px;
+}
+
 
 /* BUTTON TYPES */
 

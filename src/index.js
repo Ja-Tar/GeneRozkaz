@@ -579,11 +579,11 @@ function loadHelpTriggers() {
             if (contentElement.length > 1) {
                 for (const i of Object.keys(contentElement)) {
                     const smallerContentElement = contentElement[i];
-                    smallerContentElement.addEventListener("focusin", () => displaySectionHelp(sectionElement, sectionHelp))
+                    smallerContentElement.addEventListener("focusin", () => displaySectionHelp(sectionName, sectionHelp))
                     smallerContentElement.addEventListener("focusout", () => clearSectionHelp(sectionElement))
                 }
             } else {
-                contentElement[0].addEventListener("focusin", () => displaySectionHelp(sectionElement, sectionHelp))
+                contentElement[0].addEventListener("focusin", () => displaySectionHelp(sectionName, sectionHelp))
                 contentElement[0].addEventListener("focusout", () => clearSectionHelp(sectionElement))
             }
         }
@@ -591,19 +591,50 @@ function loadHelpTriggers() {
 }
 
 /**
- * @param {Element} sectionElement 
+ * @param {string} sectionName 
  * @param {*} sectionHelp 
  */
-function displaySectionHelp(sectionElement, sectionHelp) {
+function displaySectionHelp(sectionName, sectionHelp) {
     const sectionHelpElement = document.getElementById("section-help");
-    console.log("Section!!!")
 
-    // TODO ADD INFO
+    const docsInfo = sectionHelp?.docsInfo;
+
+    const title = document.createElement("h2");
+    title.textContent = `Instrukcja: ${sectionName}`;
+    sectionHelpElement.appendChild(title);
+
+    if (docsInfo) {
+        const useTitle = document.createElement("h3");
+        useTitle.textContent = "Zastosowanie";
+        sectionHelpElement.appendChild(useTitle);
+
+        const topWhen = document.createElement("p");
+        /** @type {string | null} */
+        topWhen.textContent = docsInfo.application?.customTop;
+        if (!topWhen.textContent) {
+            topWhen.textContent = "W przypadku:";
+        }
+        sectionHelpElement.appendChild(topWhen);
+
+        /** @type {string[]} */
+        const whenList = docsInfo.application.when;
+        const whenListElement = document.createElement("ul");
+        whenList.forEach(whenText => {
+            const whenElement = document.createElement("li");
+            whenElement.textContent = whenText;
+            whenListElement.appendChild(whenElement);
+        });
+        sectionHelpElement.appendChild(whenListElement);
+        wh
+
+        // TODO add warnings
+
+    }
+
+    console.log("Section!!!", sectionHelp)
+
+    // TODO ADD FIELD INFO
     triggerHelpInfo();
-}
-
-function focusToMainSectionElement() {
-
 }
 
 /**
@@ -640,10 +671,6 @@ function displayFieldHelp(fieldName, fieldHelp) {
             examplesAllDiv.appendChild(exampleDiv);
         }
     }
-
-    
-    
-    // TODO ADD INFO
 
     triggerHelpInfo();
 }
