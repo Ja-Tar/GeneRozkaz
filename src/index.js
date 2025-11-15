@@ -11,6 +11,7 @@ const FIELDS = {
 // See schema !!!
 let VALIDATION = {};
 let HELP = {};
+let EXAMPLES = {}
 
 // HELPER FUNCTIONS ***
 
@@ -568,6 +569,7 @@ function toggleToolBar() {
  */
 async function loadHelpData(documentType) {
     HELP = await getRequestJSON(`/help-${documentType}.json`);
+    EXAMPLES = await getRequestJSON("/help-examples.json");
 }
 
 function loadHelpTriggers() {
@@ -590,14 +592,41 @@ function loadHelpTriggers() {
                 for (const i of Object.keys(contentElement)) {
                     const smallerContentElement = contentElement[parseInt(i)];
                     if (smallerContentElement.previousElementSibling?.id === formatSectionName(sectionName)) {
+                        loadFieldsHelpTriggers(sectionName, sectionHelp);
                         smallerContentElement.addEventListener("focusin", () => displaySectionHelp(sectionName, sectionHelp))
-                        smallerContentElement.addEventListener("focusout", clearSectionHelp)
+                        smallerContentElement.addEventListener("focusout", () => clearSectionHelp(sectionElement))
                     }
                 }
             } else {
+                loadFieldsHelpTriggers(sectionName, sectionHelp);
                 contentElement[0].addEventListener("focusin", () => displaySectionHelp(sectionName, sectionHelp))
-                contentElement[0].addEventListener("focusout", clearSectionHelp)
+                contentElement[0].addEventListener("focusout", () => clearSectionHelp(sectionElement))
             }
+        }
+    }
+}
+
+/**
+ * @param {string} sectionName 
+ * @param {*} sectionHelp 
+ */
+function loadFieldsHelpTriggers(sectionName, sectionHelp) {
+    const fieldsInfo = sectionHelp?.fields;
+
+    if (fieldsInfo) {
+        for (const fieldNr of Object.keys(fieldsInfo)) {
+            /** @type {Object} */
+            let fieldHelp = fieldsInfo[fieldNr];
+            /** Example type from help-examples.json
+             * @type {string[]} */
+            const examplesList = EXAMPLES[fieldHelp.examplesType];
+            fieldHelp.examples = examplesList;
+
+            const fieldElement = getField(fieldNr, sectionName);
+            fieldElement.addEventListener("focusin", () => displayFieldHelp(fieldNr, fieldHelp));
+            fieldElement.addEventListener("focusout", clearFieldHelp);
+
+            console.log(fieldElement);
         }
     }
 }
@@ -621,7 +650,7 @@ function displaySectionHelp(sectionName, sectionHelp) {
         sectionHelpElement.appendChild(useTitle);
 
         const topWhen = document.createElement("p");
-        /** @type {string | null} */
+        /** @type {string | undefined} */
         topWhen.textContent = docsInfo.application?.customTop;
         if (!topWhen.textContent) {
             topWhen.textContent = "W przypadku:";
@@ -646,7 +675,6 @@ function displaySectionHelp(sectionName, sectionHelp) {
 
     console.log("Section!!!", sectionHelp)
 
-    // TODO ADD FIELD INFO
     triggerHelpInfo();
 }
 
@@ -692,9 +720,12 @@ function displayFieldHelp(fieldName, fieldHelp) {
  * @param {Element} sectionElement 
  * @returns 
  */
-function clearSectionHelp() {
+function clearSectionHelp(sectionElement) {
     const sectionHelpElement = document.getElementById("section-help");
     sectionHelpElement.innerHTML = "";
+
+    const filedHelpElement = document.getElementById("field-help");
+    filedHelpElement.classList.remove("smaller-help");
 
     console.log("NOT IN SECTION!!!")
 
