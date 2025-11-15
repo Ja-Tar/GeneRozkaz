@@ -625,7 +625,6 @@ function displaySectionHelp(sectionName, sectionHelp) {
             whenListElement.appendChild(whenElement);
         });
         sectionHelpElement.appendChild(whenListElement);
-        wh
 
         // TODO add warnings
 
