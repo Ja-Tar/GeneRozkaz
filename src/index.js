@@ -569,7 +569,7 @@ function loadHelpTriggers() {
             for (const fieldName of Object.keys(fields)) {
                 const fieldElement = document.getElementById(`${formatSectionName(sectionName)}-${fieldName}-input`);
                 const fieldHelp = fields[fieldName];
-                
+
                 fieldElement.addEventListener("focusin", () => displayFieldHelp(fieldName, fieldHelp));
                 fieldElement.addEventListener("focusout", clearFieldHelp)
             }
@@ -578,13 +578,15 @@ function loadHelpTriggers() {
             const contentElement = sectionElement.getElementsByClassName("roz-content");
             if (contentElement.length > 1) {
                 for (const i of Object.keys(contentElement)) {
-                    const smallerContentElement = contentElement[i];
-                    smallerContentElement.addEventListener("focusin", () => displaySectionHelp(sectionName, sectionHelp))
-                    smallerContentElement.addEventListener("focusout", () => clearSectionHelp(sectionElement))
+                    const smallerContentElement = contentElement[parseInt(i)];
+                    if (smallerContentElement.previousElementSibling?.id === formatSectionName(sectionName)) {
+                        smallerContentElement.addEventListener("focusin", () => displaySectionHelp(sectionName, sectionHelp))
+                        smallerContentElement.addEventListener("focusout", clearSectionHelp)
+                    }
                 }
             } else {
                 contentElement[0].addEventListener("focusin", () => displaySectionHelp(sectionName, sectionHelp))
-                contentElement[0].addEventListener("focusout", () => clearSectionHelp(sectionElement))
+                contentElement[0].addEventListener("focusout", clearSectionHelp)
             }
         }
     }
@@ -617,14 +619,16 @@ function displaySectionHelp(sectionName, sectionHelp) {
         sectionHelpElement.appendChild(topWhen);
 
         /** @type {string[]} */
-        const whenList = docsInfo.application.when;
-        const whenListElement = document.createElement("ul");
-        whenList.forEach(whenText => {
-            const whenElement = document.createElement("li");
-            whenElement.textContent = whenText;
-            whenListElement.appendChild(whenElement);
-        });
-        sectionHelpElement.appendChild(whenListElement);
+        const whenList = docsInfo.application?.when;
+        if (whenList) {
+            const whenListElement = document.createElement("ul");
+            whenList.forEach(whenText => {
+                const whenElement = document.createElement("li");
+                whenElement.textContent = whenText;
+                whenListElement.appendChild(whenElement);
+            });
+            sectionHelpElement.appendChild(whenListElement);
+        }
 
         // TODO add warnings
 
@@ -661,7 +665,7 @@ function displayFieldHelp(fieldName, fieldHelp) {
         examplesAllDiv.classList.add("allHelpExamples");
         filedHelpElement.appendChild(examplesAllDiv);
 
-        for (const i of Object.keys(fieldHelp.examples)) {    
+        for (const i of Object.keys(fieldHelp.examples)) {
             const example = fieldHelp.examples[i]
             const exampleDiv = document.createElement("div");
             exampleDiv.classList.add("exampleFieldElement");
@@ -678,7 +682,7 @@ function displayFieldHelp(fieldName, fieldHelp) {
  * @param {Element} sectionElement 
  * @returns 
  */
-function clearSectionHelp(sectionElement) {
+function clearSectionHelp() {
     const sectionHelpElement = document.getElementById("section-help");
     sectionHelpElement.innerHTML = "";
 

@@ -30,7 +30,21 @@
             ]
         }
     },
-    "21.10":{
+    "22.00": {
+        "docsInfo": {
+            "application": {
+                "customTop": "Instrukcja dla wjazdów z toru lewego i wyjazdów na tor lewy szlakowy."
+            }
+        }
+    },
+    "99": {
+        "docsInfo": {
+            "application": {
+                "customTop": "Instrukcja służąca do odwołania wcześniej wydanego rozkazu, ostrzeżenia."
+            }
+        }
+    },
+    "21.10": {
         "docsInfo": {
             "application": {
                 "customTop": "Wyjazd (wyprawienie pociągu) z posterunku lub przejazd w obrębie posterunku w przypadku:",
@@ -51,6 +65,5 @@
                 "examplesType": "tor"
             }
         }
-    },
-    "99": {}
+    }
 }
