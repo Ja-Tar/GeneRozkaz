@@ -617,16 +617,18 @@ function loadFieldsHelpTriggers(sectionName, sectionHelp) {
         for (const fieldNr of Object.keys(fieldsInfo)) {
             /** @type {Object} */
             let fieldHelp = fieldsInfo[fieldNr];
-            /** Example type from help-examples.json
+            /** Array with strings
              * @type {string[]} */
-            const examplesList = EXAMPLES[fieldHelp.examplesType];
-            fieldHelp.examples = examplesList;
+            let listExamples = fieldHelp?.examples;
+
+            if (!listExamples && fieldHelp?.examplesType) {
+                const examplesList = EXAMPLES[fieldHelp.examplesType];
+                fieldHelp.examples = examplesList;
+            }
 
             const fieldElement = getField(fieldNr, sectionName);
             fieldElement.addEventListener("focusin", () => displayFieldHelp(fieldNr, fieldHelp));
             fieldElement.addEventListener("focusout", clearFieldHelp);
-
-            console.log(fieldElement);
         }
     }
 }

@@ -113,6 +113,13 @@
                                         "linia",
                                         "godz"
                                     ]
+                                },
+                                "examples": {
+                                    "type": "array",
+                                    "title": "Przykłady",
+                                    "items": {
+                                        "type": "string"
+                                    }
                                 }
                             }
                         }

@@ -362,7 +362,7 @@ input::placeholder {
     background-color: rgba(211, 211, 211, 0.685);
     gap: 6px 4px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     padding: 1vh 0;
 }
 
@@ -375,9 +375,13 @@ input::placeholder {
     white-space: nowrap;
 }
 
-#section-help > ul {
-  margin-top: 0px;
-  padding-left: 30px;
+#section-help {
+    margin-bottom: 0.1em;
+}
+
+#section-help>ul {
+    margin-top: 0px;
+    padding-left: 30px;
 }
 
 

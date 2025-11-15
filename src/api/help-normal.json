@@ -42,6 +42,11 @@
             "application": {
                 "customTop": "Instrukcja służąca do odwołania wcześniej wydanego rozkazu, ostrzeżenia."
             }
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać identyfikator rozkazu lub ostrzeżenia które ma zostać odwołane"
+            }
         }
     },
     "21.10": {
@@ -63,6 +68,30 @@
             "1": {
                 "docsInfo": "wpisać numer toru (w obszarze posterunku) z którego wyjeżdża pociąg (oznaczenie liczbowe lub liczbowo/literowe)",
                 "examplesType": "tor"
+            },
+            "2": {
+                "docsInfo": "wpisać nazwę posterunku, z którego wyprawiany jest pociąg",
+                "examplesType": "post"
+            },
+            "3": {
+                "docsInfo": "wpisać numer toru szlakowego lub stacyjnego na który wyprawiany jest pociąg (oznaczenie liczbowe lub liczbowo/literowe)",
+                "examplesType": "tor"
+            },
+            "4": {
+                "docsInfo": "wpisać nazwę posterunku, w kierunku którego wyprawiany jest pociąg",
+                "examplesType": "post"
+            },
+            "5": {
+                "docsInfo": "wpisać oznaczenie sygnalizatora, którego sygnał nie zezwala na jazdę, a na pominięcie którego wydawany jest rozkaz pisemny. Dla semaforów oznaczenia literowe lub literowo/liczbowe, dla innych sygnałów typ sygnału i lokalizacje w kilometrach.",
+                "examplesType": "sem"
+            },
+            "6": {
+                "docsInfo": "wpisać oznaczenie sygnalizatora, którego sygnał nie zezwala na jazdę, a na pominięcie którego wydawany jest rozkaz pisemny. Dla semaforów oznaczenia literowe lub literowo/liczbowe, dla innych sygnałów typ sygnału i lokalizacje w kilometrach.",
+                "examplesType": "sem"
+            },
+            "7": {
+                "docsInfo": "wpisać oznaczenie sygnalizatora, którego sygnał nie zezwala na jazdę, a na pominięcie którego wydawany jest rozkaz pisemny. Dla semaforów oznaczenia literowe lub literowo/liczbowe, dla innych sygnałów typ sygnału i lokalizacje w kilometrach.",
+                "examplesType": "sem"
             }
         }
     }
