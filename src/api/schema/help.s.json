@@ -38,7 +38,7 @@
                         },
                         "additionalDescription": {
                             "type": "string",
-                            "title": "Informacja dodatkowa wyjaśniająca to co jest w instrukcji"
+                            "title": "Wyjaśnienie dodatkowe (przypis autora, może być niezgodny z prawdą!)"
                         },
                         "examples": {
                             "type": "array",
@@ -85,6 +85,10 @@
                             "items": {
                                 "type": "string"
                             }
+                        },
+                        "additionalDescription": {
+                            "type": "string",
+                            "title": "Wyjaśnienie dodatkowe (przypis autora, może być niezgodny z prawdą!)"
                         }
                     }
                 },
@@ -103,6 +107,7 @@
                                     "title": "Informacje z instrukcji"
                                 },
                                 "examplesType": {
+                                    "title": "Typ przykładu z help-examples.json",
                                     "enum": [
                                         "tor",
                                         "post",
@@ -116,10 +121,14 @@
                                 },
                                 "examples": {
                                     "type": "array",
-                                    "title": "Przykłady",
+                                    "title": "Przykłady (overwrite)",
                                     "items": {
                                         "type": "string"
                                     }
+                                },
+                                "additionalDescription": {
+                                    "type": "string",
+                                    "title": "Wyjaśnienie dodatkowe (przypis autora, może być niezgodny z prawdą!)"
                                 }
                             }
                         }

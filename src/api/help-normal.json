@@ -62,7 +62,8 @@
             "warnings": [
                 "W przypadku wydania rozkazu [[21.10]] na tym samym druku (tym samym identyfikatorze rozkazu) nie można wydać instrukcji: [[21.15]].",
                 "Na jednym druku (identyfikatorze rozkazu) można wydać zezwolenie na pominięcie do trzech sygnalizatorów (lub tarczy zatrzymania D1) nie nadających zezwolenia na jazdę."
-            ]
+            ],
+            "additionalDescription": "W przypadku braku semafora, nie wypełniamy pól 5, 6 i 7"
         },
         "fields": {
             "1": {
@@ -75,6 +76,7 @@
             },
             "3": {
                 "docsInfo": "wpisać numer toru szlakowego lub stacyjnego na który wyprawiany jest pociąg (oznaczenie liczbowe lub liczbowo/literowe)",
+                "additionalDescription": "W przypadku szlaku jednotorowego, nie należy wpisywać tu numeru (szlaki jednotorowe nie mają numeracji).",
                 "examplesType": "tor"
             },
             "4": {
@@ -92,6 +94,104 @@
             "7": {
                 "docsInfo": "wpisać oznaczenie sygnalizatora, którego sygnał nie zezwala na jazdę, a na pominięcie którego wydawany jest rozkaz pisemny. Dla semaforów oznaczenia literowe lub literowo/liczbowe, dla innych sygnałów typ sygnału i lokalizacje w kilometrach.",
                 "examplesType": "sem"
+            }
+        }
+    },
+    "21.15": {
+        "docsInfo": {
+            "application": {
+                "customTop": "Wjazd (przyjęcie pociągu) na posterunek lub przejazd w obrębie posterunku w przypadku:",
+                "when": [
+                    "braku możliwości podania sygnału zezwalającego na semaforze, lub semaforach drogowskazowych, drogowskazowych grupowych",
+                    "braku semafora wjazdowego",
+                    "wjazdu z zamkniętego toru szlakowego przy którym nie ma semafora wjazdowego"
+                ],
+                "additionalDescription": "W przypadku braku semafora, nie wypełniamy pól 4, 5 i 6"
+            },
+            "warnings": [
+                "W przypadku wydania rozkazu [[21.15]] na tym samym druku (tym samym identyfikatorze rozkazu) nie można wydać instrukcji: [[21.10]].",
+                "Na jednym druku (identyfikatorze rozkazu) można wydać zezwolenie na pominięcie do trzech sygnalizatorów (lub tarczy zatrzymania D1) nie nadających zezwolenia na jazdę."
+            ]
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać numer toru szlakowego lub stacyjnego z którego wjeżdża pociąg (oznaczenie liczbowe lub liczbowo/literowe)",
+                "additionalDescription": "W przypadku szlaku jednotorowego, nie należy wpisywać tu numeru (szlaki jednotorowe nie mają numeracji).",
+                "examplesType": "tor"
+            },
+            "2": {
+                "docsInfo": "wpisać nazwę posterunku, na który przyjmowany jest pociąg",
+                "examplesType": "post"
+            },
+            "3": {
+                "docsInfo": "wpisać numer toru (w obrębie posterunku ruchu) na który przyjmowany jest pociąg. (oznaczenie liczbowe lub liczbowo/literowe)",
+                "examplesType": "tor"
+            },
+            "4": {
+                "docsInfo": "wpisać oznaczenie sygnalizatora, którego sygnał nie zezwala na jazdę, a na pominięcie którego wydawany jest rozkaz pisemny. Dla semaforów oznaczenia literowe lub literowo/liczbowe, dla innych sygnałów typ sygnału i lokalizacje w kilometrach.",
+                "examplesType": "sem"
+            },
+            "5": {
+                "docsInfo": "wpisać oznaczenie sygnalizatora, którego sygnał nie zezwala na jazdę, a na pominięcie którego wydawany jest rozkaz pisemny. Dla semaforów oznaczenia literowe lub literowo/liczbowe, dla innych sygnałów typ sygnału i lokalizacje w kilometrach.",
+                "examplesType": "sem"
+            },
+            "6": {
+                "docsInfo": "wpisać oznaczenie sygnalizatora, którego sygnał nie zezwala na jazdę, a na pominięcie którego wydawany jest rozkaz pisemny. Dla semaforów oznaczenia literowe lub literowo/liczbowe, dla innych sygnałów typ sygnału i lokalizacje w kilometrach.",
+                "examplesType": "sem"
+            }
+        }
+    },
+    "21.20": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "unieważnienia wskazań sygnałów semaforów odstępowych na blokadzie wieloodstępowej(samoczynnej)",
+                    "usterki blokady wieloodstępowej",
+                    "zajętości trzech lub więcej odcinków na szlaku przy blokadzie wieloodstępowej (samoczynnej)",
+                    "wprowadzenia telefonicznego zapowiadania pociągów na szlakach z blokadą samoczynną wieloodstępową (samoczynną)"
+                ]
+            }
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać nazwę posterunku, z którego wyprawiany jest pociąg",
+                "examplesType": "post"
+            },
+            "2": {
+                "docsInfo": "wpisać nazwę posterunku, do którego wyprawiany jest pociąg",
+                "examplesType": "post"
+            },
+            "3": {
+                "docsInfo": "wpisać numer toru szlakowego dla którego unieważniane są wskazania semaforów SBL (oznaczenie liczbowe lub liczbowo/literowe",
+                "additionalDescription": "W przypadku szlaku jednotorowego, nie należy wpisywać tu numeru (szlaki jednotorowe nie mają numeracji).",
+                "examplesType": "tor"
+            }
+        }
+    },
+    "21.25": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "zezwolenia na jazdę manewrową taboru w kierunku szlaku poza ustaloną wskaźnikiem W5 granicę przetaczania lub gdy brak jest tego wskaźnika za ostatni rozjazd, gdy jazda odbywa się na szlak jednotorowy lub w kierunku przeciwnym do zasadniczego na szlaku dwutorowym"
+                ]
+            }
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać nazwę posterunku, w kierunku którego mają odbywać się manewry",
+                "examplesType": "post"
+            },
+            "2": {
+                "docsInfo": "wpisać numer toru, po którym manewry wyjadą poza granice przetaczania (oznaczenie liczbowe lub liczbowo/literowe",
+                "examplesType": "tor"
+            },
+            "3": {
+                "docsInfo": "lokalizacje w kilometrach do której może odbyć się jazda manewrowa",
+                "examplesType": "km"
+            },
+            "4": {
+                "docsInfo": "określić godzinę zakończenia manewrów",
+                "examplesType": "godz"
             }
         }
     }

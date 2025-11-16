@@ -21,7 +21,6 @@
         "fieldsNeeded": [
             "1",
             "2",
-            "3",
             "4"
         ],
         "instructionsDisallowed": [
@@ -30,10 +29,8 @@
     },
     "21.15": {
         "fieldsNeeded": [
-            "1",
             "2",
-            "3",
-            "4"
+            "3"
         ],
         "instructionsDisallowed": [
             "21.10"
@@ -42,8 +39,7 @@
     "21.20": {
         "fieldsNeeded": [
             "1",
-            "2",
-            "3"
+            "2"
         ]
     },
     "21.25": {
