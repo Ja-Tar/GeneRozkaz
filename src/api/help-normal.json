@@ -62,9 +62,9 @@
             "warnings": [
                 "W przypadku wydania rozkazu [[21.10]] na tym samym druku (tym samym identyfikatorze rozkazu) nie można wydać instrukcji: [[21.15]].",
                 "Na jednym druku (identyfikatorze rozkazu) można wydać zezwolenie na pominięcie do trzech sygnalizatorów (lub tarczy zatrzymania D1) nie nadających zezwolenia na jazdę."
-            ],
-            "additionalDescription": "W przypadku braku semafora, nie wypełniamy pól 5, 6 i 7"
+            ]
         },
+        "additionalDescription": "W przypadku braku semafora, nie wypełniamy pól 5, 6 i 7",
         "fields": {
             "1": {
                 "docsInfo": "wpisać numer toru (w obszarze posterunku) z którego wyjeżdża pociąg (oznaczenie liczbowe lub liczbowo/literowe)",
@@ -105,14 +105,14 @@
                     "braku możliwości podania sygnału zezwalającego na semaforze, lub semaforach drogowskazowych, drogowskazowych grupowych",
                     "braku semafora wjazdowego",
                     "wjazdu z zamkniętego toru szlakowego przy którym nie ma semafora wjazdowego"
-                ],
-                "additionalDescription": "W przypadku braku semafora, nie wypełniamy pól 4, 5 i 6"
+                ]
             },
             "warnings": [
                 "W przypadku wydania rozkazu [[21.15]] na tym samym druku (tym samym identyfikatorze rozkazu) nie można wydać instrukcji: [[21.10]].",
                 "Na jednym druku (identyfikatorze rozkazu) można wydać zezwolenie na pominięcie do trzech sygnalizatorów (lub tarczy zatrzymania D1) nie nadających zezwolenia na jazdę."
             ]
         },
+        "additionalDescription": "W przypadku braku semafora, nie wypełniamy pól 4, 5 i 6",
         "fields": {
             "1": {
                 "docsInfo": "wpisać numer toru szlakowego lub stacyjnego z którego wjeżdża pociąg (oznaczenie liczbowe lub liczbowo/literowe)",

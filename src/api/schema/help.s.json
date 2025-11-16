@@ -85,12 +85,12 @@
                             "items": {
                                 "type": "string"
                             }
-                        },
-                        "additionalDescription": {
-                            "type": "string",
-                            "title": "Wyjaśnienie dodatkowe (przypis autora, może być niezgodny z prawdą!)"
                         }
                     }
+                },
+                "additionalDescription": {
+                    "type": "string",
+                    "title": "Wyjaśnienie dodatkowe (przypis autora, może być niezgodny z prawdą!)"
                 },
                 "fields": {
                     "type": "object",
