@@ -264,5 +264,28 @@
                 "examplesType": "sem"
             }
         }
+    },
+    "21.50": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "informacji o unieważnieniu wskazań tarcz ostrzegawczych przejazdowych odnoszących się do obsługiwanych przejazdów kolejowo-drogowych i przejść, na których zapewniono kierowanie ruchem drogowym"
+                ]
+            }
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać nazwę posterunku, w rejonie którego znajdują się tarcze ostrzegawcze, w przypadku, gdy tarcze znajdują się na szlaku w tym polu wpisać posterunek początkowy tego szlaku (zgodnie z kierunkiem jazdy pociągu)",
+                "examplesType": "post"
+            },
+            "2": {
+                "docsInfo": "w przypadku kiedy tarcze ostrzegawcze znajdują się na szlaku, wpisać nazwę posterunku na końcu szlaku",
+                "examplesType": "post"
+            },
+            "3": {
+                "docsInfo": "wpisać lokalizacje w kilometrach osi przejazdu kolejowo-drogowego do którego odnoszą się tarcze ostrzegawcze których wskazania są unieważniane",
+                "examplesType": "km"
+            }
+        }
     }
 }
