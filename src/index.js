@@ -330,6 +330,14 @@ function getField(name, section) {
         }
     }
 
+    const textareaFields = document.querySelectorAll(`textarea[id*="${section}"]`);
+    for (let i = 0; i < textareaFields.length; i++) {
+        const element = textareaFields[i];
+        if (element.id.split("-")[1] === name) {
+            return element;
+        }
+    }
+
     return null;
 }
 
