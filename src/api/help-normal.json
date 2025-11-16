@@ -85,15 +85,15 @@
             },
             "5": {
                 "docsInfo": "wpisać oznaczenie sygnalizatora, którego sygnał nie zezwala na jazdę, a na pominięcie którego wydawany jest rozkaz pisemny. Dla semaforów oznaczenia literowe lub literowo/liczbowe, dla innych sygnałów typ sygnału i lokalizacje w kilometrach.",
-                "examplesType": "sem"
+                "examplesType": "sem-tar"
             },
             "6": {
                 "docsInfo": "wpisać oznaczenie sygnalizatora, którego sygnał nie zezwala na jazdę, a na pominięcie którego wydawany jest rozkaz pisemny. Dla semaforów oznaczenia literowe lub literowo/liczbowe, dla innych sygnałów typ sygnału i lokalizacje w kilometrach.",
-                "examplesType": "sem"
+                "examplesType": "sem-tar"
             },
             "7": {
                 "docsInfo": "wpisać oznaczenie sygnalizatora, którego sygnał nie zezwala na jazdę, a na pominięcie którego wydawany jest rozkaz pisemny. Dla semaforów oznaczenia literowe lub literowo/liczbowe, dla innych sygnałów typ sygnału i lokalizacje w kilometrach.",
-                "examplesType": "sem"
+                "examplesType": "sem-tar"
             }
         }
     },
@@ -129,15 +129,15 @@
             },
             "4": {
                 "docsInfo": "wpisać oznaczenie sygnalizatora, którego sygnał nie zezwala na jazdę, a na pominięcie którego wydawany jest rozkaz pisemny. Dla semaforów oznaczenia literowe lub literowo/liczbowe, dla innych sygnałów typ sygnału i lokalizacje w kilometrach.",
-                "examplesType": "sem"
+                "examplesType": "sem-tar"
             },
             "5": {
                 "docsInfo": "wpisać oznaczenie sygnalizatora, którego sygnał nie zezwala na jazdę, a na pominięcie którego wydawany jest rozkaz pisemny. Dla semaforów oznaczenia literowe lub literowo/liczbowe, dla innych sygnałów typ sygnału i lokalizacje w kilometrach.",
-                "examplesType": "sem"
+                "examplesType": "sem-tar"
             },
             "6": {
                 "docsInfo": "wpisać oznaczenie sygnalizatora, którego sygnał nie zezwala na jazdę, a na pominięcie którego wydawany jest rozkaz pisemny. Dla semaforów oznaczenia literowe lub literowo/liczbowe, dla innych sygnałów typ sygnału i lokalizacje w kilometrach.",
-                "examplesType": "sem"
+                "examplesType": "sem-tar"
             }
         }
     },
@@ -192,6 +192,76 @@
             "4": {
                 "docsInfo": "określić godzinę zakończenia manewrów",
                 "examplesType": "godz"
+            }
+        }
+    },
+    "21.35": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "zezwolenia na jazdę, gdy pojazd kolejowy znajduje się za semaforem wskazującym sygnał zezwalający, którego maszynista nie widzi",
+                    "zezwolenia na dalszą jazdę zatrzymanego pociągu skierowanego na tor prawy, gdy jego czoło minęło semafor z wyświetlonym wskaźnikiem W 24",
+                    "zezwolenia na dalszą jazdę pociągu zatrzymanego za obsługiwanym semaforem, na którym nastąpiła już zmiana sygnału zezwalającego na sygnał S1 „Stój” lub stało się to, zanim czoło pociągu minęło ten semafor",
+                    "potrzeby wydania zgody/polecenia rozpoczęcia/kontynuacji jazdy w przypadku zaistniałych zdarzeń i sytuacji potencjalnie niebezpiecznych"
+                ]
+            }
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać numer toru, przy którym znajduje się sygnalizator na którym nastąpiła zmiana sygnału zezwalającego na sygnał Stój lub którego nie widzi maszynista (oznaczenie liczbowe lub liczbowo/literowe",
+                "additionalDescription": "W przypadku szlaku jednotorowego, nie należy wpisywać tu numeru (szlaki jednotorowe nie mają numeracji).",
+                "examplesType": "tor"
+            },
+            "2": {
+                "docsInfo": "w przypadku wjazdu na posterunek, wpisać nazwę tego posterunku, w przypadku wyjazdu na szlak nazwę sąsiedniego posterunku w kierunku którego odbywa się jazda.",
+                "examplesType": "post"
+            }
+        }
+    },
+    "21.40": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "polecenia zatrzymania pociągu, niemającego rozkładowego postoju na stacji lub przystanku osobowym",
+                    "polecenia nieprzewidzianego wewnętrznym rozkładem jazdy zatrzymania na szlaku pociągu, z określeniem celu i czasu postoju"
+                ]
+            }
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać nazwę posterunku, na którym ma odbyć się zatrzymanie, w przypadku zatrzymania na szlaku w tym miejscu wpisać nazwę posterunku na początku tego szlaku",
+                "examplesType": "post"
+            },
+            "2": {
+                "docsInfo": "wpisać nazwę posterunku na końcu szlaku, na którym ma odbyć się zatrzymanie, w przypadku zatrzymania na posterunku pole zostaje nie wypełnione (wstawiamy znak „-„)",
+                "examplesType": "post"
+            },
+            "3": {
+                "docsInfo": "wpisać lokalizacje zatrzymania w kilometrach w przypadku zatrzymania na szlaku obowiązkowo, w przypadku zatrzymania w obrębie posterunku może pozostać nie wypełnione(wstawić znak „-„)",
+                "examplesType": "km"
+            },
+            "96": {
+                "docsInfo": "wpisać przyczynę (potrzebę) zatrzymania"
+            }
+        }
+    },
+    "21.45": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "polecenia zatrzymania pociągu przed uszkodzonym obsługiwanym semaforem",
+                    "informacji o nieważności na semaforze sygnału zezwalającego na jazdę pociągu"
+                ]
+            }
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać nazwę posterunku, na którym znajduje się uszkodzony semafor obsługiwany lub z nieważnym sygnałem zezwalającym na jazdę",
+                "examplesType": "post"
+            },
+            "2": {
+                "docsInfo": "wpisać oznaczenia literowe lub literowo/liczbowe semafora",
+                "examplesType": "sem"
             }
         }
     }

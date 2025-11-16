@@ -13,6 +13,9 @@
         "sem": {
             "$ref": "#/definitions/field"
         },
+        "sem-tar": {
+            "$ref": "#/definitions/field"
+        },
         "numpoc": {
             "$ref": "#/definitions/field"
         },
