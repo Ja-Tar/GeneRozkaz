@@ -675,8 +675,6 @@ function displaySectionHelp(sectionName, sectionHelp) {
 
     }
 
-    console.log("Section!!!", sectionHelp)
-
     triggerHelpInfo();
 }
 
@@ -728,8 +726,6 @@ function clearSectionHelp(sectionElement) {
 
     const filedHelpElement = document.getElementById("field-help");
     filedHelpElement.classList.remove("smaller-help");
-
-    console.log("NOT IN SECTION!!!")
 
     triggerHelpInfo();
 }
