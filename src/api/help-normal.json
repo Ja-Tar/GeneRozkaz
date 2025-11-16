@@ -28,6 +28,30 @@
                 "LCS Kawki",
                 "MCS Małki"
             ]
+        },
+        "V": {
+            "docsInfo": "numer identyfikacyjny maszynisty (nr. licencji maszynisty) lub jego nazwisko",
+            "examples": [
+                "71 2024 0783"
+            ]
+        },
+        "W": {
+            "docsInfo": "numer identyfikacyjny (w przypadku PLK S.A. nr służbowy)",
+            "examples": [
+                "051093"
+            ]
+        },
+        "Y": {
+            "docsInfo": "godzina przekazania",
+            "examples": [
+                "13:40"
+            ]
+        },
+        "Z": {
+            "docsInfo": "unikalny identyfikator rozkazu (zawierający kod posterunku i nr kolejny)",
+            "examples": [
+                "RD-2-054929-25"
+            ]
         }
     },
     "22.00": {
