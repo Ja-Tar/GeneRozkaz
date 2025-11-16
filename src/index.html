@@ -376,7 +376,9 @@
                             <label for="norm-Y-input">Y Godzina</label>
                         </td>
                         <td id="norm-Z" colspan="2">
-                            <input id="norm-Z-input" type="text"><br>
+                            <input id="norm-Z-input" type="text">
+                            <button id="norm-Z-button">GENERUJ IDENTYFIKATOR</button>
+                            <br>
                             <label for="norm-Z-input">Z Identyfikator rozkazu pisemnego</label>
                         </td>
                     </tr>
@@ -410,6 +412,21 @@
             </div>
         </div>
     </div>
+
+    <dialog id="id-generator-dialog" class="large">
+        <div class="inner-dialog">
+            <label for="select-printed">Czy rozkaz jest wydany na formularzu drukowanym?</label>
+            <select class="large" id="select-printed">
+                <option value="D" selected>TAK</option>
+                <option value="">NIE</option>
+            </select>
+            <label for="written-order-number">Numer rozkazu pisemnego (w kolejności)</label>
+            <input id="written-order-number" type="number" min="1">
+            <label for="posterunek-number">Kod posterunku</label>
+            <input id="posterunek-number" type="text" inputmode="numeric" placeholder="054929">
+        </div>
+        <button class="large" id="set-id">Zastosuj</button>
+    </dialog>
 
     <script src="index.js" async defer></script>
 </body>

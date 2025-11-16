@@ -433,6 +433,60 @@ input::placeholder {
     cursor: not-allowed;
 }
 
+/* Z FIELD - ID GENERATION */
+
+#norm-Z {
+    padding-right: 0em;
+}
+
+#norm-Z-input {
+    width: 40%;
+    margin-right: 10px;
+}
+
+#norm-Z-button {
+    line-height: 0.9em;
+}
+
+#id-generator-dialog>*,
+#id-generator-dialog select,
+#id-generator-dialog input {
+    font-size: large;
+}
+
+#id-generator-dialog select,
+#id-generator-dialog input {
+    border: revert;
+    width: 5em;
+}
+
+#id-generator-dialog ::placeholder {
+    color: revert;
+}
+
+#id-generator-dialog label {
+    font-size: larger;
+}
+
+.inner-dialog {
+    display: grid;
+    column-gap: 1em;
+    row-gap: 0.2em;
+    margin-bottom: 0.5em;
+    align-items: center;
+}
+
+.inner-dialog select,
+.inner-dialog input {
+    grid-column: 2;
+}
+
+#set-id {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 /* TEMPORARY MOBILE */
 
 @media only screen and (max-width: 900px) {

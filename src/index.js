@@ -757,6 +757,34 @@ function triggerHelpInfo() {
     }
 }
 
+// GENERATE FIELD "Z" (ID) ***
+
+function prepareIDGeneratorBox() {
+    const dialog = document.getElementById("id-generator-dialog");
+    const setIdButton = document.getElementById('set-id');
+    const openIdGeneratorButton = document.getElementById('norm-Z-button');
+
+    openIdGeneratorButton.addEventListener("click", () => {
+        dialog.showModal();
+    });
+
+    setIdButton.addEventListener("click", () => {
+        const fieldZ = document.getElementById("norm-Z-input");
+        const selectPrintedValue = document.getElementById("select-printed").value;
+        const writtenOrderNumber = document.getElementById("written-order-number").value;
+        const posterunekNumber = document.getElementById("posterunek-number").value;
+
+        const today = new Date();
+        const yearNumbers = today.getFullYear().toString().slice(2);
+
+        fieldZ.value = `R${selectPrintedValue}-${writtenOrderNumber}-${posterunekNumber}-${yearNumbers}`;
+
+        console.log(selectPrintedValue, writtenOrderNumber, posterunekNumber);
+        dialog.close();
+    });
+
+}
+
 // TAB INDEX ADDER ***
 
 function addTabIndexToTable() {
@@ -816,6 +844,7 @@ loadInputTypes().then(() => {
 
         loadHelpData("normal").then(() => {
             loadHelpTriggers();
+            prepareIDGeneratorBox()
 
             // TODO Add loading screen
             console.info("LOADING DONE");
