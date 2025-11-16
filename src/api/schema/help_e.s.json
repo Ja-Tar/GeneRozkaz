@@ -16,7 +16,10 @@
         "sem-tar": {
             "$ref": "#/definitions/field"
         },
-        "numpoc": {
+        "num-poc": {
+            "$ref": "#/definitions/field"
+        },
+        "num-poc-rob": {
             "$ref": "#/definitions/field"
         },
         "km": {

@@ -35,7 +35,8 @@
             "application": {
                 "customTop": "Instrukcja dla wjazdów z toru lewego i wyjazdów na tor lewy szlakowy."
             }
-        }
+        },
+        "additionalDescription": "Uzupełnienie instrukcji [[21.10]], [[21.15]] i [[21.35]]."
     },
     "99": {
         "docsInfo": {
@@ -381,6 +382,244 @@
             "3": {
                 "docsInfo": "wpisać numer linii kolejowej (w przypadku jazdy kilkoma liniami uwzględnić numery wszystkich oddzielając przecinkiem)",
                 "examplesType": "linia"
+            }
+        }
+    },
+    "21.80": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "wyprawiania pociągu na tor zamknięty"
+                ]
+            },
+            "warnings": [
+                "W przypadku wydania rozkazu pisemnego [[21.80]] wraz z [[21.81]], nie można wydać rozkazu [[21.82]]"
+            ]
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać numer zamkniętego toru szlakowego po którym odbędzie się jazda pociągu roboczego",
+                "additionalDescription": "W przypadku szlaku jednotorowego, nie należy wpisywać tu numeru (szlaki jednotorowe nie mają numeracji).",
+                "examplesType": "tor"
+            },
+            "2": {
+                "docsInfo": "wpisać nazwę posterunku, w kierunku którego wyprawiany jest pociąg roboczy na tor zamknięty",
+                "examplesType": "post"
+            },
+            "3": {
+                "docsInfo": "wpisać lokalizacje w kilometrach do której na danym szlaku może dojechać pociąg",
+                "examplesType": "km"
+            },
+            "4": {
+                "docsInfo": "wpisać nazwę posterunku, do którego zjechać ma pociąg roboczy z toru zamkniętego po zakończonej pracy",
+                "examplesType": "post"
+            },
+            "5": {
+                "docsInfo": "wpisać godzinę, do której pociąg roboczy ma zjechać",
+                "additionalDescription": "W przypadku zamknięcia awaryjnego, nie należy wpisywać tu godziny (nie wiadomo do kiedy potrwa np. akcja ratownicza).",
+                "examplesType": "godz"
+            }
+        }
+    },
+    "21.81": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "gdy na torze zamkniętym nie ma innych pociągów i nie zostaną wyprawione inne pociągi"
+                ]
+            },
+            "warnings": [
+                "W przypadku wydania rozkazu pisemnego [[21.80]] wraz z [[21.81]], nie można wydać rozkazu [[21.82]]"
+            ]
+        }
+    },
+    "21.82": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "gdy na torze pracują inne pociągi"
+                ]
+            },
+            "warnings": [
+                "W przypadku wydania rozkazu pisemnego [[21.80]] wraz z [[21.81]], nie można wydać rozkazu [[21.82]]"
+            ]
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać numer pociągu roboczego, który pracuje na torze bezpośrednio przed pociągiem wyprawianym (nawet w przypadku, gdy na tym torze znajduje się więcej pociągów roboczych)",
+                "examplesType": "num-poc-rob"
+            },
+            "2": {
+                "docsInfo": "//BUG AKTUALNIE BRAKUJE OPISU W KSIĘDZE FORMULARZY | wpisać lokalizacje w kilometrach tego pociągu roboczego",
+                "examplesType": "km"
+            }
+        }
+    },
+    "21.83": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "gdy za wyprawianym pociągiem roboczym zostaną wyprawione kolejne pociągi"
+                ]
+            }
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać numer pociągu, który zostanie wyprawiony na tor bezpośrednio za pociągiem wyprawianym (nawet w przypadku, gdy na ten tor wyprawionych zostanie więcej pociągów roboczych)",
+                "examplesType": "num-poc-rob"
+            },
+            "2": {
+                "docsInfo": "//BUG AKTUALNIE BRAKUJE OPISU W KSIĘDZE FORMULARZY | wpisać lokalizacje w kilometrach tego pociągu roboczego",
+                "examplesType": "km"
+            }
+        }
+    },
+    "21.85": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "zezwolenia na wstawienie pojazdu szynowo-drogowego (PSD), który może poruszać się po drogach kołowych oraz torach"
+                ]
+            }
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać numer toru szlakowego zamkniętego na który wstawić ma się pojazd szynowo-drogowy",
+                "examplesType": "tor"
+            },
+            "2": {
+                "docsInfo": "wpisać lokalizacje w kilometrach, gdzie ma nastąpić wstawienie pojazdu szynowo-drogowego",
+                "examplesType": "km"
+            },
+            "3": {
+                "docsInfo": "wpisać nazwę posterunku początkowego dla szlaku, na którym wstawiać ma się pojazd szynowo-drogowy",
+                "examplesType": "post"
+            },
+            "4": {
+                "docsInfo": "wpisać nazwę posterunku na końcu szlaku, na którym wstawiać ma się pojazd szynowo-drogowy",
+                "examplesType": "post"
+            }
+        }
+    },
+    "23.10": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "konieczności zachowania szczególnej ostrożności i ograniczenia prędkości jazdy"
+                ]
+            }
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać nazwę posterunku początkowego dla szlaku, na którym obowiązuje ograniczenie prędkości lub nazwę posterunku w granicach, którego występuje ograniczenie prędkości",
+                "examplesType": "post"
+            },
+            "7": {
+                "docsInfo": "wpisać nazwę posterunku początkowego dla szlaku, na którym obowiązuje ograniczenie prędkości lub nazwę posterunku w granicach, którego występuje ograniczenie prędkości",
+                "examplesType": "post"
+            },
+            "13": {
+                "docsInfo": "wpisać nazwę posterunku początkowego dla szlaku, na którym obowiązuje ograniczenie prędkości lub nazwę posterunku w granicach, którego występuje ograniczenie prędkości",
+                "examplesType": "post"
+            },
+            "2": {
+                "docsInfo": "wpisać nazwę posterunku na końcu szlaku, na którym obowiązuje ograniczenie prędkości, w przypadku ograniczenia prędkości w granicach posterunku, pole to zostawiamy puste (wstawiamy znak „-„)",
+                "examplesType": "post"
+            },
+            "8": {
+                "docsInfo": "wpisać nazwę posterunku na końcu szlaku, na którym obowiązuje ograniczenie prędkości, w przypadku ograniczenia prędkości w granicach posterunku, pole to zostawiamy puste (wstawiamy znak „-„)",
+                "examplesType": "post"
+            },
+            "14": {
+                "docsInfo": "wpisać nazwę posterunku na końcu szlaku, na którym obowiązuje ograniczenie prędkości, w przypadku ograniczenia prędkości w granicach posterunku, pole to zostawiamy puste (wstawiamy znak „-„)",
+                "examplesType": "post"
+            },
+            "3": {
+                "docsInfo": "wpisać numer toru po którym obowiązuje ograniczenie prędkości jazdy",
+                "additionalDescription": "W przypadku szlaku jednotorowego, nie należy wpisywać tu numeru (szlaki jednotorowe nie mają numeracji).",
+                "examplesType": "tor"
+            },
+            "9": {
+                "docsInfo": "wpisać numer toru po którym obowiązuje ograniczenie prędkości jazdy",
+                "additionalDescription": "W przypadku szlaku jednotorowego, nie należy wpisywać tu numeru (szlaki jednotorowe nie mają numeracji).",
+                "examplesType": "tor"
+            },
+            "15": {
+                "docsInfo": "wpisać numer toru po którym obowiązuje ograniczenie prędkości jazdy",
+                "additionalDescription": "W przypadku szlaku jednotorowego, nie należy wpisywać tu numeru (szlaki jednotorowe nie mają numeracji).",
+                "examplesType": "tor"
+            },
+            "4": {
+                "docsInfo": "wpisać maksymalną dozwoloną prędkość w kilometrach na godzinę wynikającą z ograniczenia prędkości",
+                "examplesType": "kmh"
+            },
+            "10": {
+                "docsInfo": "wpisać maksymalną dozwoloną prędkość w kilometrach na godzinę wynikającą z ograniczenia prędkości",
+                "examplesType": "kmh"
+            },
+            "16": {
+                "docsInfo": "wpisać maksymalną dozwoloną prędkość w kilometrach na godzinę wynikającą z ograniczenia prędkości",
+                "examplesType": "kmh"
+            },
+            "5": {
+                "docsInfo": "wpisać lokalizacje w kilometrach od którego zaczyna obowiązywać odcinek, przez który należy przejechać ze zmniejszoną prędkością",
+                "additionalDescription": "W przypadku ograniczenia na stacji nie piszę się tego",
+                "examplesType": "km"
+            },
+            "11": {
+                "docsInfo": "wpisać lokalizacje w kilometrach od którego zaczyna obowiązywać odcinek, przez który należy przejechać ze zmniejszoną prędkością",
+                "additionalDescription": "W przypadku ograniczenia na stacji nie piszę się tego",
+                "examplesType": "km"
+            },
+            "17": {
+                "docsInfo": "wpisać lokalizacje w kilometrach od którego zaczyna obowiązywać odcinek, przez który należy przejechać ze zmniejszoną prędkością",
+                "additionalDescription": "W przypadku ograniczenia na stacji nie piszę się tego",
+                "examplesType": "km"
+            },
+            "6": {
+                "docsInfo": "wpisać lokalizację w kilometrach, w którym kończy się odcinek przez który należy przejechać ze zmniejszoną prędkością",
+                "additionalDescription": "W przypadku ograniczenia na stacji nie piszę się tego",
+                "examplesType": "km"
+            },
+            "12": {
+                "docsInfo": "wpisać lokalizację w kilometrach, w którym kończy się odcinek przez który należy przejechać ze zmniejszoną prędkością",
+                "additionalDescription": "W przypadku ograniczenia na stacji nie piszę się tego",
+                "examplesType": "km"
+            },
+            "18": {
+                "docsInfo": "wpisać lokalizację w kilometrach, w którym kończy się odcinek przez który należy przejechać ze zmniejszoną prędkością",
+                "additionalDescription": "W przypadku ograniczenia na stacji nie piszę się tego",
+                "examplesType": "km"
+            },
+            "95": {
+                "docsInfo": "wpisać przyczynę dla której została zmniejszona prędkość jazdy"
+            },
+            "96": {
+                "docsInfo": "wpisać przyczynę dla której została zmniejszona prędkość jazdy"
+            },
+            "97": {
+                "docsInfo": "wpisać przyczynę dla której została zmniejszona prędkość jazdy"
+            }
+        }
+    },
+    "23.11": {
+        "docsInfo": {
+            "application": {
+                "customTop": "zaznaczenie tego pola oznacza, że maszynista pojazdu kolejowego jadącego przez odcinki ograniczenia prędkości wymienione wyżej ma podawać sygnał dźwiękowy „Baczność”"
+            }
+        }
+    },
+    "23.20": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "przekazania zezwoleń, poleceń oraz informacji innych niż umieszczone w formularzu"
+                ]
+            }
+        },
+        "fields": {
+            "96": {
+                "docsInfo": "wpisać wszelkie zezwolenia, polecenia oraz informacje, nie ujęte w treści formularza, a wymagane dla przejazdu pociągu"
             }
         }
     }
