@@ -335,6 +335,7 @@ input::placeholder {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    font-size: larger;
 
     border: 1px solid black;
     padding: 0.5em;
@@ -353,8 +354,8 @@ input::placeholder {
     margin: 0.3em 0;
 }
 
-#help-box {
-    font-size: larger;
+#help-box div {
+    width: 100%;
 }
 
 #field-help .allHelpExamples {
