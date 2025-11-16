@@ -287,5 +287,101 @@
                 "examplesType": "km"
             }
         }
+    },
+    "21.55": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "informacji o uszkodzeniu przytorowych urządzeń kontroli prowadzenia pociągów SHP"
+                ]
+            }
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać nazwę posterunku, w rejonie którego znajdują się uszkodzone urządzenia SHP. W przypadku, gdy uszkodzone urządzenia SHP znajdują się na szlaku w tym polu wpisać posterunek początkowy tego szlaku (zgodnie z kierunkiem jazdy pociągu)",
+                "examplesType": "post"
+            },
+            "2": {
+                "docsInfo": "wpisać nazwę posterunku na końcu szlaku, na którym znajdują się uszkodzone urządzenia SHP. W przypadku uszkodzonych urządzeń SHP w rejonie posterunku to pole pozostaje nie wypełnione.(wstawić znak „-„)",
+                "examplesType": "post"
+            },
+            "3": {
+                "docsInfo": "wpisać oznaczenie sygnalizatora do którego odnosi się rezonator SHP. Oznaczenie sygnalizatora literowe lub literowo/liczbowe",
+                "examplesType": "sem"
+            }
+        }
+    },
+    "21.60": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "informacji o jeździe pociągu w innym kierunku, niż przewidziany w wewnętrznym rozkładzie jazdy"
+                ]
+            }
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać nazwę posterunku, od którego następuje zmiana trasy dla pociągu",
+                "examplesType": "post"
+            },
+            "2": {
+                "docsInfo": "wpisać nazwę posterunku, do którego pociąg będzie jechał trasą zmienioną względem wewnętrznego rozkładu jazdy",
+                "examplesType": "post"
+            },
+            "3": {
+                "docsInfo": "wpisać nazwę posterunku, przez który nastąpi jazda pociągu po zmienionej trasie",
+                "examplesType": "post"
+            },
+            "4": {
+                "docsInfo": "wpisać numer linii, po której odbędzie się jazda zmienioną trasą (w przypadku jazdy kilkoma liniami uwzględnić numery wszystkich oddzielając przecinkiem)",
+                "examplesType": "linia"
+            },
+            "5": {
+                "docsInfo": "(wypełnić tylko w przypadku braku znajomości odcinka linii przez drużynę pociągową) wypełnić wpisując prędkość z jaką może jechać pociąg na zmienionej trasie. W przypadku znajomości odcinka linii przez drużynę pociągową pole zostawiamy puste. (wstawiamy znak „-„)",
+                "examplesType": "kmh"
+            }
+        }
+    },
+    "21.65": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "informacji o konieczności opuszczania pantografów"
+                ]
+            }
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać lokalizację w kilometrach miejsca, od którego należy jechać z opuszczonymi pantografami",
+                "examplesType": "km"
+            },
+            "2": {
+                "docsInfo": "wpisać lokalizację w kilometrach miejsca, od którego należy zakończyć jazdę z opuszczonymi pantografami",
+                "examplesType": "km"
+            }
+        }
+    },
+    "21.70": {
+        "docsInfo": {
+            "application": {
+                "when": [
+                    "polecenia zmiany rodzaju łączności z GSM-R na łączność analogową na wskazanym odcinku"
+                ]
+            }
+        },
+        "fields": {
+            "1": {
+                "docsInfo": "wpisać nazwę posterunku, od którego następuje zmiana systemu łączności na analogowy",
+                "examplesType": "post"
+            },
+            "2": {
+                "docsInfo": "wpisać nazwę posterunku, do którego obowiązuje łączność analogowa",
+                "examplesType": "post"
+            },
+            "3": {
+                "docsInfo": "wpisać numer linii kolejowej (w przypadku jazdy kilkoma liniami uwzględnić numery wszystkich oddzielając przecinkiem)",
+                "examplesType": "linia"
+            }
+        }
     }
 }
