@@ -12,12 +12,13 @@ Generator online dla nowych kolejowych rozkazów pisemnych
   - [x] Zaznaczanie pól wymaganych i opcjonalnych
   - [x] Zablokowanie możliwości wydania wykluczonych instrukcji
   - [x] Walidacja niektórych pól względem schematu (w ograniczonym zakresie)
-- [ ] Informacja o ty co należy wpisać w danym polu
+- [x] Informacja o ty co należy wpisać w danym polu
 - [ ] Możliwość zapisu
   - [ ] PDF
   - [ ] JPEG / PNG
   - [ ] TXT (do skopiowania, dla symulatorów)
 - [ ] Tryb integracji z symulatorem TD2 (automatyczne uzupełnianie pól)
+- [ ] Generator krok po kroku
 
 ## Obsługiwane wersje rozkazu
 - [x] Normalna
@@ -57,12 +58,13 @@ Online generator for new Polish written orders
   - [x] Highlight of required and optional fields
   - [x] Blocking the possibility of issuing incompatible instructions (like `21.10` and `21.15`)
   - [x] Validation of certain fields against the schema (limited)
-- [ ] Information about what to enter in a given field
+- [x] Information about what to enter in a given field
 - [ ] Save option
   - [ ] PDF
   - [ ] JPEG / PNG
   - [ ] TXT (to copy paste into simulators)
 - [ ] Integration with TD2 simulator (autocomplete fields)
+- [ ] Step-by-step generator
 
 # Supported written order versions
 - [x] Normal
