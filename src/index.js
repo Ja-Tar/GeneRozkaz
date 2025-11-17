@@ -798,6 +798,9 @@ function addTabIndexToTable() {
 
 // PRINT FUNCTION ***
 
+const saveButton = document.getElementById("save-written-order-button");
+saveButton.addEventListener("click", () => print())
+
 function changeFieldsToTextType() {
     const nonTextFields = document.querySelectorAll("input[type='date']");
 

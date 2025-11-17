@@ -528,7 +528,17 @@ input::placeholder {
     }
 }
 
+
 /* PRINT CSS */
+
+thead th, tfoot th {
+    padding: 0;
+    border: 0;
+}
+
+.table-head th {
+    border-top: none;
+}
 
 @media print {
     :root {
@@ -545,20 +555,27 @@ input::placeholder {
     }
 
     label {
-        font-size: 2.3vw !important;
+        font-size: medium !important;
     }
 
     tr {
+        break-after: avoid;
         break-inside: avoid;
+        break-before: avoid;
     }
 
-    td,
-    th {
-        font-size: 2.7vw !important;
+    td, th {
+        font-size: large !important;
+        padding: 0.1em 0.2em;
+    }
+
+    .table-head th {
+        font-size: 1.4em !important;
     }
 
     .fill-page {
         scale: 1;
+        width: 800px;
     }
 
     .post input {
@@ -590,7 +607,7 @@ input::placeholder {
         background-color: transparent !important;
         appearance: none !important;
         -moz-appearance: textfield !important;
-        font-size: 2.8vw !important;
+        font-size: large !important;
     }
 
     #norm-Z-input {
