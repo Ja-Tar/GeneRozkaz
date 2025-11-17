@@ -554,21 +554,20 @@ input::placeholder {
 
     td,
     th {
-        font-size: 2.8vw !important;
+        font-size: 2.7vw !important;
     }
 
     .fill-page {
         scale: 1;
     }
 
-    .post input,
-    .godz input {
+    .post input {
         width: 160px;
     }
 
     table input[type="checkbox"] {
-        width: 16px;
-        height: 16px;
+        width: 18px;
+        height: 18px;
     }
 
     tr.bottom-double-line {
@@ -606,7 +605,29 @@ input::placeholder {
         border-collapse: collapse;
     }
 
-    .inne-dl input {
-        width: 200% !important;
+    .godz input {
+        font-family: Calibri, "Open Sans", sans-serif;
+        line-height: 1.2em;
+    }
+
+    .inne input,
+    .inne label,
+    .prz input,
+    .prz label {
+        width: auto;
+    }
+
+    input[type="time"]:invalid,
+    input[type="time"]:disabled {
+        color: transparent;
+    }
+
+    .tor-zamkniety td,
+    .tor-zamkniety th {
+        background: #e8e8e8 padding-box;
+    }
+
+    .tor-zamkniety input {
+        background-color: #e8e8e8;
     }
 }
