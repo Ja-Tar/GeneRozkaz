@@ -807,7 +807,9 @@ function changeFieldsToTextType() {
         const date = new Date(element.value);
         const convertedValue = date.toLocaleDateString("pl-PL");
         element.type = 'text';
-        element.value = convertedValue;
+        if (!isNaN(date.getTime())) {
+            element.value = convertedValue;
+        }
     });
 }
 
