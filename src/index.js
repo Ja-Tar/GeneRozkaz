@@ -796,6 +796,67 @@ function addTabIndexToTable() {
     }
 }
 
+// PRINT FUNCTION ***
+
+function changeFieldsToTextType() {
+    const nonTextFields = document.querySelectorAll("input[type='date']");
+
+    nonTextFields.forEach(element => {
+        element.setAttribute("temptype", element.type);
+        const convertedValue = convertFieldValueToText(element.value, element.type)
+        element.type = 'text';
+        element.value = convertedValue;
+    });
+}
+
+function revertChangesToFieldsType() {
+    const nonTextFields = document.querySelectorAll("input[temptype]");
+
+    nonTextFields.forEach(element => {
+        const changeToType = element.getAttribute("temptype");
+        const convertedValue = convertFieldValueFromText(element.value, changeToType)
+        element.type = changeToType;
+        element.removeAttribute("temptype")
+        element.value = convertedValue;
+    });
+}
+
+/**
+ * @param {string} value
+ * @param {string} type type attribute value
+ * @returns {string}
+ */
+function convertFieldValueToText(value, type) {
+    if (!value) {
+        return ""
+    }
+
+    if (type === 'date') {
+        const date = new Date(value);
+        return date.toLocaleDateString("pl-PL");
+    } else if (type === 'time') {
+        return value;
+    }
+
+    throw new TypeError(`Type not found! ${type}`)
+}
+
+/**
+ * @param {string} value
+ * @param {string} type type attribute value
+ * @returns {string}
+ */
+function convertFieldValueFromText(value, type) {
+    if (!value) {
+        return ""
+    }
+
+    throw new TypeError(`Type not found! ${type}`)
+}
+
+addEventListener("beforeprint", changeFieldsToTextType)
+addEventListener("afterprint", revertChangesToFieldsType)
+
 // START LOADING DATA ***
 
 /**

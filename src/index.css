@@ -589,10 +589,24 @@ input::placeholder {
 
     input:not([type="checkbox"]) {
         background-color: transparent !important;
+        appearance: none !important;
+        -moz-appearance: textfield !important;
+        font-size: 2.8vw !important;
     }
 
     #norm-Z-input {
         width: 100%;
         margin-right: inherit;
+    }
+
+    table,
+    th,
+    td {
+        border: 1.5px solid black;
+        border-collapse: collapse;
+    }
+
+    .inne-dl input {
+        width: 200% !important;
     }
 }
