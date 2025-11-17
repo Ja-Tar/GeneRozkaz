@@ -804,6 +804,8 @@ saveButton.addEventListener("click", () => print())
 function changeFieldsToTextType() {
     const nonTextFields = document.querySelectorAll("input[type='date']");
 
+    // TODO check for required fields
+
     nonTextFields.forEach(element => {
         element.setAttribute("temptype", element.type);
         element.setAttribute("beforedate", element.value);

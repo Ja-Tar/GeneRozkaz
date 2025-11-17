@@ -647,4 +647,8 @@ thead th, tfoot th {
     .tor-zamkniety input {
         background-color: #e8e8e8;
     }
+
+    .overlay-disallowed {
+        display: none;
+    }
 }
