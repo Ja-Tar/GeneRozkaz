@@ -821,6 +821,8 @@ function changeFieldsToTextType() {
 function revertChangesToFieldsType() {
     const nonTextFields = document.querySelectorAll("input[temptype]");
 
+    // TODO reset ID field after print
+
     nonTextFields.forEach(element => {
         const changeToType = element.getAttribute("temptype");
         const changeToDate = element.getAttribute("beforedate");
