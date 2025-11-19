@@ -638,7 +638,7 @@ thead th, tfoot th {
     .inne label,
     .prz input,
     .prz label {
-        width: auto;
+        width: 200%;
     }
 
     input[type="time"]:invalid,
