@@ -802,11 +802,12 @@ const saveButton = document.getElementById("save-written-order-button");
 saveButton.addEventListener("click", () => print())
 
 function changeFieldsToTextType() {
-    const nonTextFields = document.querySelectorAll("input[type='date']");
+    const dateFields = document.querySelectorAll("input[type='date']");
+    const timeFields = document.querySelectorAll("input[type='time']");
 
     // TODO check for required fields
 
-    nonTextFields.forEach(element => {
+    dateFields.forEach(element => {
         element.setAttribute("temptype", element.type);
         element.setAttribute("beforedate", element.value);
         const date = new Date(element.value);
@@ -816,14 +817,20 @@ function changeFieldsToTextType() {
             element.value = convertedValue;
         }
     });
+
+    timeFields.forEach(element => {
+        element.setAttribute("temptype", element.type);
+        element.type = "text"
+    });
 }
 
 function revertChangesToFieldsType() {
-    const nonTextFields = document.querySelectorAll("input[temptype]");
+    const dateFields = document.querySelectorAll("input[temptype='date']");
+    const timeFields = document.querySelectorAll("input[temptype='time']");
 
     // TODO reset ID field after print
 
-    nonTextFields.forEach(element => {
+    dateFields.forEach(element => {
         const changeToType = element.getAttribute("temptype");
         const changeToDate = element.getAttribute("beforedate");
         element.type = changeToType;
@@ -831,10 +838,22 @@ function revertChangesToFieldsType() {
         element.removeAttribute("temptype")
         element.removeAttribute("beforedate")
     });
+
+    timeFields.forEach(element => {
+        element.type = "time"
+        element.removeAttribute("temptype")
+    });
 }
 
 addEventListener("beforeprint", changeFieldsToTextType)
 addEventListener("afterprint", revertChangesToFieldsType)
+
+// Fix for chrome
+
+if (!!window.chrome) {
+    const tableFix = document.querySelector("table");
+    tableFix.style.borderRightWidth = "2px";
+}
 
 // START LOADING DATA ***
 
