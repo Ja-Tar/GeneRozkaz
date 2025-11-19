@@ -27,7 +27,7 @@ table {
 table,
 th,
 td {
-    border: 1px solid black;
+    border: thin solid black;
     border-collapse: collapse;
     padding: 0.05em 0.2em;
     font-weight: normal;
@@ -540,9 +540,17 @@ thead th, tfoot th {
     border-top: none;
 }
 
+@page {
+    size: A4 portrait;
+}
+
 @media print {
     :root {
         --scale-instruction: 1;
+    }
+
+    body {
+        margin: 0;
     }
 
     #toolbar-box {
@@ -566,7 +574,7 @@ thead th, tfoot th {
 
     td, th {
         font-size: large !important;
-        padding: 0.1em 0.2em;
+        padding: 0.1vh 0.2em;
     }
 
     .table-head th {
@@ -575,7 +583,8 @@ thead th, tfoot th {
 
     .fill-page {
         scale: 1;
-        width: 800px;
+        width: inherit;
+        padding: 0;
     }
 
     .post input {
@@ -615,11 +624,9 @@ thead th, tfoot th {
         margin-right: inherit;
     }
 
-    table,
-    th,
-    td {
-        border: 1.5px solid black;
-        border-collapse: collapse;
+    .bottom-double-line {
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
     }
 
     .godz input {
