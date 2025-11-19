@@ -806,6 +806,7 @@ function changeFieldsToTextType() {
     const timeFields = document.querySelectorAll("input[type='time']");
 
     // TODO check for required fields
+    // TODO change 23.20 textarea to have doted lines like original and better font
 
     dateFields.forEach(element => {
         element.setAttribute("temptype", element.type);
