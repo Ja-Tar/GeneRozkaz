@@ -14,8 +14,7 @@ Generator online dla nowych kolejowych rozkazów pisemnych
   - [x] Walidacja niektórych pól względem schematu (w ograniczonym zakresie)
 - [x] Informacja o ty co należy wpisać w danym polu
 - [ ] Możliwość zapisu
-  - [ ] PDF
-  - [ ] JPEG / PNG
+  - [x] PDF / Drukowanie
   - [ ] TXT (do skopiowania, dla symulatorów)
 - [ ] Tryb integracji z symulatorem TD2 (automatyczne uzupełnianie pól)
 - [ ] Generator krok po kroku
@@ -59,9 +58,8 @@ Online generator for new Polish written orders
   - [x] Blocking the possibility of issuing incompatible instructions (like `21.10` and `21.15`)
   - [x] Validation of certain fields against the schema (limited)
 - [x] Information about what to enter in a given field
-- [ ] Save option
-  - [ ] PDF
-  - [ ] JPEG / PNG
+- [ ] Save options
+  - [x] PDF and printing
   - [ ] TXT (to copy paste into simulators)
 - [ ] Integration with TD2 simulator (autocomplete fields)
 - [ ] Step-by-step generator
