@@ -79,7 +79,7 @@ table input[type="checkbox"] {
 }
 
 table input[type="checkbox"]:checked {
-    background-image: url("./tick.svg");
+    background-image: url("./static/tick.svg");
     background-size: 80%;
     background-position: center;
     background-repeat: no-repeat;
@@ -235,7 +235,7 @@ input::placeholder {
     right: 0;
     top: 0;
     bottom: 0;
-    background-image: url(./bar.svg);
+    background-image: url(./static/bar.svg);
     background-repeat: repeat;
     background-size: contain;
     background-color: lightgray;
