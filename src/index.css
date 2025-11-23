@@ -80,7 +80,7 @@ table input[type="checkbox"] {
 
 table input[type="checkbox"]:checked {
     background-image: url("./static/tick.svg");
-    background-size: 80%;
+    background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
 }
