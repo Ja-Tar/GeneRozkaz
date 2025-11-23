@@ -21,21 +21,21 @@
                         </tr>
                         <tr class="center top-info">
                             <td id="norm-A" colspan="2">
-                                <div id="norm-A-input" class="field"></div><br>
+                                <div id="norm-A-input" class="field num-poc"></div><br>
                                 <label for="norm-A-input">A Nr pociągu | składu manewrowego</label>
                             </td>
                             <td id="norm-B" colspan="2">
-                                <div id="norm-B-input" class="field"></div><br>
+                                <div id="norm-B-input" class="field data"></div><br>
                                 <label for="norm-B-input">B Data</label>
                             </td>
                         </tr>
                         <tr class="center top-info">
                             <td id="norm-C" colspan="2">
-                                <div id="norm-C-input" class="field"></div><br>
+                                <div id="norm-C-input" class="field post"></div><br>
                                 <label for="norm-C-input">C Lokalizacja pociągu | składu manewrowego</label>
                             </td>
                             <td id="norm-D" colspan="2">
-                                <div id="norm-D-input" class="field"></div><br>
+                                <div id="norm-D-input" class="field post"></div><br>
                                 <label for="norm-D-input">D Lokalizacja nadawcy</label>
                             </td>
                         </tr>
@@ -53,7 +53,7 @@
                             </td>
                             <td class="roz-content" tabindex="0">
                                 <strong>Odwołanie rozkazu pisemnego</strong><br>
-                                <div id="nr99-1-input" class="field"></div><br>
+                                <div id="nr99-1-input" class="field id"></div><br>
                                 <label for="nr99-1-input">x.1 identyfikator rozkazu pisemnego</label>
                             </td>
                         </tr>
@@ -64,46 +64,40 @@
                             </th>
                             <td class="roz-content" colspan="3" tabindex="0">
                                 <strong>Zezwalam na wyjazd z toru nr</strong>
-                                <div class="inline tor">
-                                    <div id="nr21_10-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_10-1-input" class="field tor"></div>
                                     <label for="nr21_10-1-input">x.1 tor</label>
                                 </div>
                                 z
-                                <div class="inline post">
-                                    <div id="nr21_10-2-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_10-2-input" class="field post"></div>
                                     <label for="nr21_10-2-input">x.2 posterunek</label>
                                 </div>
                                 <br>
                                 na tor nr
-                                <div class="inline tor">
-                                    <div id="nr21_10-3-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_10-3-input" class="field tor"></div>
                                     <label for="nr21_10-3-input">x.3 tor</label>
                                 </div>
                                 w kierunku
-                                <div class="inline post">
-                                    <div id="nr21_10-4-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_10-4-input" class="field post"></div>
                                     <label for="nr21_10-4-input">x.4 posterunek</label>
                                 </div>
                                 <br>
                                 Pominięcie sygnałów stój
-                                <div class="inline sem">
-                                    <input id="nr21_10-5-input" type="text"
-                                        pattern="[A-Z](?:$|\d+)$|D-?1 ?[\\\/] ?\d+[\.,]\d+" class="optional"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_10-5-input" class="field sem"></div>
                                     <label for="nr21_10-5-input">x.5 sygnalizator</label>
                                 </div>
                                 i
-                                <div class="inline sem">
-                                    <input id="nr21_10-6-input" type="text"
-                                        pattern="[A-Z](?:$|\d+)$|D-?1 ?[\\\/] ?\d+[\.,]\d+" class="optional"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_10-6-input" class="field sem"></div>
                                     <label for="nr21_10-6-input">x.6 sygnalizator</label>
                                 </div>
                                 i
-                                <div class="inline sem">
-                                    <input id="nr21_10-7-input" type="text"
-                                        pattern="[A-Z](?:$|\d+)$|D-?1 ?[\\\/] ?\d+[\.,]\d+" class="optional"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_10-7-input" class="field sem"></div>
                                     <label for="nr21_10-7-input">x.7 sygnalizator</label>
                                 </div>
                             </td>
@@ -115,40 +109,34 @@
                             </th>
                             <td class="roz-content" colspan="3" tabindex="0">
                                 <strong>Zezwalam na wjazd</strong> z toru nr
-                                <div class="inline tor">
-                                    <div id="nr21_15-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_15-1-input" class="field tor"></div>
                                     <label for="nr21_15-1-input">x.1 tor</label>
                                 </div>
                                 do
-                                <div class="inline post">
-                                    <div id="nr21_15-2-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_15-2-input" class="field post"></div>
                                     <label for="nr21_15-2-input">x.2 posterunek</label>
                                 </div>
                                 na tor nr
-                                <div class="inline tor">
-                                    <div id="nr21_15-3-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_15-3-input" class="field tor"></div>
                                     <label for="nr21_15-3-input">x.3 tor</label>
                                 </div>
                                 <br>
                                 Pominięcie sygnałów
-                                <div class="inline sem">
-                                    <input id="nr21_15-4-input" type="text"
-                                        pattern="[A-Z](?:$|\d+)$|D-?1 ?[\\\/] ?\d+[\.,]\d+" class="optional"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_15-4-input" class="field sem"></div>
                                     <label for="nr21_15-4-input">x.4 sygnalizator</label>
                                 </div>
                                 i
-                                <div class="inline sem">
-                                    <input id="nr21_15-5-input" type="text"
-                                        pattern="[A-Z](?:$|\d+)$|D-?1 ?[\\\/] ?\d+[\.,]\d+" class="optional"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_15-5-input" class="field sem"></div>
                                     <label for="nr21_15-5-input">x.5 sygnalizator</label>
                                 </div>
                                 i
-                                <div class="inline sem">
-                                    <input id="nr21_15-6-input" type="text"
-                                        pattern="[A-Z](?:$|\d+)$|D-?1 ?[\\\/] ?\d+[\.,]\d+" class="optional"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_15-6-input" class="field sem"></div>
                                     <label for="nr21_15-6-input">x.6 sygnalizator</label>
                                 </div>
                             </td>
@@ -160,18 +148,18 @@
                             </th>
                             <td class="roz-content" colspan="3" tabindex="0">
                                 Od
-                                <div class="inline post">
-                                    <div id="nr21_20-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_20-1-input" class="field post"></div>
                                     <label for="nr21_20-1-input">x.1 posterunek</label>
                                 </div>
                                 do
-                                <div class="inline post">
-                                    <div id="nr21_20-2-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_20-2-input" class="field post"></div>
                                     <label for="nr21_20-2-input">x.2 posterunek</label>
                                 </div>
                                 po torze
-                                <div class="inline tor">
-                                    <div id="nr21_20-3-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_20-3-input" class="field tor"></div>
                                     <label for="nr21_20-3-input">x.3 tor</label>
                                 </div>
                                 <br>
@@ -190,26 +178,24 @@
                             </th>
                             <td class="roz-content" colspan="3" tabindex="0">
                                 Zezwalam przejechać za (wskaźnik W5/ostatni rozjazd) w kierunku
-                                <div class="inline post">
-                                    <div id="nr21_25-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_25-1-input" class="field post"></div>
                                     <label for="nr21_25-1-input">x.1 posterunek</label>
                                 </div>
                                 <br>
                                 torem
-                                <div class="inline tor">
-                                    <div id="nr21_25-2-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_25-2-input" class="field tor"></div>
                                     <label for="nr21_25-2-input">x.2 tor</label>
                                 </div>
                                 do km
-                                <div class="inline km">
-                                    <input id="nr21_25-3-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_25-3-input" class="field km"></div>
                                     <label for="nr21_25-3-input">x.3 km</label>
                                 </div>
                                 do godz.
-                                <div class="inline godz">
-                                    <input id="nr21_25-4-input" type="time" style="padding: 0; height: auto;"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_25-4-input" class="field godz"></div>
                                     <label for="nr21_25-4-input">x.4 godzina</label>
                                 </div>
                             </td>
@@ -221,13 +207,13 @@
                             </th>
                             <td class="roz-content" colspan="3" tabindex="0">
                                 <strong>Zezwalam na kontynuacje jazdy</strong> po torze nr
-                                <div class="inline tor">
-                                    <div id="nr21_35-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_35-1-input" class="field tor"></div>
                                     <label for="nr21_35-1-input">x.1 tor</label>
                                 </div>
                                 w kierunku
-                                <div class="inline post">
-                                    <div id="nr21_35-2-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_35-2-input" class="field post"></div>
                                     <label for="nr21_35-2-input">x.2 posterunek</label>
                                 </div>
                             </td>
@@ -239,25 +225,24 @@
                             </th>
                             <td class="roz-content" colspan="3" tabindex="0">
                                 <strong>Zatrzymanie pociągu</strong> na posterunku/szlaku
-                                <div class="inline post">
-                                    <div id="nr21_40-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_40-1-input" class="field post"></div>
                                     <label for="nr21_40-1-input">x.1 posterunek</label>
                                 </div>
                                 |
-                                <div class="inline post">
-                                    <div id="nr21_40-2-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_40-2-input" class="field post"></div>
                                     <label for="nr21_40-2-input">x.2 posterunek</label>
                                 </div>
                                 <br>
                                 w km
-                                <div class="inline km">
-                                    <input id="nr21_40-3-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_40-3-input" class="field km"></div>
                                     <label for="nr21_40-3-input">x.3 km</label>
                                 </div>
                                 celem
-                                <div class="inline inne">
-                                    <div id="nr21_40-96-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_40-96-input" class="field inne"></div>
                                     <label for="nr21_40-96-input">x.96 inne</label>
                                 </div>
                             </td>
@@ -269,14 +254,13 @@
                             </th>
                             <td class="roz-content" colspan="3" tabindex="0">
                                 Na
-                                <div class="inline post">
-                                    <div id="nr21_45-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_45-1-input" class="field post"></div>
                                     <label for="nr21_45-1-input">x.1 posterunek</label>
                                 </div>
                                 na sygnalizatorze
-                                <div class="inline sem">
-                                    <input id="nr21_45-2-input" type="text"
-                                        pattern="[A-Z](?:$|\d+)$|D-?1 ?[\\\/] ?\d+[\.,]\d+" disabled="">
+                                <div class="inline">
+                                    <div id="nr21_45-2-input" class="field sem"></div>
                                     <label for="nr21_45-2-input">x.2 sygnalizator</label>
                                 </div>
                                 <br>
@@ -293,19 +277,18 @@
                                 <strong>Wskazania tarcz ostrzegawczych przejazdowych</strong> na
                                 posterunku/szlaku
                                 <br>
-                                <div class="inline post">
-                                    <div id="nr21_50-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_50-1-input" class="field post"></div>
                                     <label for="nr21_50-1-input">x.1 posterunek</label>
                                 </div>
                                 /
-                                <div class="inline post">
-                                    <div id="nr21_50-2-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_50-2-input" class="field post"></div>
                                     <label for="nr21_50-2-input">x.2 posterunek</label>
                                 </div>
                                 odnoszących się do przejazdu w km
-                                <div class="inline km">
-                                    <input id="nr21_50-3-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_50-3-input" class="field km"></div>
                                     <label for="nr21_50-3-input">x.3 km</label>
                                 </div>
                                 <br>
@@ -320,19 +303,18 @@
                             <td class="roz-content" colspan="3" tabindex="0">
                                 <strong>Uszkodzone urządzenia SHP</strong> na posterunku/szlaku
                                 <br>
-                                <div class="inline post">
-                                    <div id="nr21_55-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_55-1-input" class="field post"></div>
                                     <label for="nr21_55-1-input">x.1 posterunek</label>
                                 </div>
                                 |
-                                <div class="inline post">
-                                    <div id="nr21_55-2-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_55-2-input" class="field post"></div>
                                     <label for="nr21_55-2-input">x.2 posterunek</label>
                                 </div>
                                 odnoszące się do sygnalizatora
-                                <div class="inline sem">
-                                    <input id="nr21_55-3-input" type="text"
-                                        pattern="[A-Z](?:$|\d+)$|D-?1 ?[\\\/] ?\d+[\.,]\d+" disabled="">
+                                <div class="inline">
+                                    <div id="nr21_55-3-input" class="field sem"></div>
                                     <label for="nr21_55-3-input">x.3 sygnalizator</label>
                                 </div>
                             </td>
@@ -344,29 +326,29 @@
                             </th>
                             <td class="roz-content" colspan="3" tabindex="0">
                                 <strong>Zmiana trasy</strong> na odcinku od
-                                <div class="inline post">
-                                    <div id="nr21_60-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_60-1-input" class="field post"></div>
                                     <label for="nr21_60-1-input">x.1 posterunek</label>
                                 </div>
                                 do
-                                <div class="inline post">
-                                    <div id="nr21_60-2-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_60-2-input" class="field post"></div>
                                     <label for="nr21_60-2-input">x.2 posterunek</label>
                                 </div>
                                 <br>
                                 jazda przez
-                                <div class="inline post">
-                                    <div id="nr21_60-3-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_60-3-input" class="field post"></div>
                                     <label for="nr21_60-3-input">x.3 posterunek</label>
                                 </div>
                                 linią
-                                <div class="inline linia">
-                                    <div id="nr21_60-4-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_60-4-input" class="field linia"></div>
                                     <label for="nr21_60-4-input">x.4 linia</label>
                                 </div>
                                 z prędkością
-                                <div class="inline kmh">
-                                    <div id="nr21_60-5-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_60-5-input" class="field kmh"></div>
                                     <label for="nr21_60-5-input">x.5 km/h</label>
                                 </div>
                             </td>
@@ -378,38 +360,36 @@
                             </th>
                             <td class="roz-content" colspan="3" tabindex="0">
                                 <strong>Jazda z opuszczonymi pantografami</strong> na odcinku od
-                                <div class="inline km">
-                                    <input id="nr21_65-1-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_65-1-input" class="field km"></div>
                                     <label for="nr21_65-1-input">x.1 km</label>
                                 </div>
                                 do
-                                <div class="inline km">
-                                    <input id="nr21_65-2-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_65-2-input" class="field km"></div>
                                     <label for="nr21_65-2-input">x.2 km</label>
                                 </div>
                             </td>
                         </tr>
-                        <tr class="bottom-double-line">
+                        <tr>
                             <th id="nr21_70" class="checkbox-col" colspan="1">
                                 <input type="checkbox" id="nr21_70-input"><br>
                                 21.70
                             </th>
                             <td class="roz-content" colspan="3" tabindex="0">
                                 <strong>Na odcinku</strong> od
-                                <div class="inline post">
-                                    <div id="nr21_70-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_70-1-input" class="field post"></div>
                                     <label for="nr21_70-1-input">x.1 posterunek</label>
                                 </div>
                                 do
-                                <div class="inline post">
-                                    <div id="nr21_70-2-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_70-2-input" class="field post"></div>
                                     <label for="nr21_70-2-input">x.2 posterunek</label>
                                 </div>
                                 linii nr
-                                <div class="inline linia">
-                                    <div id="nr21_70-3-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_70-3-input" class="field linia"></div>
                                     <label for="nr21_70-3-input">x.3 linia</label>
                                 </div>
                                 <br>
@@ -420,7 +400,6 @@
                 </table>
                 <table id="rozkaz-normalny-dol">
                     <tbody>
-
                         <tr class="tor-zamkniety">
                             <th id="nr21_80" class="checkbox-col" colspan="1">
                                 <input type="checkbox" id="nr21_80-input"><br>
@@ -428,31 +407,29 @@
                             </th>
                             <td class="roz-content" colspan="3" tabindex="0">
                                 <strong>Polecam jazdę po torze zamkniętym</strong> nr
-                                <div class="inline tor">
-                                    <div id="nr21_80-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_80-1-input" class="field tor"></div>
                                     <label for="nr21_80-1-input">x.1 tor</label>
                                 </div>
                                 w kierunku
-                                <div class="inline post">
-                                    <div id="nr21_80-2-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_80-2-input" class="field post"></div>
                                     <label for="nr21_80-2-input">x.2 posterunek</label>
                                 </div>
                                 <br>
                                 do km
-                                <div class="inline km">
-                                    <input id="nr21_80-3-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_80-3-input" class="field km"></div>
                                     <label for="nr21_80-3-input">x.3 km</label>
                                 </div>
                                 zjazd do
-                                <div class="inline post">
-                                    <div id="nr21_80-4-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_80-4-input" class="field post"></div>
                                     <label for="nr21_80-4-input">x.4 posterunek</label>
                                 </div>
                                 do godz.
-                                <div class="inline godz">
-                                    <input id="nr21_80-5-input" type="time" style="padding: 0; height: auto;"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_80-5-input" class="field godz"></div>
                                     <label for="nr21_80-5-input">x.5 godzina</label>
                                 </div>
                             </td>
@@ -473,14 +450,13 @@
                             </th>
                             <td class="roz-content" colspan="3" tabindex="0">
                                 <strong>Na torze pracuje pociąg</strong>
-                                <div class="inline numpoc">
-                                    <div id="nr21_82-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_82-1-input" class="field num-poc"></div>
                                     <label for="nr21_82-1-input">x.1 numer pociągu</label>
                                 </div>
                                 w km
-                                <div class="inline km">
-                                    <input id="nr21_82-2-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_82-2-input" class="field km"></div>
                                     <label for="nr21_82-2-input">x.2 km</label>
                                 </div>
                             </td>
@@ -492,14 +468,13 @@
                             </th>
                             <td class="roz-content" colspan="3" tabindex="0">
                                 <strong>Na tor zostanie wyprawiony pociąg</strong>
-                                <div class="inline numpoc">
-                                    <div id="nr21_83-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_83-1-input" class="field num-poc"></div>
                                     <label for="nr21_83-1-input">x.1 numer pociągu</label>
                                 </div>
                                 do km
-                                <div class="inline km">
-                                    <input id="nr21_83-2-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_83-2-input" class="field km"></div>
                                     <label for="nr21_83-2-input">x.2 km</label>
                                 </div>
                             </td>
@@ -511,25 +486,24 @@
                             </th>
                             <td class="roz-content" colspan="3" tabindex="0">
                                 <strong>Zezwalam na wstawienie PSD</strong> na tor nr
-                                <div class="inline tor">
-                                    <div id="nr21_85-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_85-1-input" class="field tor"></div>
                                     <label for="nr21_85-1-input">x.1 tor</label>
                                 </div>
                                 w km
-                                <div class="inline km">
-                                    <input id="nr21_85-2-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr21_85-2-input" class="field km"></div>
                                     <label for="nr21_85-2-input">x.2 km</label>
                                 </div>
                                 <br>
                                 na szlaku
-                                <div class="inline post">
-                                    <div id="nr21_85-3-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_85-3-input" class="field post"></div>
                                     <label for="nr21_85-3-input">x.3 posterunek</label>
                                 </div>
                                 |
-                                <div class="inline post">
-                                    <div id="nr21_85-4-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr21_85-4-input" class="field post"></div>
                                     <label for="nr21_85-4-input">x.4 posterunek</label>
                                 </div>
                             </td>
@@ -543,118 +517,112 @@
                                   Nie przekraczać prędkości i zachować ostrożność:
                                 <br><br>
                                 1. Na posterunku/szlaku
-                                <div class="inline post">
-                                    <div id="nr23_10-1-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-1-input" class="field post"></div>
                                     <label for="nr23_10-1-input">x.1 posterunek</label>
                                 </div>
                                 /
-                                <div class="inline post">
-                                    <div id="nr23_10-2-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-2-input" class="field post"></div>
                                     <label for="nr23_10-2-input">x.2 posterunek</label>
                                 </div>
                                 tor nr
-                                <div class="inline tor">
-                                    <div id="nr23_10-3-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-3-input" class="field tor"></div>
                                     <label for="nr23_10-3-input">x.3 tor</label>
                                 </div>
                                 <br>
                                 &nbsp;&nbsp;<span class="normal-font">V</span>
-                                <div class="inline kmh">
-                                    <div id="nr23_10-4-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-4-input" class="field kmh"></div>
                                     <label for="nr23_10-4-input">x.4 km/h</label>
                                 </div>
                                 <span class="normal-font">od</span>
-                                <div class="inline km">
-                                    <input id="nr23_10-5-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr23_10-5-input" class="field km"></div>
                                     <label for="nr23_10-5-input">x.5 km</label>
                                 </div>
                                 <span class="normal-font">do</span>
-                                <div class="inline km">
-                                    <input id="nr23_10-6-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr23_10-6-input" class="field km"></div>
                                     <label for="nr23_10-6-input">x.6 km</label>
                                 </div>
-                                <div class="inline prz">
-                                    <div id="nr23_10-95-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-95-input" class="field prz"></div>
                                     <label for="nr23_10-95-input">x.95 przyczyna</label>
                                 </div>
                                 <br>
 
                                 2. Na posterunku/szlaku
-                                <div class="inline post">
-                                    <div id="nr23_10-7-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-7-input" class="field post"></div>
                                     <label for="nr23_10-7-input">x.7 posterunek</label>
                                 </div>
                                 /
-                                <div class="inline post">
-                                    <div id="nr23_10-8-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-8-input" class="field post"></div>
                                     <label for="nr23_10-8-input">x.8 posterunek</label>
                                 </div>
                                 tor nr
-                                <div class="inline tor">
-                                    <div id="nr23_10-9-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-9-input" class="field tor"></div>
                                     <label for="nr23_10-9-input">x.9 tor</label>
                                 </div>
                                 <br>
                                 &nbsp;&nbsp;<span class="normal-font">V</span>
-                                <div class="inline kmh">
-                                    <div id="nr23_10-10-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-10-input" class="field kmh"></div>
                                     <label for="nr23_10-10-input">x.10 km/h</label>
                                 </div>
                                 <span class="normal-font">od</span>
-                                <div class="inline km">
-                                    <input id="nr23_10-11-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr23_10-11-input" class="field km"></div>
                                     <label for="nr23_10-11-input">x.11 km</label>
                                 </div>
                                 <span class="normal-font">do</span>
-                                <div class="inline km">
-                                    <input id="nr23_10-12-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr23_10-12-input" class="field km"></div>
                                     <label for="nr23_10-12-input">x.12 km</label>
                                 </div>
-                                <div class="inline prz">
-                                    <div id="nr23_10-96-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-96-input" class="field prz"></div>
                                     <label for="nr23_10-96-input">x.96 przyczyna</label>
                                 </div>
                                 <br>
 
                                 3. Na posterunku/szlaku
-                                <div class="inline post">
-                                    <div id="nr23_10-13-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-13-input" class="field post"></div>
                                     <label for="nr23_10-13-input">x.13 posterunek</label>
                                 </div>
                                 /
-                                <div class="inline post">
-                                    <div id="nr23_10-14-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-14-input" class="field post"></div>
                                     <label for="nr23_10-14-input">x.14 posterunek</label>
                                 </div>
                                 tor nr
-                                <div class="inline tor">
-                                    <div id="nr23_10-15-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-15-input" class="field tor"></div>
                                     <label for="nr23_10-15-input">x.15 tor</label>
                                 </div>
                                 <br>
                                 &nbsp;&nbsp;<span class="normal-font">V</span>
-                                <div class="inline kmh">
-                                    <div id="nr23_10-16-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-16-input" class="field kmh"></div>
                                     <label for="nr23_10-16-input">x.16 km/h</label>
                                 </div>
                                 <span class="normal-font">od</span>
-                                <div class="inline km">
-                                    <input id="nr23_10-17-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr23_10-17-input" class="field km"></div>
                                     <label for="nr23_10-17-input">x.17 km</label>
                                 </div>
                                 <span class="normal-font">do</span>
-                                <div class="inline km">
-                                    <input id="nr23_10-18-input" type="text" inputmode="decimal" pattern="\d+[\.,]\d+"
-                                        disabled="">
+                                <div class="inline">
+                                    <div id="nr23_10-18-input" class="field km"></div>
                                     <label for="nr23_10-18-input">x.18 km</label>
                                 </div>
-                                <div class="inline prz">
-                                    <div id="nr23_10-97-input" class="field"></div>
+                                <div class="inline">
+                                    <div id="nr23_10-97-input" class="field prz"></div>
                                     <label for="nr23_10-97-input">x.97 przyczyna</label>
                                 </div>
                             </td>
@@ -674,32 +642,30 @@
                                 23.20
                             </th>
                             <td class="roz-content text-area" colspan="3" tabindex="0">
-                                <div class="inline inne-dl">
+                                <div class="inline">
                                     <label for="nr23_20-96-input">x.96 inne</label>
+                                    <!-- TODO: Replace with DIV with class="field inne-dl" -->
                                     <textarea id="nr23_20-96-input" cols="85" rows="10" disabled=""></textarea>
                                 </div>
                             </td>
                         </tr>
                         <tr class="center top-info">
                             <td id="norm-V" colspan="2">
-                                <div id="norm-V-input" class="field"></div><br>
+                                <div id="norm-V-input" class="field id-people"></div><br>
                                 <label for="norm-V-input">V Identyfikator maszynisty</label>
                             </td>
                             <td id="norm-W" colspan="2">
-                                <div id="norm-W-input" class="field"></div><br>
+                                <div id="norm-W-input" class="field id-people"></div><br>
                                 <label for="norm-W-input">W Identyfikator nadawcy</label>
                             </td>
                         </tr>
                         <tr class="center top-info">
                             <td id="norm-Y" colspan="2">
-                                <input id="norm-Y-input" type="time" style="padding: 0; height: auto;" class="optional"
-                                    required=""><br>
+                                <div id="norm-Y-input" class="field godz"></div><br>
                                 <label for="norm-Y-input">Y Godzina</label>
                             </td>
                             <td id="norm-Z" colspan="2">
-                                <div id="norm-Z-input" class="field"></div>
-                                <button id="norm-Z-button">GENERUJ IDENTYFIKATOR</button>
-                                <br>
+                                <div id="norm-Z-input" class="field id"></div><br>
                                 <label for="norm-Z-input">Z Identyfikator rozkazu pisemnego</label>
                             </td>
                         </tr>
