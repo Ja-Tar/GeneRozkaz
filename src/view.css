@@ -21,8 +21,8 @@ body {
 }
 
 #divided-view {
-    width: 100%;
-    height: 100%;
+    width: 100%; 
+    height: 195mm;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
@@ -31,29 +31,32 @@ body {
 }
 
 #rozkaz-normalny-gora {
-    grid-area: "gora";
+    grid-area: gora;
 }
 
 #rozkaz-normalny-dol {
-    grid-area: "dol";
+    grid-area: dol;
 }
 
-#divided-view table {
+table {
     table-layout: fixed;
 }
 
-#divided-view table,
-#divided-view th,
-#divided-view td {
+table,
+th,
+td {
     border: thin solid black;
     border-collapse: collapse;
-    padding: 0.05em 0.2em;
+    padding-top: 0;
+    padding-bottom: 0;
+    /* padding: 0.05em 0.2em; */
     font-weight: normal;
     text-align: left;
 }
-
 .table-head th {
     font-weight: 700;
+    font-size: small;
+    line-height: 1em;
 }
 
 .center td {
@@ -61,13 +64,19 @@ body {
 }
 
 .top-info td {
-    padding-top: 0.5em;
+    padding-top: 0.3em;
     padding-left: 1.5em;
     padding-right: 5em;
-    font-size: small;
+    font-size: x-small;
 }
 
-input {
+.top-info .field {
+    margin-bottom: 0.3em;
+}
+
+div.field {
+    height: 0.9em;
+    font-size: 0.8em;
     border: none;
     border-bottom: 2px dotted black;
 }
@@ -78,9 +87,9 @@ table input[type="checkbox"] {
     -moz-appearance: none;
     background-color: #ffc000;
     border: 1px solid #000;
-    width: 14px;
-    height: 14px;
-    padding-bottom: 5px;
+    width: 12px;
+    height: 12px;
+    padding-bottom: 2px;
 }
 
 table input[type="checkbox"]:checked {
@@ -109,12 +118,13 @@ table input[type="checkbox"]:checked {
 }
 
 .roz-content label {
-    font-size: smaller;
+    font-size: x-small;
     font-weight: normal;
 }
 
 div.inline {
     display: inline-flex;
+    gap: 0.2em;
     flex-direction: column;
     width: auto;
     min-width: 0;
@@ -126,6 +136,6 @@ div.inline {
     text-align: center;
 }
 
-.inline input {
-    height: 1em;
+@page {
+    size: A4 landscape;
 }
