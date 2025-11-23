@@ -14,19 +14,17 @@ body {
         "wdth" 100;
     font-size-adjust: cap-height 0.62;
 
-    margin-bottom: 0;
-    margin-top: 0;
     display: flex;
     flex-direction: column;
 }
 
 #divided-view {
-    width: 100%; 
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
         "gora dol";
-    gap: 5%;
+    gap: 3%;
 }
 
 #rozkaz-normalny-gora {
@@ -81,7 +79,7 @@ div.field {
     border: none;
     border-bottom: 0.1em dotted black;
     color: #00167a;
-    padding: 0 0.1em;
+    padding: 0 0.2em;
 }
 
 div.field:empty::before {
@@ -96,7 +94,7 @@ div.field:empty::before {
     margin: 3px;
 }
 
-.checkbox {
+.checkbox.checked {
     background-image: url("./static/tick.svg");
     background-size: 100%;
     background-position: center;
@@ -144,4 +142,11 @@ div.inline {
     size: A4 landscape;
     margin-left: 1em;
     margin-right: 1em;
+}
+
+@media print {
+    body {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
 }
