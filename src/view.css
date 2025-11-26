@@ -17,7 +17,7 @@ body {
     font-variation-settings:
         "wdth" 100;
     font-size-adjust: cap-height 0.62;
-    /* font-size: 24px; */
+    font-size: 24px;
 
     display: flex;
     flex-direction: column;
@@ -27,7 +27,6 @@ body {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* ADD: Mobile layout (row) :) */
     grid-template-areas:
         "gora dol";
     gap: 3%;
@@ -68,7 +67,7 @@ td {
 }
 
 .top-info td {
-    padding-top: 0.3em;
+    padding-top: 0.5em;
     padding-left: 1.5em;
     padding-right: 3em;
     line-height: 0.9;
@@ -153,7 +152,8 @@ div.inline {
 }
 
 .inline:has(.prz) {
-    width: 45%;
+    min-width: 45%;
+    max-width: 60%;
 }
 
 .text-area {
@@ -192,6 +192,41 @@ div.inne-dl {
     body {
         margin-bottom: 0;
         margin-top: 0;
-        font-size: revert;
+        font-size: 11.5pt;
+    }
+
+    #divided-view {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+        "gora dol";
+        gap: 3%;
+    }
+}
+
+@media screen and (width <= 1650px) {
+    body {
+        font-size: 1.45vw;
+    }
+}
+
+@media screen and (width <= 1260px) {
+    body {
+        font-size: 2.4vw;
+    }
+
+    #divided-view {
+        grid-template-columns: auto;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 
+            "gora"
+            "dol";
+        gap: 1%;
+    }
+}
+
+@media screen and (width <= 1260px) {
+    body {
+        font-size: 2.9vw;
     }
 }
