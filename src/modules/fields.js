@@ -104,6 +104,15 @@ function formatFieldIdFromId(elementId) {
 }
 
 /**
+ * @param {string} field 
+ * @param {string} section 
+ */
+function getFieldId(field, section) {
+    section = formatSectionName(section);
+    return `${section}-${field}-input`;
+}
+
+/**
  * @param {string} name 
  * @param {string} section 
  * @returns {Element | null}
@@ -133,4 +142,4 @@ function getField(name, section) {
     return null;
 }
 
-export {getSection, formatSectionName, isSectionFormatted, formatSectionIdFromId, formatInstructionIdFromId, formatFieldIdFromId, getField };
+export {getSection, getFieldId, formatSectionName, isSectionFormatted, formatSectionIdFromId, formatInstructionIdFromId, formatFieldIdFromId, getField };

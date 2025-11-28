@@ -1,3 +1,59 @@
+import { getFieldId } from "./modules/fields.js"
+
+// PAGE CLEANING ***
+
+function cleanFields() {
+    const fields = document.querySelectorAll(".field");
+    fields.forEach(field => {
+        field.innerText = "";
+    });
+}
+
+// URL PARSING ***
+
+function getDataFromURI() {
+    const uriEncodedJSURL = window.location.search.slice(1);
+    if (uriEncodedJSURL) {
+        return JSURL.tryParse(uriEncodedJSURL, {}, { deURI: true });
+    }
+    return {};
+}
+
+// PAGE FILLING ***
+
+function fillFields() {
+    const dataJSON = getDataFromURI();
+    if (dataJSON instanceof Object) {
+        console.log(dataJSON);
+        for (const instructionName of Object.keys(dataJSON)) {
+            if (instructionName == "generatedDate") {
+                const printDate = document.getElementById("print-date");
+                printDate.innerText = dataJSON[instructionName];
+                continue;
+            }
+            
+            const fields = dataJSON[instructionName];
+            for (const fieldName of Object.keys(fields)) {
+                /** @type {String} */
+                const fieldValue = fields[fieldName];
+                const fieldId = getFieldId(fieldName, instructionName)
+                const fieldElement = document.getElementById(fieldId);
+                if (fieldValue.match(/\d{1,2}-\d{1,2}-\d{2,4}/)) {
+                    const date = new Date(fieldValue);
+                    const convertedValue = date.toLocaleDateString("pl-PL");
+                    if (isNaN(date.getTime())) {
+                        continue;
+                    }
+                    fieldElement.innerText = convertedValue;
+                } else {
+                    fieldElement.innerText = fieldValue;
+                }
+                console.log(fieldElement.innerText);
+            }
+        }
+    }
+}
+
 // OVERFLOW TESTER FOR 23.20 *inne* field ***
 
 function adjustInneField() {
@@ -29,7 +85,6 @@ function adjustInneField() {
 function createFieldInneElement(parentElement) {
     const nextElement = document.createElement('div');
     nextElement.classList.add("field", "inne-dl")
-    debugger;
     parentElement.appendChild(nextElement);
     return nextElement;
 }
@@ -71,6 +126,10 @@ function adjustInneFieldAgain() {
     setTimeout(adjustInneField, 30);
 }
 
+// START LOADING DATA ***
+
+cleanFields();
+fillFields();
 adjustInneField();
 addEventListener("beforeprint", printingAdjustments);
 addEventListener("afterprint", adjustInneFieldAgain);

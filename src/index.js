@@ -708,7 +708,8 @@ function getJSONFromFields() {
     //     },
     //     "22.11": {
     //         "1": "Pole 1"
-    //     }
+    //     },
+    //     "generatedDate": "22.03.2025"
     // }
 
     const dataFromFields = {};
@@ -728,6 +729,9 @@ function getJSONFromFields() {
         }
     });
 
+    const today = new Date();
+    dataFromFields["generatedDate"] = today.toLocaleDateString("pl-PL");
+
     return dataFromFields;
 }
 
@@ -740,7 +744,7 @@ function collectFieldsData(inputFields) {
     inputFields.forEach(field => {
         const fieldName = formatFieldIdFromId(field.id);
         if (field.value === "" && !field.classList.contains("required") && !field.id.includes("norm")) {
-            fieldsData[fieldName] = "-";
+            fieldsData[fieldName] = "―";
         } else {
             fieldsData[fieldName] = field.value;
         }
