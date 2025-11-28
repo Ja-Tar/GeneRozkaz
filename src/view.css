@@ -43,9 +43,6 @@ body {
 
 table {
     table-layout: fixed;
-}
-
-table {
     border-collapse: collapse;
 }
 
@@ -246,4 +243,12 @@ div.inne-dl {
 
 #print-date {
     text-align: right;
+}
+
+.ios-fix-right {
+    border-right: none;
+}
+
+.ios-fix-left {
+    border-left: none;
 }
