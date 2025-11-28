@@ -1,4 +1,4 @@
-import { getFieldId } from "./modules/fields.js"
+import { getFieldId, getCheckboxId } from "./modules/fields.js"
 
 // PAGE CLEANING ***
 
@@ -31,6 +31,12 @@ function fillFields() {
                 continue;
             }
             
+            if (instructionName != "normal" && instructionName != "etcs") {
+                const checkboxId = getCheckboxId(instructionName);
+                const checkboxElement = document.getElementById(checkboxId);
+                checkboxElement.classList.add("checked");
+            }
+
             const fields = dataJSON[instructionName];
             for (const fieldName of Object.keys(fields)) {
                 /** @type {String} */

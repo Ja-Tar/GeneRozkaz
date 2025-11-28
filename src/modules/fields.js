@@ -104,8 +104,18 @@ function formatFieldIdFromId(elementId) {
 }
 
 /**
+ * @param {string} section 
+ * @returns {string}
+ */
+function getCheckboxId(section) {
+    section = formatSectionName(section);
+    return `${section}-input`;
+}
+
+/**
  * @param {string} field 
  * @param {string} section 
+ * @returns {string}
  */
 function getFieldId(field, section) {
     section = formatSectionName(section);
@@ -142,4 +152,4 @@ function getField(name, section) {
     return null;
 }
 
-export {getSection, getFieldId, formatSectionName, isSectionFormatted, formatSectionIdFromId, formatInstructionIdFromId, formatFieldIdFromId, getField };
+export {getSection, getFieldId, getCheckboxId, formatSectionName, isSectionFormatted, formatSectionIdFromId, formatInstructionIdFromId, formatFieldIdFromId, getField };
