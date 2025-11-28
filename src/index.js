@@ -823,10 +823,17 @@ function addTabIndexToTable() {
 // PRINT FUNCTIONS ***
 
 const saveButton = document.getElementById("save-written-order-button");
-saveButton.addEventListener("click", openViewPage)
+saveButton.addEventListener("click", openViewPage);
 
 function openViewPage() {
-    // EXAMPLE DATA:
+    const viewURL = window.location.origin + "/view.html";
+    const processedJSURL = JSURL.stringify(getJSONFromFields());
+    const safeJSURL = encodeURIComponent(processedJSURL);
+    window.open(`${viewURL}?${safeJSURL}`);
+}
+
+function getJSONFromFields() {
+    // STRUCTURE:
     // {
     //     "normal": {
     //         "A": "Nr pociągu",
@@ -837,26 +844,24 @@ function openViewPage() {
     //     }
     // }
 
-    const dataFromFields = {}
+    const dataFromFields = {};
 
     const mainFields = document.querySelectorAll(".top-info input");
     const rozkazType = formatInstructionIdFromId(mainFields[0].id);
-
     dataFromFields[rozkazType] = collectFieldsData(mainFields);
 
     const checkboxes = document.querySelectorAll('table input[type="checkbox"]');
-
     checkboxes.forEach(checkboxInput => {
         const instructionName = formatInstructionIdFromId(checkboxInput.id);
         if (checkboxInput.checked) {
             const tableRow = checkboxInput.parentElement.parentElement;
-            const sectionNameId = formatSectionName(instructionName)
+            const sectionNameId = formatSectionName(instructionName);
             const instructionFields = tableRow.querySelectorAll(`input[id*=${sectionNameId}]:not([type='checkbox']), textarea[id*=${sectionNameId}]`);
             dataFromFields[instructionName] = collectFieldsData(instructionFields);
         }
     });
 
-    console.log(dataFromFields);
+    return dataFromFields;
 }
 
 /**
