@@ -383,7 +383,9 @@ function highlightFields(neededFields, section) {
         for (let i = 0; i < remainingFields.length; i++) {
             const field = remainingFields[i];
             highlightElement(field, "optional");
-            checkIfDashNeeded(field);
+            // INFO: For now it's better to have it
+            //checkIfDashNeeded(field);
+            field.placeholder = "―";
         }
     }
 }
