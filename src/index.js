@@ -858,6 +858,27 @@ if (!!window.chrome) {
     tableFix.style.borderRightWidth = "2px";
 }
 
+// CLEANING FIELDS ***
+
+function cleanNotNeededData() {
+    const skipList = [
+        "norm-B-input",
+        "norm-W-input"
+    ]
+
+    const fields = document.querySelectorAll("input:not([type='checkbox'])");
+    fields.forEach(field => {
+        if (!skipList.includes(field.id)) {
+            field.value = '';
+        }
+    });
+
+    const checkboxes = document.querySelectorAll("table input[type='checkbox']");
+    checkboxes.forEach(box => {
+        box.checked = false;
+    });
+}
+
 // START LOADING DATA ***
 
 /**
@@ -892,6 +913,7 @@ function limitFunction(fn, wait = 100) {
 
 loadInputTypes().then(() => {
     addInputsToDivs("rozkaz-normalny");
+    cleanNotNeededData() // TODO: When adding simulator support change it
     addClickEventToCheckboxes();
     loadValidationData().then(() => {
         loadDefaultHighlights();
