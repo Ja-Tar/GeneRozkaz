@@ -13,6 +13,17 @@ let VALIDATION = {};
 let HELP = {};
 let EXAMPLES = {}
 
+// Enums
+
+const ROZKAZ_ELEMENT_ID = {
+    NORMAL: "rozkaz-normalny"
+}
+
+const ROZKAZ_TYPE = {
+    NORMAL: "normal",
+    ETCS: "etcs"
+}
+
 // HELPER FUNCTIONS ***
 
 // get data ---
@@ -284,7 +295,8 @@ function formatInstructionIdFromId(elementId) {
     elementId = elementId.split("-")[0];
 
     const oppositeSectionAliases = {
-        "norm": "normal"
+        "norm": "normal",
+        "99": "99"
     };
 
     if (elementId in oppositeSectionAliases) {
@@ -383,9 +395,9 @@ function highlightFields(neededFields, section) {
         for (let i = 0; i < remainingFields.length; i++) {
             const field = remainingFields[i];
             highlightElement(field, "optional");
-            // INFO: For now it's better to have it
-            //checkIfDashNeeded(field);
-            field.placeholder = "―";
+            if (isDashNeeded(field)) { 
+                field.placeholder = "―";
+            }
         }
     }
 }
@@ -401,20 +413,30 @@ function highlightElement(field, className) {
 }
 
 /**
- * @param {Element} field 
- * @param {string} section 
+ * @param {Element} field
+ * @returns {boolean}
  */
-function checkIfDashNeeded(field) {
+function isDashNeeded(field) {
     const sectionId = formatInstructionIdFromId(field.id);
+
+    if (sectionId === "normal") {
+        return false;
+    }
+
+    // INFO: For now it's better to have it
+    return true;
+
     /** @type {string[] | null} */
     const fieldsWithDash = VALIDATION[sectionId]?.fieldsDashedWhenEmpty;
 
     if (fieldsWithDash) {
         const fieldId = formatFieldIdFromId(field.id);
         if (fieldsWithDash.includes(fieldId)) {
-            field.placeholder = "―";
+            return true;
         }
     }
+
+    return false;
 }
 
 /**
@@ -798,58 +820,63 @@ function addTabIndexToTable() {
     }
 }
 
-// PRINT FUNCTION ***
+// PRINT FUNCTIONS ***
 
 const saveButton = document.getElementById("save-written-order-button");
-saveButton.addEventListener("click", () => print())
+saveButton.addEventListener("click", openViewPage)
 
-function changeFieldsToTextType() {
-    const dateFields = document.querySelectorAll("input[type='date']");
-    const timeFields = document.querySelectorAll("input[type='time']");
+function openViewPage() {
+    // EXAMPLE DATA:
+    // {
+    //     "normal": {
+    //         "A": "Nr pociągu",
+    //         "B": "Data"
+    //     },
+    //     "22.11": {
+    //         "1": "Pole 1"
+    //     }
+    // }
 
-    // TODO check for required fields
-    // TODO change 23.20 textarea to have doted lines like original and better font
+    const dataFromFields = {}
 
-    dateFields.forEach(element => {
-        element.setAttribute("temptype", element.type);
-        element.setAttribute("beforedate", element.value);
-        const date = new Date(element.value);
-        const convertedValue = date.toLocaleDateString("pl-PL");
-        element.type = 'text';
-        if (!isNaN(date.getTime())) {
-            element.value = convertedValue;
+    const mainFields = document.querySelectorAll(".top-info input");
+    const rozkazType = formatInstructionIdFromId(mainFields[0].id);
+
+    dataFromFields[rozkazType] = collectFieldsData(mainFields);
+
+    const checkboxes = document.querySelectorAll('table input[type="checkbox"]');
+
+    checkboxes.forEach(checkboxInput => {
+        const instructionName = formatInstructionIdFromId(checkboxInput.id);
+        if (checkboxInput.checked) {
+            const tableRow = checkboxInput.parentElement.parentElement;
+            const sectionNameId = formatSectionName(instructionName)
+            const instructionFields = tableRow.querySelectorAll(`input[id*=${sectionNameId}]:not([type='checkbox']), textarea[id*=${sectionNameId}]`);
+            dataFromFields[instructionName] = collectFieldsData(instructionFields);
         }
     });
 
-    timeFields.forEach(element => {
-        element.setAttribute("temptype", element.type);
-        element.type = "text"
-    });
+    console.log(dataFromFields);
 }
 
-function revertChangesToFieldsType() {
-    const dateFields = document.querySelectorAll("input[temptype='date']");
-    const timeFields = document.querySelectorAll("input[temptype='time']");
-
-    // TODO reset ID field after print
-
-    dateFields.forEach(element => {
-        const changeToType = element.getAttribute("temptype");
-        const changeToDate = element.getAttribute("beforedate");
-        element.type = changeToType;
-        element.value = changeToDate;
-        element.removeAttribute("temptype")
-        element.removeAttribute("beforedate")
+/**
+ * @param {NodeListOf<Element>} inputFields 
+ * @returns {{"fieldsName": "fieldContent"}}
+ */
+function collectFieldsData(inputFields) {
+    const fieldsData = {};
+    inputFields.forEach(field => {
+        const fieldName = formatFieldIdFromId(field.id);
+        if (field.value === "" && !field.classList.contains("required") && !field.id.includes("norm")) {
+            fieldsData[fieldName] = "-";
+        } else {
+            fieldsData[fieldName] = field.value;
+        }
     });
-
-    timeFields.forEach(element => {
-        element.type = "time"
-        element.removeAttribute("temptype")
-    });
+    return fieldsData;
 }
 
-addEventListener("beforeprint", changeFieldsToTextType)
-addEventListener("afterprint", revertChangesToFieldsType)
+
 
 // Fix for chrome
 
@@ -866,7 +893,7 @@ function cleanNotNeededData() {
         "norm-W-input"
     ]
 
-    const fields = document.querySelectorAll("input:not([type='checkbox'])");
+    const fields = document.querySelectorAll("input:not([type='checkbox']), textarea");
     fields.forEach(field => {
         if (!skipList.includes(field.id)) {
             field.value = '';
@@ -912,21 +939,23 @@ function limitFunction(fn, wait = 100) {
 }
 
 loadInputTypes().then(() => {
-    addInputsToDivs("rozkaz-normalny");
-    cleanNotNeededData() // TODO: When adding simulator support change it
+    cleanNotNeededData(); // TODO: When adding simulator support change it
+    addInputsToDivs(ROZKAZ_ELEMENT_ID.NORMAL);
     addClickEventToCheckboxes();
     loadValidationData().then(() => {
         loadDefaultHighlights();
         checkForCheckedCheckboxes();
         addTabIndexToTable()
 
-        tableWidth = document.getElementById("rozkaz-normalny").getBoundingClientRect().width // adjust for fontsize and browser rendering
+        // adjust for fontsize and browser rendering
+        tableWidth = document.getElementById(ROZKAZ_ELEMENT_ID.NORMAL).getBoundingClientRect().width
+
         adjustTableSize();
 
         addEventListener('resize', limitFunction(adjustTableSize, 120));
         toolbarHandle.addEventListener('click', limitFunction(toggleToolBar, 120));
 
-        loadHelpData("normal").then(() => {
+        loadHelpData(ROZKAZ_TYPE.NORMAL).then(() => {
             loadHelpTriggers();
             prepareIDGeneratorBox()
 
