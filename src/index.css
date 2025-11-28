@@ -531,7 +531,8 @@ input::placeholder {
 
 /* PRINT CSS */
 
-thead th, tfoot th {
+thead th,
+tfoot th {
     padding: 0;
     border: 0;
 }
@@ -572,7 +573,8 @@ thead th, tfoot th {
         break-before: avoid;
     }
 
-    td, th {
+    td,
+    th {
         font-size: large !important;
         padding: 0.1vh 0.2em;
     }

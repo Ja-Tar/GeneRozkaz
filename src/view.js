@@ -30,7 +30,7 @@ function fillFields() {
                 printDate.innerText = dataJSON[instructionName];
                 continue;
             }
-            
+
             if (instructionName != "normal" && instructionName != "etcs") {
                 const checkboxId = getCheckboxId(instructionName);
                 const checkboxElement = document.getElementById(checkboxId);
@@ -137,3 +137,7 @@ fillFields();
 adjustInneField();
 addEventListener("beforeprint", printingAdjustments);
 addEventListener("afterprint", adjustInneFieldAgain);
+
+setTimeout(() => {
+    document.getElementById("loader").remove();
+}, 500);

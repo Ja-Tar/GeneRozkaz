@@ -840,8 +840,9 @@ loadInputTypes().then(() => {
             loadHelpTriggers();
             prepareIDGeneratorBox()
 
-            // TODO Add loading screen
-            console.info("LOADING DONE");
+            setTimeout(() => {
+                document.getElementById("loader").remove();
+            }, 1000);
         });
     });
 });
