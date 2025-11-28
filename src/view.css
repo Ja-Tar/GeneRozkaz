@@ -6,6 +6,7 @@
     --font-size-labels: 0.78em;
     --font-size-main: 0.81em;
     --font-size-roz-content: 0.8em;
+    --font-size-footnote: 0.60em;
     --tick-size: 0.77em;
 }
 
@@ -44,7 +45,10 @@ table {
     table-layout: fixed;
 }
 
-table,
+table {
+    border-collapse: collapse;
+}
+
 th,
 td {
     border: thin solid black;
@@ -232,4 +236,14 @@ div.inne-dl {
     body {
         font-size: 2.9vw;
     }
+}
+
+.footnote td {
+    border: none;
+    font-size: var(--font-size-footnote);
+    line-height: 1em;
+}
+
+#print-date {
+    text-align: right;
 }
