@@ -24,7 +24,6 @@ function getDataFromURI() {
 function fillFields() {
     const dataJSON = getDataFromURI();
     if (dataJSON instanceof Object) {
-        console.log(dataJSON);
         for (const instructionName of Object.keys(dataJSON)) {
             if (instructionName == "generatedDate") {
                 const printDate = document.getElementById("print-date");
@@ -48,7 +47,6 @@ function fillFields() {
                 } else {
                     fieldElement.innerText = fieldValue;
                 }
-                console.log(fieldElement.innerText);
             }
         }
     }
