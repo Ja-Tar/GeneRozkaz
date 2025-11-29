@@ -229,9 +229,19 @@ div.inne-dl {
     }
 }
 
-@media screen and (width <= 1260px) {
+@media screen and (width <= 1060px) {
     body {
         font-size: 2.9vw;
+    }
+
+    .top-info td {
+        padding-bottom: 0.2em;
+    }
+}
+
+@media screen and (width <= 700px) {
+    body {
+        font-size: 3vw;
     }
 }
 
