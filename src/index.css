@@ -545,6 +545,7 @@ tfoot th {
     size: A4 portrait;
 }
 
+/* OLD PRINT MODE */
 @media print {
     :root {
         --scale-instruction: 1;

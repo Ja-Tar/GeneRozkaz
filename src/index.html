@@ -427,14 +427,14 @@
     <dialog id="id-generator-dialog" class="large">
         <div class="inner-dialog">
             <label for="select-printed">Czy rozkaz jest wydany na formularzu drukowanym?</label>
-            <select class="large" id="select-printed">
+            <select class="large" id="select-printed" required>
                 <option value="D" selected>TAK</option>
                 <option value="">NIE</option>
             </select>
             <label for="written-order-number">Numer rozkazu pisemnego (w kolejności)</label>
-            <input id="written-order-number" type="number" min="1">
+            <input id="written-order-number" type="number" inputmode="numeric" value="1" min="1" required>
             <label for="posterunek-number">Kod posterunku</label>
-            <input id="posterunek-number" type="text" inputmode="numeric" placeholder="054929">
+            <input id="posterunek-number" type="text" inputmode="numeric" placeholder="054929" required>
         </div>
         <button class="large" id="set-id">Zastosuj</button>
     </dialog>

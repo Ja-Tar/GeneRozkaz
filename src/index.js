@@ -182,7 +182,6 @@ function handleClick(from) {
     const numbersRegex = /nr(\d{2})(?:|_(\d{2}))-input/;
     let clickedNumber = from.id.replace(numbersRegex, "$1.$2")
     if (clickedNumber.endsWith(".")) clickedNumber = clickedNumber.slice(0, -1)
-    console.log(from.checked, clickedNumber); // REMOVE
 
     toggleFieldHighlights();
     toggleDisallowedInstructions();
@@ -669,6 +668,8 @@ function prepareIDGeneratorBox() {
     });
 
     setIdButton.addEventListener("click", () => {
+        if (!validateRequiredFields(dialog)) return;
+
         const fieldZ = document.getElementById("norm-Z-input");
         const selectPrintedValue = document.getElementById("select-printed").value;
         const writtenOrderNumber = document.getElementById("written-order-number").value;
@@ -703,10 +704,42 @@ saveButton.addEventListener("click", openViewPage);
 saveButton.addEventListener('mousedown', stopFocus)
 
 function openViewPage() {
+    const instructionBox = document.getElementById('instruction-box')
+    if (!validateRozkazFields(instructionBox)) return;
+
     const viewURL = window.location.origin + "/view.html";
     const processedJSURL = JSURL.stringify(getJSONFromFields());
     const safeJSURL = encodeURIComponent(processedJSURL);
     window.open(`${viewURL}?${safeJSURL}`);
+}
+
+/**
+ * Validation only for fields with "required" class
+ * @param {Element} element 
+ * @returns {boolean}
+ */
+function validateRozkazFields(element) {
+    for (const el of element.querySelectorAll("[required]")) {
+        if (!el.checkValidity() && el.classList.contains("required")) {
+            el.reportValidity();
+            return false;
+        }
+    }
+    return true;
+}
+
+/**
+ * @param {Element} element 
+ * @returns {boolean}
+ */
+function validateRequiredFields(element) {
+    for (const el of element.querySelectorAll("[required]")) {
+        if (!el.checkValidity()) {
+            el.reportValidity();
+            return false;
+        }
+    }
+    return true;
 }
 
 function getJSONFromFields() {
@@ -762,16 +795,10 @@ function collectFieldsData(inputFields) {
     return fieldsData;
 }
 
-// Fix for chrome
-
-if (!!window.chrome) {
-    const tableFix = document.querySelector("table");
-    tableFix.style.borderRightWidth = "2px";
-}
-
 // RESET FIELDS ***
 
 function resetNotNeededFields() {
+    const instructionBox = document.getElementById("instruction-box");
     const skipList = [
         "norm-B-input",
         "norm-W-input"
@@ -781,7 +808,7 @@ function resetNotNeededFields() {
         "norm"
     ]
 
-    const fields = document.querySelectorAll("input:not([type='checkbox']), textarea");
+    const fields = instructionBox.querySelectorAll("input:not([type='checkbox']), textarea");
     fields.forEach(field => {
         if (!skipList.includes(field.id)) {
             field.value = '';
@@ -792,7 +819,7 @@ function resetNotNeededFields() {
         }
     });
 
-    const checkboxes = document.querySelectorAll("table input[type='checkbox']");
+    const checkboxes = instructionBox.querySelectorAll("table input[type='checkbox']");
     checkboxes.forEach(box => {
         box.checked = false;
     });
