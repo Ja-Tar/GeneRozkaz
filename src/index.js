@@ -1,4 +1,4 @@
-import {getSection, formatSectionName, formatSectionIdFromId, formatInstructionIdFromId, formatFieldIdFromId, getField } from "./modules/fields.js"
+import { getSection, formatSectionName, formatSectionIdFromId, formatInstructionIdFromId, formatFieldIdFromId, getField } from "./modules/fields.js"
 
 const mainApiUrl = window.location.origin + "/api";
 
@@ -214,7 +214,7 @@ function addClickEventToCheckboxes() {
     const checkboxes = document.querySelectorAll('table input[type="checkbox"]');
     for (let i = 0; i < checkboxes.length; i++) {
         const checkbox = checkboxes[i];
-        checkbox.addEventListener("change", function () { handleClick(this)})
+        checkbox.addEventListener("change", function () { handleClick(this) })
     }
 }
 
@@ -262,7 +262,7 @@ function highlightFields(neededFields, section) {
         for (let i = 0; i < remainingFields.length; i++) {
             const field = remainingFields[i];
             highlightElement(field, "optional");
-            if (isDashNeeded(field)) { 
+            if (isDashNeeded(field)) {
                 field.placeholder = "―";
             }
         }
@@ -648,6 +648,15 @@ function triggerHelpInfo() {
     }
 }
 
+// BUTTON FOCUS FIX ***
+
+/**
+ * @param {Event} event 
+ */
+function stopFocus(event) {
+    event.preventDefault();
+}
+
 // GENERATE FIELD "Z" (ID) ***
 
 function prepareIDGeneratorBox() {
@@ -691,6 +700,7 @@ function addTabIndexToTable() {
 
 const saveButton = document.getElementById("save-written-order-button");
 saveButton.addEventListener("click", openViewPage);
+saveButton.addEventListener('mousedown', stopFocus)
 
 function openViewPage() {
     const viewURL = window.location.origin + "/view.html";
