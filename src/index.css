@@ -297,7 +297,7 @@ input::placeholder {
 #size-holder {
     border: 5px solid #808080;
     opacity: 1;
-    width: 20vw;
+    width: 25vw;
     border-radius: 8px;
     transition:
         opacity 0.5s ease-in,
@@ -310,7 +310,7 @@ input::placeholder {
 #tools-box {
     height: 100%;
     min-height: 180px;
-    min-width: calc(20vw - 2em);
+    min-width: calc(25vw - 2em);
 
     display: grid;
     align-items: center;
