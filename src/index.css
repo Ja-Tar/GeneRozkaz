@@ -14,11 +14,15 @@ body {
         "wdth" 100;
     font-size-adjust: cap-height 0.62;
 
+    height: 100vh;
     margin-bottom: 0;
     margin-top: 0;
     display: grid;
-    grid-template-areas: 
-    "instruction tool-box";
+    grid-template:
+    "buttons-box" 55px
+    "instruction" minmax(5%, 90%)
+    "help-box" minmax(150px, auto);
+    gap: 0.5em;
 }
 
 table {
@@ -66,9 +70,9 @@ input {
     font-size: 1em;
 }
 
-input[type="time"] {
-    font-size: 1.09em;
-    
+input[type="time"], 
+input[type="date"] {
+    min-height: 1.5em;
 }
 
 .top-info input {
@@ -209,8 +213,7 @@ table input[type="checkbox"]:checked {
 
 #instruction-box {
     grid-area: instruction;
-    padding-bottom: 5px;
-    padding-top: 5px;
+    overflow: auto;
     width: 100%;
 }
 
@@ -249,103 +252,33 @@ input::placeholder {
     cursor: not-allowed;
 }
 
-/* toolbar */
-
-#toolbar-box {
-    grid-area: tool-box;
-    display: block;
-    width: auto;
-    height: calc(var(--toolbox-hight) + 5px);
-}
-
-#toolbar-flex {
-    display: flex;
-    position: sticky;
-    top: 10px;
-    height: 98vh;
-    z-index: 10;
-    pointer-events: none;
-}
-
-/* CSS for bar on right */
-
-#toolbar-flex {
-    direction: rtl;
-}
-
-#toolbar-flex>* {
-    direction: ltr;
-}
-
 /* === */
 
-#toolbar-handle-box {
-    display: flex;
-    align-items: center;
-    pointer-events: all;
-}
-
-#toolbar-handle {
-    width: 2em;
-    padding-left: 5px;
-}
-
-#toolbar-inner-box {
-    width: 100%;
-    transition:
-        width 0.5s ease-in;
-    display: grid;
-    align-items: center;
-    justify-content: safe center;
-    overflow-y: scroll;
-    pointer-events: none;
-}
-
-#size-holder {
-    border: 5px solid #808080;
-    opacity: 1;
-    width: 25vw;
-    border-radius: 8px;
-    transition:
-        opacity 0.5s ease-in,
-        width 0.5s ease-in;
-    background-color: white;
-    pointer-events: all;
-    overflow-x: clip;
-}
-
-#tools-box {
-    height: 100%;
-    min-height: 180px;
-    min-width: calc(25vw - 2em);
-
-    display: grid;
-    align-items: center;
-    grid-template-areas:
-        "check save"
-        "help help";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr;
-    column-gap: 1em;
-    row-gap: 0.8em;
-    padding: 1em 1em;
-}
-
 .button {
-    height: 50px;
+    height: 100%;
     border-radius: 1em;
 }
 
+#button-box {
+    grid-area: buttons-box;
+    display: grid;
+    grid: 
+    "check save" auto / 1fr 1fr;
+    gap: 1em;
+    margin-top: 5px;
+}
+
 #help-box {
-    grid-area: help;
+    grid-area: help-box;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     font-size: larger;
 
-    border: 1px solid black;
+    border: 3px double black;
     padding: 0.5em;
+    margin-bottom: 5px;
 }
 
 #help-box h2 {
@@ -381,6 +314,11 @@ input::placeholder {
     padding: 0 8px;
     border-bottom: 3px dotted #000;
     white-space: nowrap;
+}
+
+#no-help {
+    font-size: 1.5em;
+    text-align: center;
 }
 
 #section-help {
@@ -458,6 +396,7 @@ input::placeholder {
 }
 
 #norm-Z-button {
+    font-size: 1em;
     line-height: 0.9em;
     white-space: nowrap;
 }
@@ -511,14 +450,6 @@ input::placeholder {
     #toolbar-box {
         position: fixed;
         right: 0;
-    }
-
-    #help-box {
-        display: none;
-    }
-
-    #size-holder {
-        min-width: 200px;
     }
 
     #tools-box {

@@ -400,7 +400,7 @@ function checkForCheckedCheckboxes() {
 
 // AUTO RESIZE ***
 
-let tableWidth = 700;
+let tableWidth = 650;
 
 function adjustTableSize() {
     const currentTableDiv = document.querySelector("table:not([style*='none'])");
@@ -867,12 +867,11 @@ loadInputTypes().then(() => {
         addTabIndexToTable()
 
         // adjust for fontsize and browser rendering
-        tableWidth = document.getElementById(ROZKAZ_ELEMENT_ID.NORMAL).getBoundingClientRect().width
+        //tableWidth = document.getElementById(ROZKAZ_ELEMENT_ID.NORMAL).getBoundingClientRect().width
 
         adjustTableSize();
 
         addEventListener('resize', limitFunction(adjustTableSize, 120));
-        toolbarHandle.addEventListener('click', limitFunction(toggleToolBar, 120));
 
         loadHelpData(ROZKAZ_TYPE.NORMAL).then(() => {
             loadHelpTriggers();

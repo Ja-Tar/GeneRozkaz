@@ -23,6 +23,11 @@
     <div id="loader">
         <img src="/favicons/web-app-manifest-512x512.png">
     </div>
+    
+    <div id="button-box">
+        <button class="button check" disabled>Sprawdź</button>
+        <button id="save-written-order-button" class="button save">Zapisz</button>
+    </div>
     <div id="instruction-box">
         <div class="fill-page">
             <table id="rozkaz-normalny">
@@ -404,24 +409,13 @@
             </table>
         </div>
     </div>
+    <div id="help-box">
+        <div id="no-help">Kliknij na instrukcję lub pole, żeby zobaczyć pomoc</div>
+        <div id="section-help"></div>
+        <div id="field-help"></div>
+    </div>
     <div id="toolbar-box">
         <div id="toolbar-flex">
-            <div id="toolbar-inner-box">
-                <div id="size-holder">
-                    <div id="tools-box">
-                        <button class="button check" disabled>Sprawdź</button>
-                        <button id="save-written-order-button" class="button save">Zapisz</button>
-                        <div id="help-box">
-                            <div id="no-help">Kliknij na instrukcję lub pole, żeby zobaczyć pomoc</div>
-                            <div id="section-help"></div>
-                            <div id="field-help"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="toolbar-handle-box">
-                <img id="toolbar-handle" src="static/toolbar.svg">
-            </div>
         </div>
     </div>
 
