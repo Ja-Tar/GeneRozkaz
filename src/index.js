@@ -815,7 +815,7 @@ function resetNotNeededFields() {
             field.value = '';
         }
 
-        if (!disableSkipList.filter(option => option.startsWith(field.id))) {
+        if (!!disableSkipList.filter(option => field.id.startsWith(option))) {
             field.disabled = true;
         }
     });
