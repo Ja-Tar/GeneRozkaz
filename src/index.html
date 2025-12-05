@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>GeneRozkaz - Edytor</title>
     <meta name="description" content="Generator online dla nowych kolejowych rozkazów pisemnych">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="loader.css">
     <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
@@ -253,7 +253,7 @@
                 <tbody>
                     <tr class="tor-zamkniety">
                         <td id="nr21_80" class="checkbox-col" colspan="1"></td>
-                        <td class="roz-content" colspan="3">
+                        <td class="roz-content" colspan="3" tabindex="0">
                             <strong>Polecam jazdę po torze zamkniętym</strong> nr
                             <div class="inline tor"></div>
                             w kierunku
@@ -369,9 +369,10 @@
                     </tr>
                     <tr>
                         <td id="nr23_11" class="checkbox-col" colspan="1"></td>
-                        <td class="roz-content" colspan="3">
+                        <td class="roz-content ios-fix-right" colspan="1" tabindex="0">
                             <strong>Podawać sygnał „Baczność”</strong>
                         </td>
+                        <td class="roz-content ios-fix-left" colspan="2" tabindex="0"></td>
                     </tr>
                     <tr>
                         <td id="nr23_20" class="checkbox-col" colspan="1"></td>
@@ -400,7 +401,7 @@
                         <td id="norm-Z" colspan="2">
                             <div class="field-button">
                                 <input id="norm-Z-input" type="text">
-                                <button id="norm-Z-button">GENERUJ IDENTYFIKATOR</button>
+                                <button id="norm-Z-button">GENERUJ ID</button>
                             </div>
                             <label for="norm-Z-input">Z Identyfikator rozkazu pisemnego</label>
                         </td>

@@ -14,7 +14,7 @@ body {
         "wdth" 100;
     font-size-adjust: cap-height 0.62;
 
-    height: 100vh;
+    height: 100dvh;
     margin-bottom: 0;
     margin-top: 0;
     display: grid;
@@ -27,10 +27,10 @@ body {
 
 table {
     table-layout: fixed;
+    border-collapse: collapse;
     font-size: var(--table-font-size);
 }
 
-table,
 th,
 td {
     border: thin solid black;
@@ -42,6 +42,8 @@ td {
 
 tr:has(.overlay-disallowed) {
     position: relative;
+    transform: translate(0);
+    clip-path: inset(0);
 }
 
 .table-head th {
@@ -62,6 +64,7 @@ tr:has(.overlay-disallowed) {
 input {
     border: none;
     border-bottom: 2px dotted black;
+    border-radius: 0;
     font-size: 1em;
 }
 
@@ -228,6 +231,7 @@ table input[type="checkbox"]:checked {
 #instruction-box {
     grid-area: instruction;
     overflow: auto;
+    overflow-x: hidden;
     width: 100%;
 }
 
@@ -260,7 +264,7 @@ input::placeholder {
     bottom: 0;
     background-image: url(./static/bar.svg);
     background-repeat: repeat;
-    background-size: contain;
+    background-size: 3em;
     background-color: lightgray;
     opacity: 0.5;
     cursor: not-allowed;
@@ -492,7 +496,7 @@ input::placeholder {
     grid-template: 
     "top" 1fr 
     "bottom" 1fr / 1fr;
-}
+    }
 }
 
 
@@ -506,4 +510,12 @@ tfoot th {
 
 .table-head th {
     border-top: none;
+}
+
+.ios-fix-right {
+    border-right: none;
+}
+
+.ios-fix-left {
+    border-left: none;
 }
