@@ -21,7 +21,7 @@ body {
     grid-template:
     "buttons-box" 55px
     "instruction" minmax(5%, 90%)
-    "help-box" minmax(150px, auto);
+    "help-box" minmax(11em, auto);
     gap: 0.5em;
 }
 
@@ -67,6 +67,10 @@ tr:has(.overlay-disallowed) {
 input {
     border: none;
     border-bottom: 2px dotted black;
+    font-size: 1em;
+}
+
+textarea {
     font-size: 1em;
 }
 
@@ -294,8 +298,10 @@ input::placeholder {
     margin: 0.3em 0;
 }
 
-#help-box div {
-    width: 100%;
+#help-box > div {
+    max-width: 800px;
+    min-width: fit-content;
+    min-width: min(100%, 800px)
 }
 
 #field-help .allHelpExamples {

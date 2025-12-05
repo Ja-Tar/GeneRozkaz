@@ -866,11 +866,7 @@ loadInputTypes().then(() => {
         loadDefaultHighlights();
         addTabIndexToTable()
 
-        // adjust for fontsize and browser rendering
-        //tableWidth = document.getElementById(ROZKAZ_ELEMENT_ID.NORMAL).getBoundingClientRect().width
-
         adjustTableSize();
-
         addEventListener('resize', limitFunction(adjustTableSize, 120));
 
         loadHelpData(ROZKAZ_TYPE.NORMAL).then(() => {
