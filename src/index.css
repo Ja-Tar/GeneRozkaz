@@ -19,9 +19,9 @@ body {
     margin-top: 0;
     display: grid;
     grid-template:
-    "buttons-box" 55px
+    "top-box" 55px
     "instruction" minmax(5%, 90%)
-    "help-box" minmax(11em, auto);
+    "bottom-box" minmax(11em, auto);
     gap: 0.5em;
 }
 
@@ -38,11 +38,6 @@ td {
     padding: 0.05em 0.2em;
     font-weight: normal;
     text-align: left;
-}
-
-.bottom-double-line {
-    border-bottom-style: double;
-    border-bottom-width: 4px;
 }
 
 tr:has(.overlay-disallowed) {
@@ -81,6 +76,21 @@ input[type="date"] {
 
 .top-info input {
     width: 100%;
+}
+
+.fill-page {
+    display: grid;
+    grid-template: 
+    "top bottom" 1fr / 1fr 1fr;
+    gap: 1em;
+}
+
+.top-part {
+    grid-area: "top";
+}
+
+.bottom-part {
+    grid-area: "bottom";
 }
 
 table input[type="checkbox"] {
@@ -263,17 +273,30 @@ input::placeholder {
     border-radius: 1em;
 }
 
+#top-box {
+    grid-area: top-box;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+}
+
 #button-box {
-    grid-area: buttons-box;
     display: grid;
     grid: 
     "check save" auto / 1fr 1fr;
     gap: 1em;
-    margin-top: 5px;
+    max-width: 800px;
+    min-width: fit-content;
+    min-width: min(100%, 800px)
+}
+
+#bottom-box {
+    grid-area: bottom-box;
+    display: flex;
+    justify-content: center;
 }
 
 #help-box {
-    grid-area: help-box;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -283,6 +306,9 @@ input::placeholder {
     border: 3px double black;
     padding: 0.5em;
     margin-bottom: 5px;
+    max-width: 800px;
+    min-width: fit-content;
+    min-width: min(100%, 800px)
 }
 
 #help-box h2 {
@@ -460,6 +486,13 @@ input::placeholder {
     #help-box {
         font-size: medium;
     }
+
+    .fill-page {
+    display: grid;
+    grid-template: 
+    "top" 1fr 
+    "bottom" 1fr / 1fr;
+}
 }
 
 

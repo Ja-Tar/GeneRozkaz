@@ -17,7 +17,7 @@ let EXAMPLES = {}
 
 // Enums
 
-const ROZKAZ_ELEMENT_ID = {
+const ROZKAZ_ELEMENT_CLASS = {
     NORMAL: "rozkaz-normalny"
 }
 
@@ -81,10 +81,19 @@ async function loadInputTypes() {
 }
 
 /**
+ * @param {string} tableClass
+ */
+function addInputsToTables(tableClass) {
+    const tableIDs = document.getElementsByClassName(tableClass);
+    for (const i of Object.keys(tableIDs)) {
+        addInputsToDivs(tableIDs[i]);
+    }
+}
+
+/**
  * @param {string} tableID 
  */
-function addInputsToDivs(tableID) {
-    const table = document.getElementById(tableID);
+function addInputsToDivs(table) {
     const parentsOfReplacedElements = [];
 
     for (let i = 0; i < FIELDS.inputTypes.length; i++) {
@@ -405,9 +414,14 @@ let tableWidth = 650;
 function adjustTableSize() {
     const currentTableDiv = document.querySelector("table:not([style*='none'])");
     const instructionBox = document.getElementById("instruction-box");
+    let currentTableWidth = tableWidth;
+
+    if (document.body.clientWidth > 1200) {
+        currentTableWidth = tableWidth * 2;
+    } 
 
     if (currentTableDiv) {
-        let tableFontSize = Math.max(0.5, instructionBox.clientWidth / tableWidth);
+        let tableFontSize = Math.max(0.5, instructionBox.clientWidth / currentTableWidth);
         tableFontSize = Math.round(tableFontSize * 1000) / 1000;
         console.log(tableFontSize);
 
@@ -818,7 +832,7 @@ function limitFunction(fn, wait = 100) {
 
 loadInputTypes().then(() => {
     resetNotNeededFields(); // TODO: When adding simulator support change it
-    addInputsToDivs(ROZKAZ_ELEMENT_ID.NORMAL);
+    addInputsToTables(ROZKAZ_ELEMENT_CLASS.NORMAL);
     addClickEventToCheckboxes();
     loadValidationData().then(() => {
         loadDefaultHighlights();

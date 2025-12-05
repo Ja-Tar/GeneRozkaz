@@ -23,14 +23,16 @@
     <div id="loader">
         <img src="/favicons/web-app-manifest-512x512.png">
     </div>
-    
-    <div id="button-box">
-        <button class="button check" disabled>Sprawdź</button>
-        <button id="save-written-order-button" class="button save">Zapisz</button>
+
+    <div id="top-box">
+        <div id="button-box">
+            <button class="button check" disabled>Sprawdź</button>
+            <button id="save-written-order-button" class="button save">Zapisz</button>
+        </div>
     </div>
     <div id="instruction-box">
         <div class="fill-page">
-            <table id="rozkaz-normalny">
+            <table class="rozkaz-normalny top-part">
                 <tbody>
                     <tr class="table-head">
                         <th colspan="4">Rozkaz pisemny</th>
@@ -232,7 +234,7 @@
                             <div class="inline km"></div>
                         </td>
                     </tr>
-                    <tr class="bottom-double-line">
+                    <tr>
                         <td id="nr21_70" class="checkbox-col" colspan="1"></td>
                         <td class="roz-content" colspan="3">
                             <strong>Na odcinku</strong> od
@@ -245,6 +247,10 @@
                             <strong>jazda pociągu z łącznością analogową.</strong>
                         </td>
                     </tr>
+                </tbody>
+            </table>
+            <table class="rozkaz-normalny bottom-part">
+                <tbody>
                     <tr class="tor-zamkniety">
                         <td id="nr21_80" class="checkbox-col" colspan="1"></td>
                         <td class="roz-content" colspan="3">
@@ -409,10 +415,12 @@
             </table>
         </div>
     </div>
-    <div id="help-box">
-        <div id="no-help">Kliknij na instrukcję lub pole, żeby zobaczyć pomoc</div>
-        <div id="section-help"></div>
-        <div id="field-help"></div>
+    <div id="bottom-box">
+        <div id="help-box">
+            <div id="no-help">Kliknij na instrukcję lub pole, żeby zobaczyć pomoc</div>
+            <div id="section-help"></div>
+            <div id="field-help"></div>
+        </div>
     </div>
 
     <dialog id="id-generator-dialog" class="large">
