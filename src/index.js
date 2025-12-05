@@ -418,10 +418,12 @@ function adjustTableSize() {
 
     if (document.body.clientWidth > 1200) {
         currentTableWidth = tableWidth * 2;
-    } 
+    } else if (document.body.clientWidth < 900) {
+        currentTableWidth = 700;
+    }
 
     if (currentTableDiv) {
-        let tableFontSize = Math.max(0.5, instructionBox.clientWidth / currentTableWidth);
+        let tableFontSize = Math.max(0.1, instructionBox.clientWidth / currentTableWidth);
         tableFontSize = Math.round(tableFontSize * 1000) / 1000;
         console.log(tableFontSize);
 

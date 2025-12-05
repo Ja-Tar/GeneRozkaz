@@ -476,7 +476,60 @@ input::placeholder {
     display: block;
 }
 
-/* TEMPORARY MOBILE */
+/* SIZE CHANGES */
+
+@media only screen and (max-height: 900px) {
+    #help-box {
+        font-size: 15px !important;
+    }
+
+    body {
+        grid-template:
+            "top-box" 55px
+            "instruction" minmax(5%, 90%)
+            "bottom-box" minmax(9em, auto);
+    }
+}
+
+@media only screen and (max-height: 700px) and (orientation: landscape) {
+    #bottom-box {
+        display: none;
+    }
+
+    body {
+        grid-template:
+            "top-box" 55px
+            "instruction" minmax(5%, 90%);
+    }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    #help-box {
+        font-size: 10px !important;
+    }
+    
+    #nr21_40-96-input {
+        width: 210%;
+    }
+
+    body {
+        grid-template:
+            "top-box" 55px
+            "instruction" minmax(5%, 90%)
+            "bottom-box" minmax(1em, auto);
+    }
+}
+
+@media (max-width: 900px) {
+    #instruction-box {
+        font-size: 16px;
+    }
+
+    #help-box {
+        max-width: auto;
+        min-width: auto;
+    }
+}
 
 @media (max-width: 1200px) {
     #help-box h3 {
