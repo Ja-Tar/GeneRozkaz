@@ -418,48 +418,6 @@ function adjustTableSize() {
     }
 }
 
-// TOOLBAR ***
-
-const ToolbarState = Object.freeze({
-    CLOSED: 0,
-    OPEN: 1,
-});
-
-const toolbarGrid = document.getElementById("toolbar-inner-box");
-const sizeHolder = document.getElementById("size-holder");
-const toolbarHandle = document.getElementById("toolbar-handle");
-// TODO Add option to hold handle to adjust toolbar size
-
-function hideToolbar() {
-    sizeHolder.style.width = "0"
-
-    localStorage.setItem("toolbar-state", ToolbarState.CLOSED);
-    setTimeout(() => {
-        toolbarGrid.style.display = "none"
-    }, 510);
-}
-
-function showToolbar() {
-    toolbarGrid.style.display = "grid";
-
-    setTimeout(() => {
-        sizeHolder.style.width = "20vw"
-    }, 10);
-
-    localStorage.setItem("toolbar-state", ToolbarState.OPEN)
-}
-
-function toggleToolBar() {
-    const toolbarState = parseInt(localStorage.getItem("toolbar-state")) ?? ToolbarState.OPEN;
-
-    if (toolbarState) {
-        hideToolbar();
-    } else {
-        showToolbar();
-    }
-    setTimeout(adjustTableSize, 600)
-}
-
 // HELP BOX ***
 
 /**
