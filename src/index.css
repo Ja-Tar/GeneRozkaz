@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 :root {
-    --scale-instruction: 1;
+    --table-font-size: 1em;
     --toolbox-hight: 100%;
 }
 
@@ -16,12 +16,14 @@ body {
 
     margin-bottom: 0;
     margin-top: 0;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-areas: 
+    "instruction tool-box";
 }
 
 table {
     table-layout: fixed;
+    font-size: var(--table-font-size);
 }
 
 table,
@@ -55,12 +57,18 @@ tr:has(.overlay-disallowed) {
     padding-top: 0.5em;
     padding-left: 1.5em;
     padding-right: 5em;
-    font-size: small;
+    font-size: 0.81em;
 }
 
 input {
     border: none;
     border-bottom: 2px dotted black;
+    font-size: 1em;
+}
+
+input[type="time"] {
+    font-size: 1.09em;
+    
 }
 
 .top-info input {
@@ -73,8 +81,8 @@ table input[type="checkbox"] {
     -moz-appearance: none;
     background-color: #ffc000;
     border: 1px solid #000;
-    width: 14px;
-    height: 14px;
+    width: 1.08em;
+    height: 1.08em;
     padding-bottom: 5px;
 }
 
@@ -87,10 +95,11 @@ table input[type="checkbox"]:checked {
 
 .checkbox-col {
     line-height: 80%;
-    font-size: small;
+    font-size: 0.81em;
     font-weight: 700;
     padding-left: 0.8em;
     padding-right: 0.5em;
+    padding-bottom: 0.3em;
     width: 5%;
 }
 
@@ -99,12 +108,12 @@ table input[type="checkbox"]:checked {
 }
 
 .roz-content {
-    font-size: small;
+    font-size: 0.81em;
     padding-left: 1em;
 }
 
 .roz-content label {
-    font-size: smaller;
+    font-size: 0.83em;
     font-weight: normal;
 }
 
@@ -112,7 +121,7 @@ table input[type="checkbox"]:checked {
     outline: 5px auto Highlight;
 }
 
-div.inline {
+.inline {
     display: inline-flex;
     flex-direction: column;
     width: auto;
@@ -164,10 +173,6 @@ div.inline {
     width: 250%;
 }
 
-.inne-dl input {
-    width: 380%;
-}
-
 /* other */
 
 .tor-zamkniety td,
@@ -180,13 +185,16 @@ div.inline {
 }
 
 .normal-font {
-    font-size: small;
+    font-size: 1em;
     font-weight: normal;
 }
 
 .text-area textarea {
     text-align: justify;
     resize: none;
+    width: 100%;
+    height: 100%; 
+    box-sizing: border-box;
 }
 
 .text-area {
@@ -195,17 +203,15 @@ div.inline {
     box-sizing: border-box;
 }
 
-#instruction-box {
+.inne-dl {
     width: 100%;
 }
 
-.fill-page {
-    width: 700px;
+#instruction-box {
+    grid-area: instruction;
     padding-bottom: 5px;
     padding-top: 5px;
-    transform-origin: left top;
-    transition: scale 0.5s ease-in-out;
-    scale: var(--scale-instruction);
+    width: 100%;
 }
 
 /* section highlights */
@@ -246,9 +252,10 @@ input::placeholder {
 /* toolbar */
 
 #toolbar-box {
+    grid-area: tool-box;
     display: block;
     width: auto;
-    height: calc(var(--toolbox-hight) * var(--scale-instruction) + 5px);
+    height: calc(var(--toolbox-hight) + 5px);
 }
 
 #toolbar-flex {
@@ -436,16 +443,23 @@ input::placeholder {
 /* Z FIELD - ID GENERATION */
 
 #norm-Z {
-    padding-right: 0em;
+    padding-right: 1em;
+}
+
+.field-button {
+    display: flex;
+    gap: 1em;
 }
 
 #norm-Z-input {
-    width: 40%;
-    margin-right: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    height: fit-content;
 }
 
 #norm-Z-button {
     line-height: 0.9em;
+    white-space: nowrap;
 }
 
 #id-generator-dialog>*,
@@ -539,126 +553,4 @@ tfoot th {
 
 .table-head th {
     border-top: none;
-}
-
-@page {
-    size: A4 portrait;
-}
-
-/* OLD PRINT MODE */
-@media print {
-    :root {
-        --scale-instruction: 1;
-    }
-
-    body {
-        margin: 0;
-    }
-
-    #toolbar-box {
-        display: none;
-    }
-
-    table {
-        table-layout: fixed;
-        width: auto;
-    }
-
-    label {
-        font-size: medium !important;
-    }
-
-    tr {
-        break-after: avoid;
-        break-inside: avoid;
-        break-before: avoid;
-    }
-
-    td,
-    th {
-        font-size: large !important;
-        padding: 0.1vh 0.2em;
-    }
-
-    .table-head th {
-        font-size: 1.4em !important;
-    }
-
-    .fill-page {
-        scale: 1;
-        width: inherit;
-        padding: 0;
-    }
-
-    .post input {
-        width: 160px;
-    }
-
-    table input[type="checkbox"] {
-        width: 18px;
-        height: 18px;
-    }
-
-    tr.bottom-double-line {
-        break-after: page;
-    }
-
-    button {
-        display: none;
-    }
-
-    #norm-Z {
-        padding-right: 5em;
-    }
-
-    #norm-Z br {
-        display: none;
-    }
-
-    input:not([type="checkbox"]) {
-        background-color: transparent !important;
-        appearance: none !important;
-        -moz-appearance: textfield !important;
-        font-size: large !important;
-    }
-
-    #norm-Z-input {
-        width: 100%;
-        margin-right: inherit;
-    }
-
-    .bottom-double-line {
-        border-bottom-style: solid;
-        border-bottom-width: 1px;
-    }
-
-    .godz input {
-        font-family: Calibri, "Open Sans", sans-serif;
-        line-height: 1.2em;
-    }
-
-    .inne input,
-    .inne label,
-    .prz input,
-    .prz label {
-        width: 200%;
-    }
-
-    input[type="time"]:invalid,
-    input[type="time"]:disabled {
-        color: transparent;
-    }
-
-    .tor-zamkniety td,
-    .tor-zamkniety th {
-        background: #e8e8e8 padding-box;
-    }
-
-    .tor-zamkniety input {
-        background-color: #e8e8e8;
-    }
-
-    .overlay-disallowed {
-        display: none;
-    }
 }

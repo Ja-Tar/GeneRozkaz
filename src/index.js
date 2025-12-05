@@ -403,15 +403,16 @@ function checkForCheckedCheckboxes() {
 let tableWidth = 700;
 
 function adjustTableSize() {
-    const currentTableDiv = document.querySelector(".fill-page:not([style*='none'])");
+    const currentTableDiv = document.querySelector("table:not([style*='none'])");
     const instructionBox = document.getElementById("instruction-box");
 
     if (currentTableDiv) {
-        let tableScale = Math.max(1, instructionBox.clientWidth / tableWidth);
-        tableScale = Math.round(tableScale * 1000) / 1000;
+        let tableFontSize = Math.max(0.5, instructionBox.clientWidth / tableWidth);
+        tableFontSize = Math.round(tableFontSize * 1000) / 1000;
+        console.log(tableFontSize);
 
         requestAnimationFrame(() => {
-            document.documentElement.style.setProperty("--scale-instruction", tableScale);
+            document.documentElement.style.setProperty("--table-font-size", tableFontSize + "em");
             document.documentElement.style.setProperty("--toolbox-hight", currentTableDiv.clientHeight + "px");
         });
     }
