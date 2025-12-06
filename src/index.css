@@ -561,9 +561,7 @@ tfoot th {
     border: 0;
 }
 
-.table-head th {
-    border-top: none;
-}
+/* CSS FIXES */
 
 .ios-fix-right {
     border-right: none;
