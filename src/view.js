@@ -130,6 +130,38 @@ function adjustInneFieldAgain() {
     setTimeout(adjustInneField, 30);
 }
 
+// THEME BUTTON ***
+
+function setupTheme() {
+    let themeOverride = localStorage.getItem("theme-override");
+
+    if (!themeOverride) {
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            document.documentElement.dataset["theme"] = "dark";
+        } else {
+            document.documentElement.dataset["theme"] = "light";
+        }
+    } else {
+        document.documentElement.dataset["theme"] = themeOverride;
+    }
+}
+
+function toggleTheme() {
+    let themeOverride = localStorage.getItem("theme-override");
+
+    if (document.documentElement.dataset["theme"] === "dark") {
+        document.documentElement.dataset["theme"] = "light";
+        themeOverride = "light";
+    } else {
+        document.documentElement.dataset["theme"] = "dark";
+        themeOverride = "dark";
+    }
+
+    localStorage.setItem("theme-override", themeOverride);
+}
+
+document.getElementById("theme-button").addEventListener("click", toggleTheme)
+
 // START LOADING DATA ***
 
 cleanFields();
@@ -137,6 +169,7 @@ fillFields();
 adjustInneField();
 addEventListener("beforeprint", printingAdjustments);
 addEventListener("afterprint", adjustInneFieldAgain);
+setupTheme();
 
 setTimeout(() => {
     document.getElementById("loader").remove();
