@@ -2,12 +2,13 @@
 <html lang="pl">
 
 <head>
+    <link rel="preload" href="loader.css" as="style">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>GeneRozkaz - Rozkaz</title>
     <meta name="description" content="Generator online dla nowych kolejowych rozkazów pisemnych">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="loader.css">
+    <link rel="stylesheet" href="loader.css" />
     <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
     <link rel="shortcut icon" href="/favicons/favicon.ico" />
@@ -705,7 +706,8 @@
         </div>
     </div>
     <div id="button-box">
-        <button id="theme-button" class="button"><img src="./static/darkmode.svg"></button>
+        <button id="theme-button" class="button" title="Switch theme"><img src="./static/darkmode.svg"></button>
+        <button id="reset-button" class="button" title="Reset settings"><img src="./static/Siemens iX/hard-reset.svg"></button>
     </div>
 
     <script type="module" src="view.js" async defer></script>

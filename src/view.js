@@ -160,9 +160,26 @@ function toggleTheme() {
     localStorage.setItem("theme-override", themeOverride);
 }
 
-document.getElementById("theme-button").addEventListener("click", toggleTheme)
+document.getElementById("theme-button").addEventListener("click", toggleTheme);
+
+// RESET SETTINGS BUTTON **}
+
+function resetSettings() {
+    localStorage.clear();
+    document.getElementById("loader").style.display = "flex";
+    setupTheme();
+    hideLoaderAfterDelay();
+}
+
+document.getElementById("reset-button").addEventListener("click", resetSettings);
 
 // START LOADING DATA ***
+
+function hideLoaderAfterDelay() {
+    setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+    }, 500);
+}
 
 cleanFields();
 fillFields();
@@ -171,6 +188,4 @@ addEventListener("beforeprint", printingAdjustments);
 addEventListener("afterprint", adjustInneFieldAgain);
 setupTheme();
 
-setTimeout(() => {
-    document.getElementById("loader").remove();
-}, 500);
+hideLoaderAfterDelay();
