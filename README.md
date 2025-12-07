@@ -45,7 +45,7 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 
 
 # EN 🇬🇧
-Online generator for new Polish written orders
+Online generator for new Polish written orders for railways
 
 <img width="697" height="417" alt="obraz" src="https://github.com/user-attachments/assets/112305da-8c60-4c37-be8b-0692a6399099" />
 
