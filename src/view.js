@@ -130,6 +130,10 @@ function adjustInneFieldAgain() {
     setTimeout(adjustInneField, 30);
 }
 
+// PRINT BUTTON ***
+
+document.getElementById("print-button").addEventListener("click", () => print());
+
 // THEME BUTTON ***
 
 function setupTheme() {
