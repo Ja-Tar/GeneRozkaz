@@ -878,6 +878,18 @@ function resetNotNeededFields() {
     });
 }
 
+// AUTO DAY
+
+function setAutoDay() {
+    if (!SETTINGS["auto-date"]) return;
+    
+    const dateField = document.querySelector("input[id*='B-input'][class*='required']");
+    console.log(dateField.value);
+
+    const today = new Date();
+    dateField.valueAsDate = today;
+}
+
 // START LOADING DATA ***
 
 /**
@@ -925,8 +937,10 @@ loadInputTypes().then(() => {
             loadHelpTriggers();
             prepareIDGeneratorBox();
             loadSettingsFromStorage();
-            saveSettingsToStorage();
             prepareSettingsDialog();
+            
+            // FUNCTIONS THAT USE SETTINGS
+            setAutoDay();
 
             setTimeout(() => {
                 document.getElementById("loader").remove();
