@@ -130,6 +130,14 @@ function adjustInneFieldAgain() {
     setTimeout(adjustInneField, 30);
 }
 
+// HOME PAGE BUTTON ***
+
+function goToHomepage() {
+    window.location.href = "/";
+}
+
+document.getElementById("home-button").addEventListener("click", goToHomepage)
+
 // PRINT BUTTON ***
 
 document.getElementById("print-button").addEventListener("click", () => print());

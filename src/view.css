@@ -134,7 +134,7 @@ div.field:empty::before {
 
 .checkbox {
     background-color: #ffc000;
-    border: 0.15em solid var(--border-color-tick);
+    border: 0.1em solid var(--border-color-tick);
     width: var(--tick-size);
     height: var(--tick-size);
     margin: 3px;
