@@ -287,7 +287,7 @@ input::placeholder {
 #button-box {
     display: grid;
     grid: 
-    "check save" auto / 1fr 1fr;
+    "check save settings" auto / 1fr 1fr auto;
     gap: 1em;
     max-width: 800px;
     min-width: fit-content;
@@ -412,6 +412,25 @@ input::placeholder {
     background-color: lavender;
     border-color: initial;
     cursor: not-allowed;
+}
+
+/* SETTINGS BUTTON */
+
+#settings-button {
+    grid-area: settings;
+}
+
+/* ICON BUTTONS */
+
+.button:has(img) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2em 0.5em;
+}
+
+.button > img {
+    height: 2.8em;
 }
 
 /* Z FIELD - ID GENERATION */
