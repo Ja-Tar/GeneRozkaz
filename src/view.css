@@ -54,9 +54,9 @@ body {
 
 #main {
     display: grid;
-    grid-template: 
-        "instrukcja" 1fr
-        "buttons";
+    grid-template-areas: 
+        "buttons"
+        "instrukcja";
     gap: 0.8em;
 }
 
@@ -328,19 +328,20 @@ div.inne-dl {
 
 /* BUTTONS */
 
-#button-box {
+#button-box, .buttons-group {
     grid-area: buttons;
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: center;
-    align-content: center;
     gap: 1em;
 }
 
 .button {
     display: flex;
+    height: min-content;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     padding: 0.2em 0.25em;
     background-color: transparent;
     border: 0.3em solid var(--border-color);
@@ -357,6 +358,13 @@ div.inne-dl {
 
 .button > img {
     height: 3.5em;
+}
+
+.buttons-group {
+    padding: 0.2em 0.22em;
+    border: 0.11em solid var(--border-color);
+    border-radius: 0.5em;
+    gap: 0.6em;
 }
 
 /* CUSTOM BUTTON COLORS */

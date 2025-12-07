@@ -174,6 +174,22 @@ function toggleTheme() {
 
 document.getElementById("theme-button").addEventListener("click", toggleTheme);
 
+// ZOOM BUTTONS
+
+/**
+ * @param {number} count 
+ */
+function zoom(count) {
+    const styleFontSize = window.getComputedStyle(document.body).getPropertyValue('font-size');
+    let currentFontSize = parseFloat(styleFontSize);
+    currentFontSize += count;
+    document.body.style.fontSize = `${currentFontSize}px`
+    console.log(currentFontSize);
+}
+
+document.getElementById("zoom-in-button").addEventListener("click", () => zoom(1))
+document.getElementById("zoom-out-button").addEventListener("click", () => zoom(-1))
+
 // RESET SETTINGS BUTTON **}
 
 function resetSettings() {
