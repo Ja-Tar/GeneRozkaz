@@ -13,6 +13,7 @@ const FIELDS = {
 // DEFAULT SETTINGS
 const SETTINGS = {
     "auto-date": 1,
+    "issuer-id": ""
 }
 
 // See schema !!!
@@ -771,7 +772,7 @@ function loadSettingsFromStorage() {
     for (const settingName in SETTINGS) {
         let settingValue = localStorage.getItem(settingName);
         const parsedValue = parseInt(settingValue);
-        settingValue = parsedValue === NaN ? settingValue : parsedValue;
+        settingValue = isNaN(parsedValue) ? settingValue : parsedValue;
 
         if (settingValue === null) {
             settingValue = SETTINGS[settingName];
@@ -889,6 +890,10 @@ function setAutoDay() {
     const today = new Date();
     dateField.valueAsDate = today;
 }
+
+//| AUTO FILL ISSUER ID
+
+
 
 // START LOADING DATA ***
 
