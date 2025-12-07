@@ -622,15 +622,6 @@ function triggerHelpInfo() {
     }
 }
 
-// BUTTON FOCUS FIX ***
-
-/**
- * @param {Event} event 
- */
-function stopFocus(event) {
-    event.preventDefault();
-}
-
 // GENERATE FIELD "Z" (ID) ***
 
 function prepareIDGeneratorBox() {
@@ -676,7 +667,6 @@ function addTabIndexToTable() {
 
 const saveButton = document.getElementById("save-written-order-button");
 saveButton.addEventListener("click", openViewPage);
-saveButton.addEventListener('mousedown', stopFocus)
 
 function openViewPage() {
     const instructionBox = document.getElementById('instruction-box')
@@ -755,7 +745,7 @@ function getJSONFromFields() {
 
 /**
  * @param {NodeListOf<Element>} inputFields 
- * @returns {{"fieldsName": "fieldContent"}}
+ * @returns {{"<fieldName>": "<fieldContent>"}}
  */
 function collectFieldsData(inputFields) {
     const fieldsData = {};
@@ -768,6 +758,41 @@ function collectFieldsData(inputFields) {
         }
     });
     return fieldsData;
+}
+
+// SETTINGS ***
+
+const SETTINGS = {
+    "auto-date": 1,
+}
+
+function loadSettingsFromStorage() {
+    for (const settingName in SETTINGS) {
+        let settingValue = localStorage.getItem(settingName);
+        const parsedValue = parseInt(settingValue);
+        settingValue = parsedValue ? parsedValue : settingValue;
+
+        if (settingValue === null) {
+            settingValue = SETTINGS[settingName];
+        } else {
+            SETTINGS[settingName] = settingValue;
+        }
+    }
+}
+
+function prepareSettingsDialog() {
+    const dialog = document.getElementById("settings-dialog");
+    const openSettingsButton = document.getElementById("settings-button");
+
+    openSettingsButton.addEventListener("click", () => {
+        dialog.showModal();
+    });
+}
+
+function saveSettingsToStorage() {
+    for (const settingName in SETTINGS) {
+        localStorage.setItem(settingName, SETTINGS[settingName]);
+    }
 }
 
 // RESET FIELDS ***
@@ -845,7 +870,10 @@ loadInputTypes().then(() => {
 
         loadHelpData(ROZKAZ_TYPE.NORMAL).then(() => {
             loadHelpTriggers();
-            prepareIDGeneratorBox()
+            prepareIDGeneratorBox();
+            loadSettingsFromStorage();
+            saveSettingsToStorage();
+            prepareSettingsDialog();
 
             setTimeout(() => {
                 document.getElementById("loader").remove();
