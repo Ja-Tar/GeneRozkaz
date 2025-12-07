@@ -10,6 +10,11 @@ const FIELDS = {
     inputsDOM: null,
 };
 
+// DEFAULT SETTINGS
+const SETTINGS = {
+    "auto-date": 1,
+}
+
 // See schema !!!
 let VALIDATION = {};
 let HELP = {};
@@ -760,17 +765,13 @@ function collectFieldsData(inputFields) {
     return fieldsData;
 }
 
-// SETTINGS ***
-
-const SETTINGS = {
-    "auto-date": 1,
-}
+// SETTINGS STORAGE ***
 
 function loadSettingsFromStorage() {
     for (const settingName in SETTINGS) {
         let settingValue = localStorage.getItem(settingName);
         const parsedValue = parseInt(settingValue);
-        settingValue = parsedValue ? parsedValue : settingValue;
+        settingValue = parsedValue === NaN ? settingValue : parsedValue;
 
         if (settingValue === null) {
             settingValue = SETTINGS[settingName];
@@ -780,20 +781,72 @@ function loadSettingsFromStorage() {
     }
 }
 
+function saveSettingsToStorage() {
+    for (const settingName in SETTINGS) {
+        localStorage.setItem(settingName, SETTINGS[settingName]);
+    }
+}
+
+// SETTINGS DIALOG ***
+
 function prepareSettingsDialog() {
     const dialog = document.getElementById("settings-dialog");
     const openSettingsButton = document.getElementById("settings-button");
+
+    callOnDialogInputs(loadDialogInput);
 
     openSettingsButton.addEventListener("click", () => {
         dialog.showModal();
     });
 }
 
-function saveSettingsToStorage() {
+/**
+ * @param {Function} inputElementFunction 
+ */
+function callOnDialogInputs(inputElementFunction) {
+    const dialog = document.getElementById("settings-dialog");
+
     for (const settingName in SETTINGS) {
-        localStorage.setItem(settingName, SETTINGS[settingName]);
+        const inputElement = dialog.querySelector(`[id*="${settingName}"`);
+        if (inputElement?.tagName === "INPUT") {
+            inputElementFunction(inputElement, settingName)
+        }
     }
 }
+
+/**
+ * @param {Element} inputElement 
+ * @param {string} settingName 
+ */
+function loadDialogInput(inputElement, settingName) {
+    if (inputElement.getAttribute("type") === "checkbox") {
+        inputElement.checked = Boolean(SETTINGS[settingName]);
+    } else {
+        inputElement.value = SETTINGS[settingName];
+    }
+}
+
+/**
+ * @param {Element} inputElement 
+ * @param {string} settingName 
+ */
+function saveDialogInput(inputElement, settingName) {
+    if (inputElement.getAttribute("type") === "checkbox") {
+        SETTINGS[settingName] = + inputElement.checked;
+    } else {
+        SETTINGS[settingName] = inputElement.value;
+    }
+}
+
+function saveSettingsFromDialog() {
+    const dialog = document.getElementById("settings-dialog");
+
+    callOnDialogInputs(saveDialogInput);
+    saveSettingsToStorage();
+    dialog.close();
+}
+
+document.getElementById("save-settings").addEventListener("click", saveSettingsFromDialog);
 
 // RESET FIELDS ***
 

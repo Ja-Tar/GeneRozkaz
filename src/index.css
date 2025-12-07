@@ -473,6 +473,12 @@ dialog ::placeholder {
     grid-column: 2;
 }
 
+dialog > button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 /* Z FIELD - ID GENERATION */
 
 #norm-Z {
@@ -494,12 +500,6 @@ dialog ::placeholder {
     font-size: 1em;
     line-height: 0.9em;
     white-space: nowrap;
-}
-
-#set-id {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
 }
 
 /* SIZE CHANGES */
