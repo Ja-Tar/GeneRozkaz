@@ -896,7 +896,13 @@ function setAutoDay() {
 
 //| AUTO FILL ISSUER ID
 
+function autoFillIssuerId() {
+    if (!SETTINGS["issuer-id"]) return;
+    // TODO When connected to Username in TD2 - disable setting
 
+    const issuerIdField = document.querySelector("input[id*='W-input'][class*='required']");
+    issuerIdField.value = SETTINGS["issuer-id"];
+}
 
 // START LOADING DATA ***
 
@@ -949,6 +955,7 @@ loadInputTypes().then(() => {
             
             // FUNCTIONS THAT USE SETTINGS
             setAutoDay();
+            autoFillIssuerId();
 
             setTimeout(() => {
                 document.getElementById("loader").remove();

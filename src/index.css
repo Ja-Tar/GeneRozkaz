@@ -470,6 +470,7 @@ dialog ::placeholder {
 
 .inner-dialog select,
 .inner-dialog input {
+    justify-self: center;
     grid-column: 2;
 }
 
