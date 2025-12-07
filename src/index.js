@@ -394,6 +394,7 @@ function removeDisallowedOverlay(clickedNumber) {
     }
 }
 
+// REMOVE Not needed anymore
 function checkForCheckedCheckboxes() {
     const checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
 
@@ -771,8 +772,11 @@ function collectFieldsData(inputFields) {
 function loadSettingsFromStorage() {
     for (const settingName in SETTINGS) {
         let settingValue = localStorage.getItem(settingName);
-        const parsedValue = parseInt(settingValue);
-        settingValue = isNaN(parsedValue) ? settingValue : parsedValue;
+        if (typeof SETTINGS[settingName] === "number") {
+            settingValue = parseInt();
+        } else if (!typeof SETTINGS[settingName] === "string") {
+            throw new TypeError(`Wrong setting type!!! ${settingName}`);
+        }
 
         if (settingValue === null) {
             settingValue = SETTINGS[settingName];
@@ -885,7 +889,6 @@ function setAutoDay() {
     if (!SETTINGS["auto-date"]) return;
     
     const dateField = document.querySelector("input[id*='B-input'][class*='required']");
-    console.log(dateField.value);
 
     const today = new Date();
     dateField.valueAsDate = today;
