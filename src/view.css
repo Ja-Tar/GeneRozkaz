@@ -52,13 +52,24 @@ body {
     flex-direction: column;
 }
 
+#main {
+    display: grid;
+    grid-template: 
+        "instrukcja" 1fr
+        "buttons";
+    gap: 0.8em;
+}
+
+#instruction-box {
+    grid-area: instrukcja;
+}
+
 #divided-view {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-        "gora dol"
-        "buttons";
+        "gora dol";
     gap: 3%;
 }
 
@@ -97,7 +108,7 @@ td {
 }
 
 .top-info td {
-    padding-top: 0.5em;
+    padding-top: 0.4em;
     padding-left: 1.5em;
     padding-right: 3em;
     line-height: 0.9;
@@ -222,7 +233,7 @@ div.inne-dl {
 }
 
 @media print {
-    :root {
+    :root[data-theme="dark"] {
         --text-color: black;
         --border-color: black;
         --border-color-tick: black;
@@ -241,6 +252,10 @@ div.inne-dl {
         margin-bottom: 0;
         margin-top: 0;
         font-size: 11.5pt;
+    }
+
+    #main {
+        gap: 0;
     }
 
     #divided-view {
@@ -272,8 +287,7 @@ div.inne-dl {
         grid-template-rows: 1fr 1fr;
         grid-template-areas: 
             "gora"
-            "dol"
-            "buttons";
+            "dol";
         gap: 1%;
     }
 }
