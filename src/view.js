@@ -174,7 +174,7 @@ function toggleTheme() {
 
 document.getElementById("theme-button").addEventListener("click", toggleTheme);
 
-// RESET SETTINGS BUTTON **}
+// RESET SETTINGS BUTTON ***
 
 function resetSettings() {
     localStorage.clear();

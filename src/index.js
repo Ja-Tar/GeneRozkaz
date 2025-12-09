@@ -366,9 +366,11 @@ function addDisallowedOverlay(clickedNumber) {
         if (!(itemElement instanceof Element)) {
             return;
         }
-        const overlayDiv = document.createElement("div");
-        overlayDiv.classList.add("overlay-disallowed")
-        itemElement.children[0].appendChild(overlayDiv);
+        restrictKeyboardAccess(itemElement);
+        for (let l = 0; l < itemElement.children.length; l++) {
+            const child = itemElement.children[l];
+            child.classList.add("overlay-disallowed");
+        }
     }
 }
 
@@ -390,28 +392,29 @@ function removeDisallowedOverlay(clickedNumber) {
         if (!(itemElement instanceof Element)) {
             return;
         }
-        itemElement.querySelector(".overlay-disallowed").remove();
+        enableKeyboardAccess(itemElement);
+        for (let l = 0; l < itemElement.children.length; l++) {
+            const child = itemElement.children[l];
+            child.classList.remove("overlay-disallowed");
+        }
     }
 }
 
-// REMOVE Not needed anymore
-function checkForCheckedCheckboxes() {
-    const checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
+/**
+ * @param {Element} section 
+ */
+function restrictKeyboardAccess(section) {
+    const checkbox = section.querySelector("input[type='checkbox'");
+    checkbox.setAttribute("tabindex", "-1");
 
-    highlightCheckedFields();
+}
 
-    function highlightCheckedFields() {
-        for (let i = 0; i < checkboxes.length; i++) {
-            const boxID = formatSectionIdFromId(checkboxes[i].id);
-            /** @type {string[] | null} */
-            const neededFields = VALIDATION[boxID]?.fieldsNeeded;
-            if (neededFields) {
-                highlightFields(neededFields, boxID);
-            } else {
-                console.warn(`Fields to highlight in ${boxID} not found`);
-            }
-        }
-    }
+/**
+ * @param {Element} section 
+ */
+function enableKeyboardAccess(section) {
+    const checkbox = section.querySelector("input[type='checkbox'");
+    checkbox.removeAttribute("tabindex");
 }
 
 // AUTO RESIZE ***
