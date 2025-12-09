@@ -83,7 +83,6 @@ async function loadInputTypes() {
         }
         FIELDS.inputTypes.push(domChild.classList[1]);
     }
-    console.debug(FIELDS.inputTypes);
 }
 
 /**
@@ -435,7 +434,7 @@ function adjustTableSize() {
     if (currentTableDiv) {
         let tableFontSize = Math.max(0.1, instructionBox.clientWidth / currentTableWidth);
         tableFontSize = Math.round(tableFontSize * 1000) / 1000;
-        console.log(tableFontSize);
+        console.debug("Font size:", tableFontSize);
 
         requestAnimationFrame(() => {
             document.documentElement.style.setProperty("--table-font-size", tableFontSize + "em");
@@ -776,7 +775,7 @@ function loadSettingsFromStorage() {
     for (const settingName in SETTINGS) {
         let settingValue = localStorage.getItem(settingName);
         if (typeof SETTINGS[settingName] === "number") {
-            settingValue = parseInt();
+            settingValue = parseInt(settingValue);
         } else if (!typeof SETTINGS[settingName] === "string") {
             throw new TypeError(`Wrong setting type!!! ${settingName}`);
         }
@@ -785,6 +784,7 @@ function loadSettingsFromStorage() {
             settingValue = SETTINGS[settingName];
         } else {
             SETTINGS[settingName] = settingValue;
+            console.debug(`Setting: ${settingName}, type: ${typeof settingValue}; V:`, settingValue, );
         }
     }
 }
@@ -897,7 +897,7 @@ function setAutoDay() {
     dateField.valueAsDate = today;
 }
 
-//| AUTO FILL ISSUER ID
+// AUTO FILL ISSUER ID
 
 function autoFillIssuerId() {
     if (!SETTINGS["issuer-id"]) return;
