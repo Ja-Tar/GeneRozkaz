@@ -18,16 +18,15 @@ function setupTheme() {
 }
 
 function toggleTheme() {
-    let themeOverride = localStorage.getItem("theme-override");
+    let themeOverride;
 
     if (document.documentElement.dataset.theme === "dark") {
-        document.documentElement.dataset.theme = "light";
         themeOverride = "light";
     } else {
-        document.documentElement.dataset.theme = "dark";
         themeOverride = "dark";
     }
 
+    document.documentElement.dataset.theme = themeOverride;
     localStorage.setItem("theme-override", themeOverride);
     updateAppBackground(themeOverride);
 }
