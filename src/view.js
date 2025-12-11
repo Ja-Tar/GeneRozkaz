@@ -173,6 +173,5 @@ addEventListener("beforeprint", printingAdjustments);
 addEventListener("afterprint", adjustInneFieldAgain);
 
 setupTheme();
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", setupTheme)
 
 hideLoaderAfterDelay();

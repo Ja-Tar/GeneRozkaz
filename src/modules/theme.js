@@ -1,3 +1,5 @@
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", setupTheme);
+
 function setupTheme() {
     let themeOverride = localStorage.getItem("theme-override");
 
@@ -31,6 +33,22 @@ function toggleTheme() {
 }
 
 /**
+ * 
+ * @param {string} themeName 
+ */
+function selectTheme(themeName) {
+    console.log(themeName)
+    if (themeName) {
+        document.documentElement.dataset.theme = themeName;
+        localStorage.setItem("theme-override", themeName);
+        updateAppBackground(themeName);
+    } else {
+        localStorage.removeItem("theme-override");
+        setupTheme();
+    }
+}
+
+/**
  * @param {string} themeOverride theme dataset string
  */
 function updateAppBackground(themeOverride) {
@@ -42,4 +60,4 @@ function updateAppBackground(themeOverride) {
     element.setAttribute("content", color);
 }
 
-export {setupTheme, toggleTheme}
+export {setupTheme, toggleTheme, selectTheme}

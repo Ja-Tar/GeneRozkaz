@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="index.css">
     <script src="https://cdn.jsdelivr.net/npm/jsurl2@2.2.0/dist/index.js"
         integrity="sha256-/gTd9Y+SupxIun/6x21L1pIuDoAkMajT1OS/DfhEQBE=" crossorigin="anonymous"></script>
+    <meta name="theme-color" content="#fff" />
 </head>
 
 <body>
@@ -448,6 +449,13 @@
             <input id="auto-date-input" type="checkbox">
             <label for="issuer-id-input">Stały ID nadawcy:</label>
             <input id="issuer-id-input" type="text">
+            <hr>
+            <label for="theme-selection">Wybierz motyw</label>
+            <select id="theme-selection">
+                <option selected value="">Auto</option>
+                <option value="light">Jasny</option>
+                <option value="dark">Ciemny</option>
+            </select>
         </div>
         <button class="large save" id="save-settings">Zapisz</button>
     </dialog>

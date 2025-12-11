@@ -1,4 +1,5 @@
 import { getSection, formatSectionName, formatInstructionIdFromId, formatFieldIdFromId, getField } from "./modules/fields.js"
+import { setupTheme, selectTheme } from "./modules/theme.js";
 
 const mainApiUrl = window.location.origin + "/api";
 
@@ -864,7 +865,7 @@ function resetNotNeededFields() {
         "norm-B-input",
         "norm-W-input"
     ]
-    
+
     const fields = instructionBox.querySelectorAll("input:not([type='checkbox']), textarea");
     fields.forEach(field => {
         if (!skipList.includes(field.id)) {
@@ -902,6 +903,10 @@ function autoFillIssuerId() {
     issuerIdField.value = SETTINGS["issuer-id"];
 }
 
+// THEME SELECTION
+
+document.getElementById("theme-selection").addEventListener("change", (ev) => selectTheme(ev.target.value))
+
 // START LOADING DATA ***
 
 /**
@@ -934,6 +939,7 @@ function limitFunction(fn, wait = 100) {
     return limited;
 }
 
+setupTheme();
 loadInputTypes().then(() => {
     resetNotNeededFields(); // TODO: When adding simulator support change it
     addInputsToTables(ROZKAZ_ELEMENT_CLASS.NORMAL);

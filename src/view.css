@@ -378,9 +378,3 @@ div.inne-dl {
     filter: invert(14%) sepia(87%) saturate(4468%) hue-rotate(355deg) brightness(90%) contrast(121%);
     /* #e70000 */
 }
-
-/* LOADER DARK MODE FIXES */
-
-#loader {
-    background-color: var(--background);
-}

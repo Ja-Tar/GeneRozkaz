@@ -5,6 +5,38 @@
     --toolbox-hight: 100%;
 }
 
+:root[data-theme="light"] {
+    --text-color: black;
+    --border-color: black;
+    --border-color-tick: black;
+    --border-color-dots: black;
+    --background: white;
+    --background-zamkniety: lightgray;
+    --background-disabled: white;
+    --background-field: rgb(255, 255, 255);
+    --backdrop: rgba(0, 0, 0, 0.1);
+    --required: lightcoral;
+    --optional: lightblue;
+}
+
+:root[data-theme="dark"] {
+    --text-color: white;
+    --border-color: white;
+    --border-color-tick: #777777;
+    --border-color-dots: #929292;
+    --background: #151515;
+    --background-zamkniety: #3d3d3d;
+    --background-disabled: #151515;
+    --background-field: #000000;
+    --backdrop: rgba(100, 100, 100, 0.3);
+    --required: #971313;
+    --optional: #296477;
+    
+    /* & img[src$=".svg"] {
+        filter: invert(50%) brightness(219%) contrast(100%);
+    } */
+}
+
 body {
     font-family: Calibri, "Open Sans", sans-serif;
     font-optical-sizing: auto;
@@ -13,6 +45,8 @@ body {
     font-variation-settings:
         "wdth" 100;
     font-size-adjust: cap-height 0.62;
+    color: var(--text-color);
+    background-color: var(--background);
 
     height: 100dvh;
     margin-bottom: 0;
@@ -33,7 +67,7 @@ table {
 
 th,
 td {
-    border: thin solid black;
+    border: thin solid var(--border-color);
     border-collapse: collapse;
     padding: 0.05em 0.2em;
     font-weight: normal;
@@ -57,9 +91,16 @@ td {
 
 input {
     border: none;
-    border-bottom: 2px dotted black;
+    border-bottom: 2px dotted var(--border-color-dots);
     border-radius: 0;
     font-size: 1em;
+    color: var(--text-color);
+    background-color: var(--background-field);
+}
+
+input:disabled,
+textarea:disabled {
+    background-color: var(--background-disabled);
 }
 
 textarea {
@@ -95,7 +136,7 @@ table input[type="checkbox"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     background-color: #ffc000;
-    border: 1px solid #000;
+    border: 1px solid var(--border-color-tick);
     width: 1.08em;
     height: 1.08em;
     padding-bottom: 5px;
@@ -192,11 +233,11 @@ table input[type="checkbox"]:checked {
 
 .tor-zamkniety td,
 .tor-zamkniety th {
-    background: lightgray padding-box;
+    background: var(--background-zamkniety) padding-box;
 }
 
 .tor-zamkniety input {
-    background-color: lightgray;
+    background-color: var(--background-zamkniety);
 }
 
 .normal-font {
@@ -232,11 +273,11 @@ table input[type="checkbox"]:checked {
 /* section highlights */
 
 .required:invalid {
-    background-color: lightcoral;
+    background-color: var(--required);
 }
 
 input.optional:invalid {
-    background-color: lightblue;
+    background-color: var(--optional);
 }
 
 input[type="text"]:disabled {
@@ -244,7 +285,7 @@ input[type="text"]:disabled {
 }
 
 input::placeholder {
-    color: #000;
+    color: var(--text-color);
     text-decoration: none;
 }
 
@@ -306,7 +347,7 @@ input::placeholder {
     flex-direction: column;
     font-size: larger;
 
-    border: 3px double black;
+    border: 3px double var(--border-color);
     padding: 0.5em;
     margin-bottom: 5px;
     max-width: 800px;
@@ -434,6 +475,15 @@ input::placeholder {
 
 /* DIALOG */
 
+dialog {
+    background-color: var(--background);
+    color: var(--text-color);
+}
+
+::backdrop {
+    background-color: var(--backdrop);
+}
+
 .large > *,
 .large select,
 .large input {
@@ -463,7 +513,7 @@ dialog ::placeholder {
     display: grid;
     column-gap: 1em;
     row-gap: 0.2em;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.7em;
     align-items: center;
 }
 
@@ -471,6 +521,11 @@ dialog ::placeholder {
 .inner-dialog input {
     justify-self: center;
     grid-column: 2;
+}
+
+.inner-dialog hr {
+    grid-column: span 2;
+    width: 100%;
 }
 
 dialog > button {
