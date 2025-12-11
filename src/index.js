@@ -1,4 +1,4 @@
-import { getSection, formatSectionName, formatSectionIdFromId, formatInstructionIdFromId, formatFieldIdFromId, getField } from "./modules/fields.js"
+import { getSection, formatSectionName, formatInstructionIdFromId, formatFieldIdFromId, getField } from "./modules/fields.js"
 
 const mainApiUrl = window.location.origin + "/api";
 
@@ -418,7 +418,7 @@ function enableKeyboardAccess(section) {
 
 // AUTO RESIZE ***
 
-let tableWidth = 650;
+const tableWidth = 650;
 
 function adjustTableSize() {
     const currentTableDiv = document.querySelector("table:not([style*='none'])");
@@ -437,8 +437,8 @@ function adjustTableSize() {
         console.debug("Font size:", tableFontSize);
 
         requestAnimationFrame(() => {
-            document.documentElement.style.setProperty("--table-font-size", tableFontSize + "em");
-            document.documentElement.style.setProperty("--toolbox-hight", currentTableDiv.clientHeight + "px");
+            document.documentElement.style.setProperty("--table-font-size", `${tableFontSize}em`);
+            document.documentElement.style.setProperty("--toolbox-hight", `${currentTableDiv.clientHeight}px`);
         });
     }
 }
@@ -772,7 +772,7 @@ function collectFieldsData(inputFields) {
 // SETTINGS STORAGE ***
 
 function loadSettingsFromStorage() {
-    for (const settingName in SETTINGS) {
+    for (const settingName of Object.keys(SETTINGS)) {
         let settingValue = localStorage.getItem(settingName);
         if (typeof SETTINGS[settingName] === "number") {
             settingValue = parseInt(settingValue);
@@ -790,7 +790,7 @@ function loadSettingsFromStorage() {
 }
 
 function saveSettingsToStorage() {
-    for (const settingName in SETTINGS) {
+    for (const settingName of Object.keys(SETTINGS)) {
         localStorage.setItem(settingName, SETTINGS[settingName]);
     }
 }
@@ -814,7 +814,7 @@ function prepareSettingsDialog() {
 function callOnDialogInputs(inputElementFunction) {
     const dialog = document.getElementById("settings-dialog");
 
-    for (const settingName in SETTINGS) {
+    for (const settingName of Object.keys(SETTINGS)) {
         const inputElement = dialog.querySelector(`[id*="${settingName}"`);
         if (inputElement?.tagName === "INPUT") {
             inputElementFunction(inputElement, settingName)
@@ -840,7 +840,7 @@ function loadDialogInput(inputElement, settingName) {
  */
 function saveDialogInput(inputElement, settingName) {
     if (inputElement.getAttribute("type") === "checkbox") {
-        SETTINGS[settingName] = + inputElement.checked;
+        SETTINGS[settingName] = Number(inputElement.checked);
     } else {
         SETTINGS[settingName] = inputElement.value;
     }
@@ -875,9 +875,8 @@ function resetNotNeededFields() {
             field.value = '';
         }
 
-        if (!!disableSkipList.filter(option => field.id.startsWith(option))) {
-            field.disabled = true;
-        }
+        // Disable all fields - it changes later when highlighting fields
+        field.disabled = true;
     });
 
     const checkboxes = instructionBox.querySelectorAll("table input[type='checkbox']");
