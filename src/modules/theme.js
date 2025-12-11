@@ -36,7 +36,6 @@ function toggleTheme() {
  * @param {string} themeName 
  */
 function selectTheme(themeName) {
-    console.log(themeName)
     if (themeName) {
         document.documentElement.dataset.theme = themeName;
         localStorage.setItem("theme-override", themeName);
