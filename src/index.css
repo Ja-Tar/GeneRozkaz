@@ -31,6 +31,7 @@
     --backdrop: rgba(100, 100, 100, 0.3);
     --required: #971313;
     --optional: #296477;
+    /* TODO: Fix some colors !!! */
     
     /* & img[src$=".svg"] {
         filter: invert(50%) brightness(219%) contrast(100%);
