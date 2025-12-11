@@ -71,12 +71,12 @@ function adjustInneField() {
         let nextElement = inneFieldDivs.item(i + 1);
 
         const textToCheck = element.innerText.split(" ");
-        for (let i = textToCheck.length - 1; i >= 0; i--) {
-            const word = textToCheck[i];
+        for (let l = textToCheck.length - 1; l >= 0; l--) {
+            const word = textToCheck[l];
             const fontSize = parseFloat(getComputedStyle(element).fontSize);
             if (element.clientHeight > elementHight) {
                 if (!nextElement) createFieldInneElement(inneFieldDivs[0].parentElement);
-                nextElement.textContent = `${word}${i === 1 ? "" : " " + nextElement.textContent}`;
+                nextElement.textContent = `${word}${l === 1 ? "" : " " + nextElement.textContent}`;
                 element.textContent = element.textContent.substring(0, element.textContent.trimEnd().lastIndexOf(" "));
             }
         }
@@ -103,12 +103,12 @@ function printingAdjustments() {
         let nextElement = inneFieldDivs.item(i + 1)
 
         const textToCheck = element.innerText.split(" ");
-        for (let i = textToCheck.length - 1; i >= 0; i--) {
-            const word = textToCheck[i];
+        for (let l = textToCheck.length - 1; l >= 0; l--) {
+            const word = textToCheck[l];
             const textLength = element.innerText.length;
             if (textLength > 80) {
                 if (!nextElement) createFieldInneElement(inneFieldDivs[0].parentElement);
-                nextElement.textContent = `${word}${i === 1 ? "" : " " + nextElement.textContent}`;
+                nextElement.textContent = `${word}${l === 1 ? "" : " " + nextElement.textContent}`;
                 element.textContent = element.textContent.substring(0, element.textContent.trimEnd().lastIndexOf(" "));
             }
         }
