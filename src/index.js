@@ -776,12 +776,12 @@ function loadSettingsFromStorage() {
         let settingValue = localStorage.getItem(settingName);
         if (typeof SETTINGS[settingName] === "number") {
             settingValue = parseInt(settingValue);
-        } else if (!typeof SETTINGS[settingName] === "string") {
+        } else if (typeof SETTINGS[settingName] !== "string") {
             throw new TypeError(`Wrong setting type!!! ${settingName}`);
         }
 
-        if (settingValue === null) {
-            settingValue = SETTINGS[settingName];
+        if (!settingValue || isNaN(settingValue)) {
+            localStorage.setItem(settingName, SETTINGS[settingName]);
         } else {
             SETTINGS[settingName] = settingValue;
             console.debug(`Setting: ${settingName}, type: ${typeof settingValue}; V:`, settingValue, );
