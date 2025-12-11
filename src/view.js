@@ -181,7 +181,6 @@ function toggleTheme() {
  */
 function updateAppBackground(themeOverride) {
     const element = document.querySelector("meta[name='theme-color'");
-    console.log(themeOverride, element);
     let color = "#fff";
     if (themeOverride === "dark") {
         color = "#151515";

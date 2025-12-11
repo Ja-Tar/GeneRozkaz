@@ -864,11 +864,7 @@ function resetNotNeededFields() {
         "norm-B-input",
         "norm-W-input"
     ]
-
-    const disableSkipList = [
-        "norm"
-    ]
-
+    
     const fields = instructionBox.querySelectorAll("input:not([type='checkbox']), textarea");
     fields.forEach(field => {
         if (!skipList.includes(field.id)) {
