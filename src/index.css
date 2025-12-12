@@ -13,10 +13,28 @@
     --background: white;
     --background-zamkniety: lightgray;
     --background-disabled: white;
-    --background-field: rgb(255, 255, 255);
+    --background-field: white;
+    --background-field-optional: white;
     --backdrop: rgba(0, 0, 0, 0.1);
+
+    /* FIELD COLORS */
     --required: lightcoral;
     --optional: lightblue;
+
+    /* BUTTON COLORS */
+    --check-main: plum;
+    --check-hover: rgba(221, 160, 221, 0.58);
+    --check-active: rgb(221, 137, 221);
+
+    --save-main: lightgreen;
+    --save-hover: rgba(144, 238, 144, 0.58);
+    --save-active: rgb(113, 241, 113);
+
+    --cancel-main: lightsalmon;
+    --cancel-hover: rgba(255, 160, 122, 0.58);
+    --cancel-active: rgb(255, 130, 80);
+
+    --disabled-main: lavender;
 }
 
 :root[data-theme="dark"] {
@@ -27,12 +45,30 @@
     --background: #151515;
     --background-zamkniety: #3d3d3d;
     --background-disabled: #151515;
-    --background-field: #000000;
+    --background-field: #97131318;
+    --background-field-optional: #29647718;
     --backdrop: rgba(100, 100, 100, 0.3);
+
+    /* FIELD COLORS */
     --required: #971313;
     --optional: #296477;
-    /* TODO: Fix some colors !!! */
     
+    /* BUTTON COLORS */
+    /* TODO: ADD MORE COLORS */
+    /* --check-main: plum;
+    --check-hover: rgba(221, 160, 221, 0.58);
+    --check-active: rgb(221, 137, 221); */
+
+    --save-main: #148014;
+    --save-hover: #90ee9094;
+    --save-active: #11b111;
+
+    /* --cancel-main: lightsalmon;
+    --cancel-hover: rgba(255, 160, 122, 0.58);
+    --cancel-active: rgb(255, 130, 80); */
+
+    --disabled-main: #242427;
+
     /* & img[src$=".svg"] {
         filter: invert(50%) brightness(219%) contrast(100%);
     } */
@@ -99,6 +135,10 @@ input {
     background-color: var(--background-field);
 }
 
+input.optional {
+    background-color: var(--background-field-optional);
+}
+
 input:disabled,
 textarea:disabled {
     background-color: var(--background-disabled);
@@ -137,7 +177,7 @@ table input[type="checkbox"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     background-color: #ffc000;
-    border: 1px solid var(--border-color-tick);
+    border: 0.1em solid var(--border-color-tick);
     width: 1.08em;
     height: 1.08em;
     padding-bottom: 5px;
@@ -307,6 +347,10 @@ input::placeholder {
     cursor: not-allowed;
 }
 
+.checkbox-col.overlay-disallowed::after {
+    background-size: 100% auto;
+}
+
 .overlay-disallowed {
     position: relative;
 }
@@ -412,45 +456,45 @@ input::placeholder {
 
 .check {
     grid-area: check;
-    background-color: plum;
+    background-color: var(--check-main);
 }
 
 .check:hover {
-    background-color: rgba(221, 160, 221, 0.58);
+    background-color: var(--check-hover);
 }
 
 .check:active {
-    background-color: rgb(221, 137, 221);
+    background-color: var(--check-active);
 }
 
 .save {
     grid-area: save;
-    background-color: lightgreen;
+    background-color: var(--save-main);
 }
 
 .save:hover {
-    background-color: rgba(144, 238, 144, 0.58);
+    background-color: var(--save-hover);
 }
 
 .save:active {
-    background-color: rgb(113, 241, 113);
+    background-color: var(--save-active);
 }
 
 .cancel {
     grid-area: cancel;
-    background-color: lightsalmon;
+    background-color: var(--cancel-main);
 }
 
 .cancel:hover {
-    background-color: rgba(255, 160, 122, 0.58);
+    background-color: var(--cancel-hover);
 }
 
-.cancel {
-    background-color: rgb(255, 130, 80);
+.cancel:active {
+    background-color: var(--cancel-active);
 }
 
 .button:disabled {
-    background-color: lavender;
+    background-color: var(--disabled-main);
     border-color: initial;
     cursor: not-allowed;
 }
