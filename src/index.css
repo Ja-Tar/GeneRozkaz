@@ -131,6 +131,10 @@ input {
     border-bottom: 2px dotted var(--border-color-dots);
     border-radius: 0;
     font-size: 1em;
+}
+
+input,
+textarea {
     color: var(--text-color);
     background-color: var(--background-field);
 }
@@ -321,8 +325,9 @@ input.optional:invalid {
     background-color: var(--optional);
 }
 
-input[type="text"]:disabled {
-    text-decoration: line-through;
+input[type="text"]:disabled, 
+textarea:disabled {
+    text-decoration: 0.1em red line-through;
 }
 
 input::placeholder {
