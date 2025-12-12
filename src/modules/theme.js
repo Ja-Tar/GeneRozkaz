@@ -18,12 +18,10 @@ function setupTheme() {
 }
 
 function toggleTheme() {
-    let themeOverride;
+    let themeOverride = "dark";
 
     if (document.documentElement.dataset.theme === "dark") {
         themeOverride = "light";
-    } else {
-        themeOverride = "dark";
     }
 
     document.documentElement.dataset.theme = themeOverride;
