@@ -16,8 +16,13 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 - [ ] Możliwość zapisu
   - [x] PDF / Drukowanie
   - [ ] TXT (do skopiowania, dla symulatorów)
-- [ ] Tryb integracji z symulatorem TD2 (automatyczne uzupełnianie pól)
-- [ ] Generator krok po kroku
+- [ ] Automatyczne uzupełnianie pól
+  - [ ] z symulatora TD2
+  - [x] aktualna data jako data wystawienia rozkazu
+  - [x] ustawienie stałego identyfikatora nadawcy
+- [ ] Tryb ciemny - na stronie
+  - [x] Podgląd
+  - [ ] Generator
 
 ## Obsługiwane wersje rozkazu
 - [x] Normalna
@@ -45,7 +50,7 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 
 
 # EN 🇬🇧
-Online generator for new Polish written orders
+Online generator for new Polish written orders for railways
 
 <img width="697" height="417" alt="obraz" src="https://github.com/user-attachments/assets/112305da-8c60-4c37-be8b-0692a6399099" />
 
@@ -61,8 +66,13 @@ Online generator for new Polish written orders
 - [ ] Save options
   - [x] PDF and printing
   - [ ] TXT (to copy paste into simulators)
-- [ ] Integration with TD2 simulator (autocomplete fields)
-- [ ] Step-by-step generator
+- [ ] Autocomplete fields
+  - [ ] from the TD2 simulator
+  - [x] current date as the date of issue of the written order
+  - [x] option to set a permanent issuer ID
+- [ ] Dark mode
+  - [x] View page
+  - [ ] Main page
 
 # Supported written order versions
 - [x] Normal
