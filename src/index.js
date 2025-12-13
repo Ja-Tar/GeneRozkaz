@@ -14,7 +14,8 @@ const FIELDS = {
 // DEFAULT SETTINGS
 const SETTINGS = {
     "auto-date": 1,
-    "issuer-id": ""
+    "save-issuer-id": "",
+    "save-order-id": 0
 }
 
 // See schema !!!
@@ -853,6 +854,7 @@ function saveSettingsFromDialog() {
 
     callOnDialogInputs(saveDialogInput);
     saveSettingsToStorage();
+    runOptionalFunctions();
     dialog.close();
 }
 
@@ -883,6 +885,10 @@ function resetNotNeededFields() {
     });
 }
 
+// THEME SELECTION
+
+document.getElementById("theme-selection").addEventListener("change", (ev) => selectTheme(ev.target.value));
+
 // AUTO DAY
 
 function setAutoDay() {
@@ -897,16 +903,36 @@ function setAutoDay() {
 // AUTO FILL ISSUER ID
 
 function autoFillIssuerId() {
-    if (!SETTINGS["issuer-id"]) return;
+    if (!SETTINGS["save-issuer-id"]) return;
     // TODO When connected to Username in TD2 - disable setting
 
     const issuerIdField = document.querySelector("input[id*='W-input'][class*='required']");
-    issuerIdField.value = SETTINGS["issuer-id"];
+    issuerIdField.value = SETTINGS["save-issuer-id"];
 }
 
-// THEME SELECTION
+// KEEP ORDER ID
 
-document.getElementById("theme-selection").addEventListener("change", (ev) => selectTheme(ev.target.value))
+document.addEventListener("beforeunload", saveOrderId());
+
+function saveOrderId() {
+    const orderIdField = document.getElementById("norm-Z-input");
+    localStorage.setItem("order-id", orderIdField.value);
+}
+
+function loadOrderId() {
+    const orderIdField = document.getElementById("norm-Z-input");
+    if (!SETTINGS["save-order-id"] || orderIdField.value) return;
+    orderIdField.value = localStorage.getItem("order-id");
+}
+
+// OPTIONAL SETTINGS FUNCTIONS
+
+function runOptionalFunctions() {
+    // FUNCTIONS THAT USE SETTINGS
+    setAutoDay();
+    autoFillIssuerId();
+    loadOrderId();
+}
 
 // START LOADING DATA ***
 
@@ -958,9 +984,7 @@ loadInputTypes().then(() => {
             loadSettingsFromStorage();
             prepareSettingsDialog();
             
-            // FUNCTIONS THAT USE SETTINGS
-            setAutoDay();
-            autoFillIssuerId();
+            runOptionalFunctions();
 
             setTimeout(() => {
                 document.getElementById("loader").remove();
