@@ -787,7 +787,7 @@ function loadSettingsFromStorage() {
             localStorage.setItem(settingName, SETTINGS[settingName]);
         } else {
             SETTINGS[settingName] = settingValue;
-            console.debug(`Setting: ${settingName}, type: ${typeof settingValue}; V:`, settingValue, );
+            console.debug(`Setting: ${settingName}, type: ${typeof settingValue}; V:`, settingValue);
         }
     }
 }
@@ -893,7 +893,7 @@ document.getElementById("theme-selection").addEventListener("change", (ev) => se
 
 function setAutoDay() {
     if (!SETTINGS["auto-date"]) return;
-    
+
     const dateField = document.querySelector("input[id*='B-input'][class*='required']");
 
     const today = new Date();
@@ -912,7 +912,11 @@ function autoFillIssuerId() {
 
 // KEEP ORDER ID
 
-document.addEventListener("beforeunload", saveOrderId());
+document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState == 'hidden') {
+        saveOrderId();
+    }
+});
 
 function saveOrderId() {
     const orderIdField = document.getElementById("norm-Z-input");
@@ -983,7 +987,7 @@ loadInputTypes().then(() => {
             prepareIDGeneratorBox();
             loadSettingsFromStorage();
             prepareSettingsDialog();
-            
+
             runOptionalFunctions();
 
             setTimeout(() => {
