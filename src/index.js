@@ -669,6 +669,7 @@ function addTabIndexToTable() {
 
     for (let i = 0; i < cells.length; i++) {
         const cell = cells[i];
+        if (cell.hasAttribute("tabindex")) continue;
         cell.setAttribute("tabindex", "0");
     }
 }
