@@ -22,6 +22,10 @@
     --optional: lightblue;
 
     /* BUTTON COLORS */
+    --default-main: lightblue;
+    --default-hover: rgba(173, 216, 230, 0.58);
+    --default-active: rgb(108, 204, 236);
+
     --check-main: plum;
     --check-hover: rgba(221, 160, 221, 0.58);
     --check-active: rgb(221, 137, 221);
@@ -55,6 +59,10 @@
     
     /* BUTTON COLORS */
     /* TODO: ADD MORE COLORS */
+    --default-main: #205669;
+    --default-hover: rgba(173, 216, 230, 0.58);
+    --default-active: rgb(86, 162, 187);
+
     /* --check-main: plum;
     --check-hover: rgba(221, 160, 221, 0.58);
     --check-active: rgb(221, 137, 221); */
@@ -69,9 +77,9 @@
 
     --disabled-main: #242427;
 
-    /* & img[src$=".svg"] {
+    & img[src$=".svg"] {
         filter: invert(50%) brightness(219%) contrast(100%);
-    } */
+    }
 }
 
 body {
@@ -459,6 +467,19 @@ input::placeholder {
 
 /* BUTTON TYPES */
 
+button {
+    color: var(--text-color);
+    background-color: var(--default-main)
+}
+
+button:hover {
+    background-color: var(--default-hover);
+}
+
+button:active {
+    background-color: var(--default-active);
+}
+
 .check {
     grid-area: check;
     background-color: var(--check-main);
@@ -499,6 +520,7 @@ input::placeholder {
 }
 
 .button:disabled {
+    color: #777777;
     background-color: var(--disabled-main);
     border-color: initial;
     cursor: not-allowed;
