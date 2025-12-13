@@ -945,8 +945,9 @@ function loadOrderId() {
 function autoIncrementOrderId() {
     if (!SETTINGS["auto-order-number"]) return;
 
-    const writtenOrderNumber = document.getElementById("written-order-number").value;
-    const incrementedNumber = Number(writtenOrderNumber) + 1;
+    const orderNumberField = document.getElementById("written-order-number");
+    const incrementedNumber = orderNumberField.valueAsNumber + 1;
+    orderNumberField.value = incrementedNumber;
     if (isNaN(incrementedNumber)) return;
     generateOrderID(incrementedNumber);
 }
