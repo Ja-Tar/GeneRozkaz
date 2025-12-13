@@ -15,6 +15,7 @@ const FIELDS = {
 const SETTINGS = {
     "auto-date": 1,
     "save-issuer-id": "",
+    "auto-order-number": 0,
     "save-order-id": 0
 }
 
@@ -645,22 +646,30 @@ function prepareIDGeneratorBox() {
     });
 
     setIdButton.addEventListener("click", () => {
-        if (!validateRequiredFields(dialog)) return;
-
-        const fieldZ = document.getElementById("norm-Z-input");
-        const selectPrintedValue = document.getElementById("select-printed").value;
         const writtenOrderNumber = document.getElementById("written-order-number").value;
-        const posterunekNumber = document.getElementById("posterunek-number").value;
-
-        const today = new Date();
-        const yearNumbers = today.getFullYear().toString().slice(2);
-
-        fieldZ.value = `R${selectPrintedValue}-${writtenOrderNumber}-${posterunekNumber}-${yearNumbers}`;
-
-        console.log(selectPrintedValue, writtenOrderNumber, posterunekNumber);
-        dialog.close();
+        if (generateOrderID(writtenOrderNumber)) dialog.close();
     });
 
+}
+
+/**
+ * @param {number} orderNumber 
+ * @returns {Boolean} success state
+ */
+function generateOrderID(orderNumber) {
+    const dialog = document.getElementById("id-generator-dialog");
+    if (!validateRequiredFields(dialog)) return false;
+    const fieldZ = document.getElementById("norm-Z-input");
+    const selectPrintedValue = document.getElementById("select-printed").value;
+    const posterunekNumber = document.getElementById("posterunek-number").value;
+
+    const today = new Date();
+    const yearNumbers = today.getFullYear().toString().slice(2);
+
+    fieldZ.value = `R${selectPrintedValue}-${orderNumber}-${posterunekNumber}-${yearNumbers}`;
+
+    console.debug(selectPrintedValue, orderNumber, posterunekNumber);
+    return true;
 }
 
 // TAB INDEX ADDER ***
@@ -687,6 +696,8 @@ function openViewPage() {
     const viewURL = window.location.origin + "/view.html";
     const processedJSURL = JSURL.stringify(getJSONFromFields());
     const safeJSURL = encodeURIComponent(processedJSURL);
+
+    autoIncrementOrderId();
     window.open(`${viewURL}?${safeJSURL}`);
 }
 
@@ -927,6 +938,17 @@ function loadOrderId() {
     const orderIdField = document.getElementById("norm-Z-input");
     if (!SETTINGS["save-order-id"] || orderIdField.value) return;
     orderIdField.value = localStorage.getItem("order-id");
+}
+
+// AUTO INCREMENT ORDER ID
+
+function autoIncrementOrderId() {
+    if (!SETTINGS["auto-order-number"]) return;
+
+    const writtenOrderNumber = document.getElementById("written-order-number").value;
+    const incrementedNumber = Number(writtenOrderNumber) + 1;
+    if (isNaN(incrementedNumber)) return;
+    generateOrderID(incrementedNumber);
 }
 
 // OPTIONAL SETTINGS FUNCTIONS
