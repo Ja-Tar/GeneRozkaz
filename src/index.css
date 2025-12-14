@@ -696,6 +696,11 @@ dialog > button {
     justify-content: space-between;
 }
 
+.preview-dictate {
+    border: 0.15em inset var(--border-color-dots);
+    padding: 0.5em;
+}
+
 /* SIZE CHANGES */
 
 @media only screen and (max-height: 900px) {

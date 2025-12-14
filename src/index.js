@@ -19,6 +19,12 @@ const SETTINGS = {
     "save-order-id": 0
 }
 
+// NATO PHONETIC ALPHABET (polish version)
+
+const PH_ALPHABET_PL = {
+
+}
+
 // See schema !!!
 let VALIDATION = {};
 let HELP = {};
@@ -694,7 +700,7 @@ function openViewPage() {
     if (!validateRozkazFields(instructionBox)) return;
 
     const viewURL = window.location.origin + "/view.html";
-    const processedJSURL = JSURL.stringify(getJSONFromFields());
+    const processedJSURL = JSURL.stringify(getObjectFromFields());
     const safeJSURL = encodeURIComponent(processedJSURL);
 
     autoIncrementOrderId();
@@ -730,7 +736,11 @@ function validateRequiredFields(element) {
     return true;
 }
 
-function getJSONFromFields() {
+/**
+ * 
+ * @returns {{'sectionName': {"fieldName": "fieldValue"}, 'generatedDate': string}}
+ */
+function getObjectFromFields() {
     // STRUCTURE:
     // {
     //     "normal": {
@@ -790,11 +800,53 @@ dictateButton.addEventListener("click", openDictateDialog);
 
 function openDictateDialog() {
     const dialog = document.getElementById("dictate-dialog");
-    const instructionBox = document.getElementById('instruction-box')
-    // if (!validateRozkazFields(instructionBox)) return;
-    // REMOVE comment
+    const instructionBox = document.getElementById('instruction-box');
+    const usePaInput = document.getElementById("use-pa-input");
+    if (!validateRozkazFields(instructionBox)) return;
+
+    generateDictation(usePaInput.checked);
 
     dialog.showModal();
+}
+
+function generateDictation(paNeeded) {
+    const previewDictateDiv = document.getElementById("preview-dictate-first");
+    const instructionBox = document.getElementById('instruction-box');
+
+    previewDictateDiv.innerHTML = "";
+
+    const fieldsObject = getObjectFromFields();
+    let generatedHtml = "";
+    let topFields = "";
+    let bottomFields = "";
+
+    for (const sectionName of Object.keys(fieldsObject)) {
+        const section = fieldsObject[sectionName];
+        if (sectionName === "generatedDate") continue;
+
+        if (Object.values(ROZKAZ_TYPE).includes(sectionName)) {
+            topFields = `Pole <b>A</b>: ${section.A} | Pole <b>B</b>: ${section.B} |
+            Pole <b>C</b>: ${section.C} | Pole <b>D</b>: ${section.D} <br>`
+            bottomFields = `Pole <b>W</b>: ${section.W} |
+            Pole <b>Z</b>: ${section.Z} <br>`
+        }
+
+        for (const fieldName of Object.keys(section)) {
+            const fieldValue = section[fieldName];
+            console.log(Object.values(ROZKAZ_TYPE).includes(sectionName));
+        }
+    }
+
+    if (!generatedHtml) generatedHtml = "Pusty rozkaz :O"
+    generatedHtml = `<i><b>Rozkaz pisemny</b></i><br> 
+    ================ <br>
+    ${topFields} 
+    ---------------- <br>
+    ${generatedHtml} <br>
+    ---------------- <br>
+    ${bottomFields}` 
+
+    previewDictateDiv.innerHTML = generatedHtml;
 }
 
 // SETTINGS STORAGE ***
@@ -1023,7 +1075,8 @@ function limitFunction(fn, wait = 100) {
 
 setupTheme();
 loadInputTypes().then(() => {
-    resetNotNeededFields(); // TODO: When adding simulator support change it
+    // REMOVE Comment
+    //resetNotNeededFields(); // TODO: When adding simulator support change it
     addInputsToTables(ROZKAZ_ELEMENT_CLASS.NORMAL);
     addClickEventToCheckboxes();
     loadValidationData().then(() => {

@@ -471,9 +471,23 @@
         <div step="1" class="step">
             <div class="step-contents">
                 <label for="text-area-dictate">Treść do skopiowania / dyktowania: </label>
-                <textarea id="text-area-dictate" readonly>
-                    <b>ROZKAZ PISEMNY</b>
-                </textarea>
+                <div id="preview-dictate-first" class="preview-dictate">
+                    <i><b>Rozkaz pisemny</b></i><br>
+                    Pole A: 1234 |
+                    Pole B: 14.12.2025 <br>
+                    Pole C: ... |
+                    Pole D: ... <br>
+                    ---------------------- <br>
+                    Instrukcja 21.10, zezwalam na wyjazd z toru numer 1 z ... <br>
+                    na tor numer 1 w kierunku ... . <br>
+                    Pominięcie sygnałów stój, sygnalizator F. <br>
+                    -----------------------
+                </div>
+                <div class="inner-dialog">
+                    <label for="use-pa-input">Używaj alfabetu fonetycznego</label>
+                    <input id="use-pa-input" type="checkbox">
+                </div>
+                <button id="copy-dictate-text">Skopiuj treść</button>
             </div>
             <div class="step-buttons">
                 <button class="cancel" disabled>Wstecz</button>
