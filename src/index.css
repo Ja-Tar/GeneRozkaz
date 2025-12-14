@@ -26,17 +26,17 @@
     --default-hover: rgba(173, 216, 230, 0.58);
     --default-active: rgb(108, 204, 236);
 
-    --check-main: plum;
-    --check-hover: rgba(221, 160, 221, 0.58);
-    --check-active: rgb(221, 137, 221);
+    --dictate-main: plum;
+    --dictate-hover: rgba(221, 160, 221, 0.58);
+    --dictate-active: rgb(221, 137, 221);
 
     --save-main: lightgreen;
     --save-hover: rgba(144, 238, 144, 0.58);
     --save-active: rgb(113, 241, 113);
 
-    --cancel-main: lightsalmon;
-    --cancel-hover: rgba(255, 160, 122, 0.58);
-    --cancel-active: rgb(255, 130, 80);
+    --cancel-main: #ff796f;
+    --cancel-hover: #ff796f94;
+    --cancel-active: #ff4d4d;
 
     --disabled-main: lavender;
 }
@@ -63,17 +63,17 @@
     --default-hover: rgba(173, 216, 230, 0.58);
     --default-active: rgb(86, 162, 187);
 
-    /* --check-main: plum;
-    --check-hover: rgba(221, 160, 221, 0.58);
-    --check-active: rgb(221, 137, 221); */
+    --dictate-main: #5e225e;
+    --dictate-hover: rgba(221, 160, 221, 0.58);
+    --dictate-active: rgb(223, 112, 223);
 
     --save-main: #148014;
     --save-hover: #90ee9094;
     --save-active: #11b111;
 
-    /* --cancel-main: lightsalmon;
-    --cancel-hover: rgba(255, 160, 122, 0.58);
-    --cancel-active: rgb(255, 130, 80); */
+    --cancel-main: #9f2200;
+    --cancel-hover: #ff836194;
+    --cancel-active: #ff493c;
 
     --disabled-main: #242427;
 
@@ -385,7 +385,7 @@ input::placeholder {
 #button-box {
     display: grid;
     grid: 
-    "check save settings" auto / 1fr 1fr auto;
+    "dictate save settings" auto / 1fr 1fr auto;
     gap: 1em;
     max-width: 800px;
     min-width: fit-content;
@@ -410,7 +410,8 @@ input::placeholder {
     margin-bottom: 5px;
     max-width: 800px;
     min-width: fit-content;
-    min-width: min(100%, 800px)
+    min-width: min(100%, 800px);
+    margin-right: 1em;
 }
 
 #help-box h2 {
@@ -480,17 +481,17 @@ button:active {
     background-color: var(--default-active);
 }
 
-.check {
-    grid-area: check;
-    background-color: var(--check-main);
+.dictate {
+    grid-area: dictate;
+    background-color: var(--dictate-main);
 }
 
-.check:hover {
-    background-color: var(--check-hover);
+.dictate:hover {
+    background-color: var(--dictate-hover);
 }
 
-.check:active {
-    background-color: var(--check-active);
+.dictate:active {
+    background-color: var(--dictate-active);
 }
 
 .save {
@@ -552,7 +553,6 @@ button:has(img) {
 }
 
 #button-hide-bar {
-    margin-left: 1em;
     align-self: center;
     border-radius: 0.5em;
     margin-bottom: 5px;

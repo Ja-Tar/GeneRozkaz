@@ -686,7 +686,7 @@ function addTabIndexToTable() {
 
 // PRINT FUNCTIONS ***
 
-const saveButton = document.getElementById("save-written-order-button");
+const saveButton = document.getElementById("save-wo-button");
 saveButton.addEventListener("click", openViewPage);
 
 function openViewPage() {
