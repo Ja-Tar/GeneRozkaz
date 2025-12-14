@@ -1,4 +1,4 @@
-import { getSection, formatSectionName, formatInstructionIdFromId, formatFieldIdFromId, getField } from "./modules/fields.js"
+import { getSection, getElementsInSection, formatSectionName, formatInstructionIdFromId, formatFieldIdFromId, getField } from "./modules/fields.js"
 import { setupTheme, selectTheme } from "./modules/theme.js";
 
 const mainApiUrl = window.location.origin + "/api";
@@ -42,6 +42,20 @@ const ROZKAZ_TYPE = {
 }
 
 // HELPER FUNCTIONS ***
+
+/**
+ * @param {object} obj 
+ * @returns 
+ */
+function isEmpty(obj) {
+    for (const prop in obj) {
+        if (Object.hasOwn(obj, prop)) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 // get data ---
 
@@ -826,25 +840,30 @@ function generateDictation(paNeeded) {
 
         if (Object.values(ROZKAZ_TYPE).includes(sectionName)) {
             topFields = `Pole <b>A</b>: ${section.A} | Pole <b>B</b>: ${section.B} |
-            Pole <b>C</b>: ${section.C} | Pole <b>D</b>: ${section.D} <br>`
+            Pole <b>C</b>: ${section.C} | Pole <b>D</b>: ${section.D} <br>`;
             bottomFields = `Pole <b>W</b>: ${section.W} |
-            Pole <b>Z</b>: ${section.Z} <br>`
+            Pole <b>Z</b>: ${section.Z} <br>`;
+            // TODO: Popraw formatowanie, tak żeby działało w czacie w TD2 (może)
+            delete fieldsObject[sectionName];
+            continue;
         }
+
+        const orderSectionElement = getElementsInSection(sectionName);
+        console.log(orderSectionElement)
 
         for (const fieldName of Object.keys(section)) {
             const fieldValue = section[fieldName];
-            console.log(Object.values(ROZKAZ_TYPE).includes(sectionName));
         }
     }
 
-    if (!generatedHtml) generatedHtml = "Pusty rozkaz :O"
+    if (!generatedHtml) generatedHtml = "Pusty rozkaz :O";
     generatedHtml = `<i><b>Rozkaz pisemny</b></i><br> 
     ================ <br>
     ${topFields} 
     ---------------- <br>
     ${generatedHtml} <br>
     ---------------- <br>
-    ${bottomFields}` 
+    ${bottomFields}`;
 
     previewDictateDiv.innerHTML = generatedHtml;
 }

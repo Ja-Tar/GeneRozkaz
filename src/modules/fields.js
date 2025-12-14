@@ -1,6 +1,7 @@
 /**
  * @param {string} name 
  * @returns {Element | null | HTMLCollectionOf<Element>}
+ * @deprecated Use getElementsInSection(name) !
  */
 function getSection(name) {
     // name [str] - name of written order section, like:
@@ -15,6 +16,38 @@ function getSection(name) {
     }
 
     return document.getElementById(`${name}`).parentElement;
+}
+
+/**
+ * @param {string} name 
+ * @returns {Element[] | null} [[Element, Element], ...]
+ */
+function getElementsInSection(name) {
+    // name [str] - name of written order section, like:
+    // '22.00'; 'normal'; '99'
+
+    name = formatSectionName(name);
+
+    if (name === "norm") {
+        return document.getElementsByClassName("top-info");
+    } else if (name === "etcs") {
+        throw Error("Not implemented"); // TODO add proper list
+    }
+
+    const parentElement = document.getElementById(`${name}`).parentElement;
+    const contentElement = parentElement.getElementsByClassName("roz-content");
+    let returnElement = [];
+    if (contentElement.length > 1) {
+        for (const i of Object.keys(contentElement)) {
+            if (contentElement[i].previousElementSibling.id === name) {
+                returnElement = [contentElement[i].previousElementSibling, contentElement[i]];
+            }
+        }
+    } else {
+        returnElement = [contentElement[0].previousElementSibling, contentElement[0]];
+    }
+
+    return returnElement;
 }
 
 /**
@@ -152,4 +185,4 @@ function getField(name, section) {
     return null;
 }
 
-export {getSection, getFieldId, getCheckboxId, formatSectionName, isSectionFormatted, formatSectionIdFromId, formatInstructionIdFromId, formatFieldIdFromId, getField };
+export {getSection, getElementsInSection, getFieldId, getCheckboxId, formatSectionName, isSectionFormatted, formatSectionIdFromId, formatInstructionIdFromId, formatFieldIdFromId, getField };
