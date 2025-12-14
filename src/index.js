@@ -863,7 +863,7 @@ function generateDictation(paNeeded) {
         generatedHtml += currentText;
     }
 
-    if (!generatedHtml) generatedHtml = "Pusty rozkaz :O";
+    if (!generatedHtml) generatedHtml = "<i>Pusty rozkaz</i>";
     generatedHtml = `<i><b>Rozkaz pisemny</b></i><br> 
     ================ <br>
     ${topFields} 
@@ -874,6 +874,15 @@ function generateDictation(paNeeded) {
 
     previewDictateDiv.innerHTML = generatedHtml;
 }
+
+function copyDictateField() {
+    const previewDictateDiv = document.getElementById("preview-dictate-first");
+    const dialog = document.getElementById("dictate-dialog");
+    navigator.clipboard.writeText(previewDictateDiv.innerHTML.replaceAll("<br>", ""));
+    dialog.close();
+}
+
+document.getElementById("copy-dictate-text").addEventListener("click", copyDictateField)
 
 // SETTINGS STORAGE ***
 
