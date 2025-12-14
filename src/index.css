@@ -394,11 +394,14 @@ input::placeholder {
 
 #bottom-box {
     grid-area: bottom-box;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template: 
+        ". help-box hide";
+    justify-items: center;
 }
 
 #help-box {
+    grid-area: help-box;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -534,7 +537,7 @@ button:active {
 
 /* ICON BUTTONS */
 
-.button:has(img) {
+button:has(img) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -543,6 +546,18 @@ button:active {
 
 .button > img {
     height: 2.8em;
+}
+
+/* HIDE BAR BUTTON */
+
+#button-hide-bar {
+    grid-area: hide;
+    align-self: center;
+    border-radius: 0.5em;
+}
+
+#button-hide-bar > img {
+    height: 2em;
 }
 
 /* DIALOG */
