@@ -1,4 +1,4 @@
-import { getSection, getElementsInSection, formatSectionName, formatInstructionIdFromId, formatFieldIdFromId, getField } from "./modules/fields.js"
+import { getSection, getElementsInSection, formatSectionName, formatInstructionIdFromId, formatFieldIdFromId, getField, getLabelForField } from "./modules/fields.js"
 import { setupTheme, selectTheme } from "./modules/theme.js";
 
 const mainApiUrl = window.location.origin + "/api";
@@ -22,7 +22,7 @@ const SETTINGS = {
 // NATO PHONETIC ALPHABET (polish version)
 
 const PH_ALPHABET_PL = {
-
+    // TODO: ADD
 }
 
 // See schema !!!
@@ -849,11 +849,18 @@ function generateDictation(paNeeded) {
         }
 
         const orderSectionElement = getElementsInSection(sectionName);
-        console.log(orderSectionElement)
+        /** @type {string} */
+        let currentText = orderSectionElement[1].innerText.replace(/\s+/g,' ');
 
         for (const fieldName of Object.keys(section)) {
+            const labelElement = getLabelForField(fieldName, sectionName);
+            console.log(labelElement.innerText);
             const fieldValue = section[fieldName];
+            currentText = currentText.replace(labelElement.innerText.trim(), fieldValue)
+            // BUG: Use other method, this does't work!!!
         }
+
+        generatedHtml += currentText;
     }
 
     if (!generatedHtml) generatedHtml = "Pusty rozkaz :O";

@@ -185,4 +185,21 @@ function getField(name, section) {
     return null;
 }
 
-export {getSection, getElementsInSection, getFieldId, getCheckboxId, formatSectionName, isSectionFormatted, formatSectionIdFromId, formatInstructionIdFromId, formatFieldIdFromId, getField };
+/**
+ * @param {string} name 
+ * @param {string} section 
+ * @returns {Element | null}
+ */
+function getLabelForField(name, section) {
+    section = formatSectionName(section);
+
+    const inputFields = document.querySelectorAll(`label[for*="${section}"]`);
+    for (let i = 0; i < inputFields.length; i++) {
+        const element = inputFields[i];
+        if (element.htmlFor.split("-")[1] === name) {
+            return element;
+        }
+    }
+}
+
+export {getSection, getElementsInSection, getFieldId, getCheckboxId, formatSectionName, isSectionFormatted, formatSectionIdFromId, formatInstructionIdFromId, formatFieldIdFromId, getField, getLabelForField };
