@@ -900,6 +900,20 @@ function resetNotNeededFields() {
 
 document.getElementById("theme-selection").addEventListener("change", (ev) => selectTheme(ev.target.value));
 
+// HIDE BOTTOM BAR
+
+function toggleBottomBar() {
+    const bottomBar = document.getElementById("bottom-box");
+
+    if (bottomBar.classList.contains("bottom-hidden")) {
+        bottomBar.classList.remove("bottom-hidden");
+    } else {
+        bottomBar.classList.add("bottom-hidden");
+    }
+}
+
+document.getElementById("button-hide-bar").addEventListener("click", toggleBottomBar);
+
 // AUTO DAY
 
 function setAutoDay() {

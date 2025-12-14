@@ -394,14 +394,11 @@ input::placeholder {
 
 #bottom-box {
     grid-area: bottom-box;
-    display: grid;
-    grid-template: 
-        ". help-box hide";
-    justify-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 #help-box {
-    grid-area: help-box;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -550,14 +547,38 @@ button:has(img) {
 
 /* HIDE BAR BUTTON */
 
+.bottom-hidden #button-hide-bar img {
+    transform: scaleY(-1);
+}
+
 #button-hide-bar {
-    grid-area: hide;
+    margin-left: 1em;
     align-self: center;
     border-radius: 0.5em;
+    margin-bottom: 5px;
 }
 
 #button-hide-bar > img {
     height: 2em;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* HIDE BAR */
+
+body:has(.bottom-hidden) {
+    grid-template:
+            "top-box" 55px
+            "instruction" minmax(5%, 100%)
+            "bottom-box" auto;
+}
+
+.bottom-hidden {
+    height: min-content;
+    background-color: transparent;
+}
+
+.bottom-hidden > #help-box {
+    display: none;
 }
 
 /* DIALOG */
