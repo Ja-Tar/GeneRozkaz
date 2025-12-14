@@ -783,6 +783,20 @@ function collectFieldsData(inputFields) {
     return fieldsData;
 }
 
+// DICTATE FUNCTIONS ***
+
+const dictateButton = document.getElementById("dictate-button");
+dictateButton.addEventListener("click", openDictateDialog);
+
+function openDictateDialog() {
+    const dialog = document.getElementById("dictate-dialog");
+    const instructionBox = document.getElementById('instruction-box')
+    // if (!validateRozkazFields(instructionBox)) return;
+    // REMOVE comment
+
+    dialog.showModal();
+}
+
 // SETTINGS STORAGE ***
 
 function loadSettingsFromStorage() {

@@ -20,6 +20,7 @@
     /* FIELD COLORS */
     --required: lightcoral;
     --optional: lightblue;
+    --readonly: #e7e7e7;
 
     /* BUTTON COLORS */
     --default-main: lightblue;
@@ -56,9 +57,9 @@
     /* FIELD COLORS */
     --required: #971313;
     --optional: #296477;
+    --readonly: #363636;
     
     /* BUTTON COLORS */
-    /* TODO: ADD MORE COLORS */
     --default-main: #205669;
     --default-hover: rgba(173, 216, 230, 0.58);
     --default-active: rgb(86, 162, 187);
@@ -134,6 +135,8 @@ td {
     font-size: 0.81em;
 }
 
+/* INPUT FIELDS */
+
 input {
     border: none;
     border-bottom: 2px dotted var(--border-color-dots);
@@ -145,6 +148,11 @@ input,
 textarea {
     color: var(--text-color);
     background-color: var(--background-field);
+}
+
+input:read-only,
+textarea:read-only {
+    background-color: var(--readonly);
 }
 
 input.optional {
@@ -168,6 +176,8 @@ input[type="date"] {
 .top-info input {
     width: 100%;
 }
+
+/* === */
 
 .fill-page {
     display: grid;
@@ -520,7 +530,9 @@ button:active {
     background-color: var(--cancel-active);
 }
 
-.button:disabled {
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
     color: #777777;
     background-color: var(--disabled-main);
     border-color: initial;
@@ -642,7 +654,7 @@ dialog > button {
     display: block;
 }
 
-/* Z FIELD - ID GENERATION */
+/* Z FIELD DIALOG - ID GENERATION */
 
 #norm-Z {
     padding-right: 1em;
@@ -663,6 +675,25 @@ dialog > button {
     font-size: 1em;
     line-height: 0.9em;
     white-space: nowrap;
+}
+
+/* DICTATE DIALOG */
+
+.step {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.step-contents {
+    display: grid;
+    gap: 0.3em
+}
+
+.step-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 /* SIZE CHANGES */

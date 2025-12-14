@@ -467,6 +467,21 @@
         <button class="large save" id="save-settings" autofocus>Zapisz</button>
     </dialog>
 
+    <dialog id="dictate-dialog" class="large">
+        <div step="1" class="step">
+            <div class="step-contents">
+                <label for="text-area-dictate">Treść do skopiowania / dyktowania: </label>
+                <textarea id="text-area-dictate" readonly>
+                    <b>ROZKAZ PISEMNY</b>
+                </textarea>
+            </div>
+            <div class="step-buttons">
+                <button class="cancel" disabled>Wstecz</button>
+                <button class="save">Dalej</button>
+            </div>
+        </div>
+    </dialog>
+
     <script type="module" src="index.js" async defer></script>
 </body>
 
