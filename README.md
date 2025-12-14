@@ -2,7 +2,7 @@
 # PL 🇵🇱
 Generator online dla nowych kolejowych rozkazów pisemnych
 
-<img width="697" height="417" alt="obraz" src="https://github.com/user-attachments/assets/112305da-8c60-4c37-be8b-0692a6399099" />
+<img width="940" height="483" alt="obraz" src="https://github.com/user-attachments/assets/de3ff470-0762-422a-83cd-a63b334485f1" />
 
 > [!IMPORTANT]
 > Opracowano na podstawie **instrukcji Ir-1 (zm. 18)** oraz materiałów z kanału [Michał Piątkowski](https://www.youtube.com/@MichalPiatkowski).
@@ -54,7 +54,7 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 # EN 🇬🇧
 Online generator for new Polish written orders for railways
 
-<img width="697" height="417" alt="obraz" src="https://github.com/user-attachments/assets/112305da-8c60-4c37-be8b-0692a6399099" />
+<img width="940" height="483" alt="obraz" src="https://github.com/user-attachments/assets/de3ff470-0762-422a-83cd-a63b334485f1" />
 
 > [!IMPORTANT]
 > Webpage is based on **Instruction Ir-1 (rev. 18)** and materials from [Michał Piątkowski's](https://www.youtube.com/@MichalPiatkowski) channel.
