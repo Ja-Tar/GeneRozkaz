@@ -15,7 +15,7 @@ function cleanFields() {
 function getDataFromURI() {
     const uriEncodedJSURL = window.location.search.slice(1);
     if (uriEncodedJSURL) {
-        return JSURL.tryParse(uriEncodedJSURL, {}, { deURI: true });
+        return JSURL.tryParse(uriEncodedJSURL, {}, { deURI: true }); // skipcq: JS-0125
     }
     return {};
 }

@@ -714,7 +714,7 @@ function openViewPage() {
     if (!validateRozkazFields(instructionBox)) return;
 
     const viewURL = window.location.origin + "/view.html";
-    const processedJSURL = JSURL.stringify(getObjectFromFields());
+    const processedJSURL = JSURL.stringify(getObjectFromFields()); // skipcq: JS-0125
     const safeJSURL = encodeURIComponent(processedJSURL);
 
     autoIncrementOrderId();

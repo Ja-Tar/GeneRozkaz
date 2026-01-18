@@ -15,6 +15,7 @@
     --background-disabled: white;
     --background-field: white;
     --background-field-optional: white;
+    --background-help: rgba(211, 211, 211, 0.685);
     --backdrop: rgba(0, 0, 0, 0.1);
 
     /* FIELD COLORS */
@@ -52,6 +53,7 @@
     --background-disabled: #151515;
     --background-field: #97131318;
     --background-field-optional: #29647718;
+    --background-help: #2b2b2baf;
     --backdrop: rgba(100, 100, 100, 0.3);
 
     /* FIELD COLORS */
@@ -445,7 +447,7 @@ input::placeholder {
 
 #field-help .allHelpExamples {
     display: flex;
-    background-color: rgba(211, 211, 211, 0.685);
+    background-color: var(--background-help);
     gap: 6px 4px;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -457,7 +459,7 @@ input::placeholder {
     height: fit-content;
     line-height: 0.9em;
     padding: 0 8px;
-    border-bottom: 3px dotted #000;
+    border-bottom: 3px dotted var(--text-color);
     white-space: nowrap;
 }
 
