@@ -2,12 +2,14 @@
 <html lang="pl">
 
 <head>
+    <link rel="preload" href="loader.css" as="style">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>GeneRozkaz - Rozkaz</title>
     <meta name="description" content="Generator online dla nowych kolejowych rozkazów pisemnych">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="loader.css">
+    <link rel="preload" href="loader.css" as="style">
+    <link rel="stylesheet" href="loader.css" />
     <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
     <link rel="shortcut icon" href="/favicons/favicon.ico" />
@@ -17,694 +19,711 @@
     <link rel="stylesheet" href="view.css">
     <script src="https://cdn.jsdelivr.net/npm/jsurl2@2.2.0/dist/index.js"
         integrity="sha256-/gTd9Y+SupxIun/6x21L1pIuDoAkMajT1OS/DfhEQBE=" crossorigin="anonymous"></script>
+    <meta name="theme-color" content="#fff" />
 </head>
 
 <body>
     <div id="loader">
         <img src="/favicons/web-app-manifest-512x512.png">
     </div>
-    <div id="instruction-box">
-        <div class="fill-page">
-            <div id="divided-view">
-                <table id="rozkaz-normalny-gora">
-                    <tbody>
-                        <tr class="table-head">
-                            <th colspan="4">Rozkaz pisemny</th>
-                        </tr>
-                        <tr class="center top-info">
-                            <td id="norm-A" colspan="2">
-                                <div id="norm-A-input" class="field num-poc">123456</div>
-                                <label for="norm-A-input">A Nr pociągu | składu manewrowego</label>
-                            </td>
-                            <td id="norm-B" colspan="2">
-                                <div id="norm-B-input" class="field data">20.12.2025</div>
-                                <label for="norm-B-input">B Data</label>
-                            </td>
-                        </tr>
-                        <tr class="center top-info">
-                            <td id="norm-C" colspan="2">
-                                <div id="norm-C-input" class="field post">Włoszczowa Północ</div>
-                                <label for="norm-C-input">C Lokalizacja pociągu | składu manewrowego</label>
-                            </td>
-                            <td id="norm-D" colspan="2">
-                                <div id="norm-D-input" class="field post">Włoszczowa Północ</div>
-                                <label for="norm-D-input">D Lokalizacja nadawcy</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="nr22_00" class="checkbox-col">
-                                <div class="checkbox" id="nr22_00-input"></div>
-                                22.00
-                            </td>
-                            <td class="roz-content" tabindex="0">
-                                <strong>Dotyczy jazdy torem lewym</strong>
-                            </td>
-                            <td id="nr99" class="checkbox-col">
-                                <div class="checkbox" id="nr99-input"></div>
-                                <div style="margin-left: 4px;">99</div>
-                            </td>
-                            <td class="roz-content" tabindex="0">
-                                <strong>Odwołanie rozkazu pisemnego</strong><br>
-                                <div class="inline">
-                                    <div id="nr99-1-input" class="field id">RD-5-087654-25</div>
-                                    <label for="nr99-1-input">x.1 identyfikator rozkazu pisemnego</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th id="nr21_10" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_10-input"></div>
-                                21.10
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                <strong>Zezwalam na wyjazd z toru nr</strong>
-                                <div class="inline">
-                                    <div id="nr21_10-1-input" class="field tor">2</div>
-                                    <label for="nr21_10-1-input">x.1 tor</label>
-                                </div>
-                                z
-                                <div class="inline">
-                                    <div id="nr21_10-2-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_10-2-input">x.2 posterunek</label>
-                                </div>
-                                <br>
-                                na tor nr
-                                <div class="inline">
-                                    <div id="nr21_10-3-input" class="field tor">2</div>
-                                    <label for="nr21_10-3-input">x.3 tor</label>
-                                </div>
-                                w kierunku
-                                <div class="inline">
-                                    <div id="nr21_10-4-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_10-4-input">x.4 posterunek</label>
-                                </div>
-                                <br>
-                                Pominięcie sygnałów stój
-                                <div class="inline">
-                                    <div id="nr21_10-5-input" class="field sem">S</div>
-                                    <label for="nr21_10-5-input">x.5 sygnalizator</label>
-                                </div>
-                                i
-                                <div class="inline">
-                                    <div id="nr21_10-6-input" class="field sem">F</div>
-                                    <label for="nr21_10-6-input">x.6 sygnalizator</label>
-                                </div>
-                                i
-                                <div class="inline">
-                                    <div id="nr21_10-7-input" class="field sem">K2</div>
-                                    <label for="nr21_10-7-input">x.7 sygnalizator</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th id="nr21_15" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_15-input"></div>
-                                21.15
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                <strong>Zezwalam na wjazd</strong> z toru nr
-                                <div class="inline">
-                                    <div id="nr21_15-1-input" class="field tor">2</div>
-                                    <label for="nr21_15-1-input">x.1 tor</label>
-                                </div>
-                                do
-                                <div class="inline">
-                                    <div id="nr21_15-2-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_15-2-input">x.2 posterunek</label>
-                                </div>
-                                na tor nr
-                                <div class="inline">
-                                    <div id="nr21_15-3-input" class="field tor">2</div>
-                                    <label for="nr21_15-3-input">x.3 tor</label>
-                                </div>
-                                <br>
-                                Pominięcie sygnałów
-                                <div class="inline">
-                                    <div id="nr21_15-4-input" class="field sem">S</div>
-                                    <label for="nr21_15-4-input">x.4 sygnalizator</label>
-                                </div>
-                                i
-                                <div class="inline">
-                                    <div id="nr21_15-5-input" class="field sem">F</div>
-                                    <label for="nr21_15-5-input">x.5 sygnalizator</label>
-                                </div>
-                                i
-                                <div class="inline">
-                                    <div id="nr21_15-6-input" class="field sem">K2</div>
-                                    <label for="nr21_15-6-input">x.6 sygnalizator</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th id="nr21_20" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_20-input"></div>
-                                21.20
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                Od
-                                <div class="inline">
-                                    <div id="nr21_20-1-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_20-1-input">x.1 posterunek</label>
-                                </div>
-                                do
-                                <div class="inline">
-                                    <div id="nr21_20-2-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_20-2-input">x.2 posterunek</label>
-                                </div>
-                                po torze
-                                <div class="inline">
-                                    <div id="nr21_20-3-input" class="field tor">2</div>
-                                    <label for="nr21_20-3-input">x.3 tor</label>
-                                </div>
-                                <br>
-                                <strong style="text-decoration: 1px underline;">wskazania semaforów SBL są
-                                    nieważne.</strong>
-                                <br>
-                                <span style="text-decoration: 1px underline;">Zachować ostrożność od semafora ze
-                                    wskaźnikiem
-                                    <strong>W18.</strong></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th id="nr21_25" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_25-input"></div>
-                                21.25
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                Zezwalam przejechać za (wskaźnik W5/ostatni rozjazd) w kierunku
-                                <div class="inline">
-                                    <div id="nr21_25-1-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_25-1-input">x.1 posterunek</label>
-                                </div>
-                                <br>
-                                torem
-                                <div class="inline">
-                                    <div id="nr21_25-2-input" class="field tor">2</div>
-                                    <label for="nr21_25-2-input">x.2 tor</label>
-                                </div>
-                                do km
-                                <div class="inline">
-                                    <div id="nr21_25-3-input" class="field km">21.300</div>
-                                    <label for="nr21_25-3-input">x.3 km</label>
-                                </div>
-                                do godz.
-                                <div class="inline">
-                                    <div id="nr21_25-4-input" class="field godz">20:22</div>
-                                    <label for="nr21_25-4-input">x.4 godzina</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th id="nr21_35" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_35-input"></div>
-                                21.35
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                <strong>Zezwalam na kontynuacje jazdy</strong> po torze nr
-                                <div class="inline">
-                                    <div id="nr21_35-1-input" class="field tor">2</div>
-                                    <label for="nr21_35-1-input">x.1 tor</label>
-                                </div>
-                                w kierunku
-                                <div class="inline">
-                                    <div id="nr21_35-2-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_35-2-input">x.2 posterunek</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th id="nr21_40" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_40-input"></div>
-                                21.40
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                <strong>Zatrzymanie pociągu</strong> na posterunku/szlaku
-                                <div class="inline">
-                                    <div id="nr21_40-1-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_40-1-input">x.1 posterunek</label>
-                                </div>
-                                |
-                                <div class="inline">
-                                    <div id="nr21_40-2-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_40-2-input">x.2 posterunek</label>
-                                </div>
-                                <br>
-                                w km
-                                <div class="inline">
-                                    <div id="nr21_40-3-input" class="field km">21.300</div>
-                                    <label for="nr21_40-3-input">x.3 km</label>
-                                </div>
-                                celem
-                                <div class="inline">
-                                    <div id="nr21_40-96-input" class="field inne">To jest ekran testowy! Test długiego
-                                        opisu danego zatrzymania pociągu</div>
-                                    <label for="nr21_40-96-input">x.96 inne</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th id="nr21_45" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_45-input"></div>
-                                21.45
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                Na
-                                <div class="inline">
-                                    <div id="nr21_45-1-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_45-1-input">x.1 posterunek</label>
-                                </div>
-                                na sygnalizatorze
-                                <div class="inline">
-                                    <div id="nr21_45-2-input" class="field sem">K2</div>
-                                    <label for="nr21_45-2-input">x.2 sygnalizator</label>
-                                </div>
-                                <br>
-                                <strong>sygnał zezwalający jest nieważny, zatrzymać pociąg przed tym
-                                    sygnalizatorem.</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th id="nr21_50" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_50-input"></div>
-                                21.50
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                <strong>Wskazania tarcz ostrzegawczych przejazdowych</strong> na
-                                posterunku/szlaku
-                                <br>
-                                <div class="inline">
-                                    <div id="nr21_50-1-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_50-1-input">x.1 posterunek</label>
-                                </div>
-                                /
-                                <div class="inline">
-                                    <div id="nr21_50-2-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_50-2-input">x.2 posterunek</label>
-                                </div>
-                                odnoszących się do przejazdu w km
-                                <div class="inline">
-                                    <div id="nr21_50-3-input" class="field km">21.300</div>
-                                    <label for="nr21_50-3-input">x.3 km</label>
-                                </div>
-                                <br>
-                                <strong>są nieważne. Jazda z prędkością rozkładową.</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th id="nr21_55" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_55-input"></div>
-                                21.55
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                <strong>Uszkodzone urządzenia SHP</strong> na posterunku/szlaku
-                                <br>
-                                <div class="inline">
-                                    <div id="nr21_55-1-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_55-1-input">x.1 posterunek</label>
-                                </div>
-                                |
-                                <div class="inline">
-                                    <div id="nr21_55-2-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_55-2-input">x.2 posterunek</label>
-                                </div>
-                                odnoszące się do sygnalizatora
-                                <div class="inline">
-                                    <div id="nr21_55-3-input" class="field sem">K2</div>
-                                    <label for="nr21_55-3-input">x.3 sygnalizator</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th id="nr21_60" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_60-input"></div>
-                                21.60
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                <strong>Zmiana trasy</strong> na odcinku od
-                                <div class="inline">
-                                    <div id="nr21_60-1-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_60-1-input">x.1 posterunek</label>
-                                </div>
-                                do
-                                <div class="inline">
-                                    <div id="nr21_60-2-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_60-2-input">x.2 posterunek</label>
-                                </div>
-                                <br>
-                                jazda przez
-                                <div class="inline">
-                                    <div id="nr21_60-3-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_60-3-input">x.3 posterunek</label>
-                                </div>
-                                linią
-                                <div class="inline">
-                                    <div id="nr21_60-4-input" class="field linia">0</div>
-                                    <label for="nr21_60-4-input">x.4 linia</label>
-                                </div>
-                                z prędkością
-                                <div class="inline">
-                                    <div id="nr21_60-5-input" class="field kmh">60</div>
-                                    <label for="nr21_60-5-input">x.5 km/h</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th id="nr21_65" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_65-input"></div>
-                                21.65
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                <strong>Jazda z opuszczonymi pantografami</strong> na odcinku od
-                                <div class="inline">
-                                    <div id="nr21_65-1-input" class="field km">21.300</div>
-                                    <label for="nr21_65-1-input">x.1 km</label>
-                                </div>
-                                do
-                                <div class="inline">
-                                    <div id="nr21_65-2-input" class="field km">21.300</div>
-                                    <label for="nr21_65-2-input">x.2 km</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th id="nr21_70" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_70-input"></div>
-                                21.70
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                <strong>Na odcinku</strong> od
-                                <div class="inline">
-                                    <div id="nr21_70-1-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_70-1-input">x.1 posterunek</label>
-                                </div>
-                                do
-                                <div class="inline">
-                                    <div id="nr21_70-2-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_70-2-input">x.2 posterunek</label>
-                                </div>
-                                linii nr
-                                <div class="inline">
-                                    <div id="nr21_70-3-input" class="field linia">0</div>
-                                    <label for="nr21_70-3-input">x.3 linia</label>
-                                </div>
-                                <br>
-                                <strong>jazda pociągu z łącznością analogową.</strong>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table id="rozkaz-normalny-dol">
-                    <tbody>
-                        <tr class="tor-zamkniety">
-                            <th id="nr21_80" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_80-input"></div>
-                                21.80
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                <strong>Polecam jazdę po torze zamkniętym</strong> nr
-                                <div class="inline">
-                                    <div id="nr21_80-1-input" class="field tor">2</div>
-                                    <label for="nr21_80-1-input">x.1 tor</label>
-                                </div>
-                                w kierunku
-                                <div class="inline">
-                                    <div id="nr21_80-2-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_80-2-input">x.2 posterunek</label>
-                                </div>
-                                <br>
-                                do km
-                                <div class="inline">
-                                    <div id="nr21_80-3-input" class="field km">21.300</div>
-                                    <label for="nr21_80-3-input">x.3 km</label>
-                                </div>
-                                zjazd do
-                                <div class="inline">
-                                    <div id="nr21_80-4-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_80-4-input">x.4 posterunek</label>
-                                </div>
-                                do godz.
-                                <div class="inline">
-                                    <div id="nr21_80-5-input" class="field godz">20:20</div>
-                                    <label for="nr21_80-5-input">x.5 godzina</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="tor-zamkniety">
-                            <th id="nr21_81" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_81-input"></div>
-                                21.81
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                <strong>Tor zamknięty wolny od taboru.</strong>
-                            </td>
-                        </tr>
-                        <tr class="tor-zamkniety">
-                            <th id="nr21_82" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_82-input"></div>
-                                21.82
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                <strong>Na torze pracuje pociąg</strong>
-                                <div class="inline">
-                                    <div id="nr21_82-1-input" class="field num-poc">123456</div>
-                                    <label for="nr21_82-1-input">x.1 numer pociągu</label>
-                                </div>
-                                w km
-                                <div class="inline">
-                                    <div id="nr21_82-2-input" class="field km">21.300</div>
-                                    <label for="nr21_82-2-input">x.2 km</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="tor-zamkniety">
-                            <th id="nr21_83" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_83-input"></div>
-                                21.83
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                <strong>Na tor zostanie wyprawiony pociąg</strong>
-                                <div class="inline">
-                                    <div id="nr21_83-1-input" class="field num-poc">123456</div>
-                                    <label for="nr21_83-1-input">x.1 numer pociągu</label>
-                                </div>
-                                do km
-                                <div class="inline">
-                                    <div id="nr21_83-2-input" class="field km">21.300</div>
-                                    <label for="nr21_83-2-input">x.2 km</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="tor-zamkniety">
-                            <th id="nr21_85" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr21_85-input"></div>
-                                21.85
-                            </th>
-                            <td class="roz-content" colspan="3" tabindex="0">
-                                <strong>Zezwalam na wstawienie PSD</strong> na tor nr
-                                <div class="inline">
-                                    <div id="nr21_85-1-input" class="field tor">2</div>
-                                    <label for="nr21_85-1-input">x.1 tor</label>
-                                </div>
-                                w km
-                                <div class="inline">
-                                    <div id="nr21_85-2-input" class="field km">21.300</div>
-                                    <label for="nr21_85-2-input">x.2 km</label>
-                                </div>
-                                <br>
-                                na szlaku
-                                <div class="inline">
-                                    <div id="nr21_85-3-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_85-3-input">x.3 posterunek</label>
-                                </div>
-                                |
-                                <div class="inline">
-                                    <div id="nr21_85-4-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr21_85-4-input">x.4 posterunek</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th id="nr23_10" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr23_10-input"></div>
-                                23.10
-                            </th>
-                            <td class="roz-content all-bold" colspan="3" tabindex="0">
-                                Nie przekraczać prędkości i zachować ostrożność:
-                                <br><br>
-                                1. Na posterunku/szlaku
-                                <div class="inline">
-                                    <div id="nr23_10-1-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr23_10-1-input">x.1 posterunek</label>
-                                </div>
-                                /
-                                <div class="inline">
-                                    <div id="nr23_10-2-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr23_10-2-input">x.2 posterunek</label>
-                                </div>
-                                tor nr
-                                <div class="inline">
-                                    <div id="nr23_10-3-input" class="field tor">2</div>
-                                    <label for="nr23_10-3-input">x.3 tor</label>
-                                </div>
-                                <br>
-                                &nbsp;&nbsp;<span class="normal-font">V</span>
-                                <div class="inline">
-                                    <div id="nr23_10-4-input" class="field kmh">20</div>
-                                    <label for="nr23_10-4-input">x.4 km/h </label>
-                                </div>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <span class="normal-font">od</span>
-                                <div class="inline">
-                                    <div id="nr23_10-5-input" class="field km">21.300</div>
-                                    <label for="nr23_10-5-input">x.5 km</label>
-                                </div>
-                                <span class="normal-font">do</span>
-                                <div class="inline">
-                                    <div id="nr23_10-6-input" class="field km">21.300</div>
-                                    <label for="nr23_10-6-input">x.6 km</label>
-                                </div>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <div class="inline">
-                                    <div id="nr23_10-95-input" class="field prz">Taka sobie długa przyczyna XD, nie wiem
-                                        co jeszcze mogę dodać tu ...</div>
-                                    <label for="nr23_10-95-input">x.95 przyczyna</label>
-                                </div>
-                                <br>
+    <div id="main">
+        <div id="instruction-box">
+            <div class="fill-page">
+                <div id="divided-view">
+                    <table id="rozkaz-normalny-gora">
+                        <tbody>
+                            <tr class="table-head">
+                                <th colspan="4">Rozkaz pisemny</th>
+                            </tr>
+                            <tr class="center top-info">
+                                <td id="norm-A" colspan="2">
+                                    <div id="norm-A-input" class="field num-poc">123456</div>
+                                    <label for="norm-A-input">A Nr pociągu | składu manewrowego</label>
+                                </td>
+                                <td id="norm-B" colspan="2">
+                                    <div id="norm-B-input" class="field data">20.12.2025</div>
+                                    <label for="norm-B-input">B Data</label>
+                                </td>
+                            </tr>
+                            <tr class="center top-info">
+                                <td id="norm-C" colspan="2">
+                                    <div id="norm-C-input" class="field post">Włoszczowa Północ</div>
+                                    <label for="norm-C-input">C Lokalizacja pociągu | składu manewrowego</label>
+                                </td>
+                                <td id="norm-D" colspan="2">
+                                    <div id="norm-D-input" class="field post">Włoszczowa Północ</div>
+                                    <label for="norm-D-input">D Lokalizacja nadawcy</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="nr22_00" class="checkbox-col">
+                                    <div class="checkbox" id="nr22_00-input"></div>
+                                    22.00
+                                </td>
+                                <td class="roz-content" tabindex="0">
+                                    <strong>Dotyczy jazdy torem lewym</strong>
+                                </td>
+                                <td id="nr99" class="checkbox-col">
+                                    <div class="checkbox" id="nr99-input"></div>
+                                    <div style="margin-left: 4px;">99</div>
+                                </td>
+                                <td class="roz-content" tabindex="0">
+                                    <strong>Odwołanie rozkazu pisemnego</strong><br>
+                                    <div class="inline">
+                                        <div id="nr99-1-input" class="field id">RD-5-087654-25</div>
+                                        <label for="nr99-1-input">x.1 identyfikator rozkazu pisemnego</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="nr21_10" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_10-input"></div>
+                                    21.10
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    <strong>Zezwalam na wyjazd z toru nr</strong>
+                                    <div class="inline">
+                                        <div id="nr21_10-1-input" class="field tor">2</div>
+                                        <label for="nr21_10-1-input">x.1 tor</label>
+                                    </div>
+                                    z
+                                    <div class="inline">
+                                        <div id="nr21_10-2-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_10-2-input">x.2 posterunek</label>
+                                    </div>
+                                    <br>
+                                    na tor nr
+                                    <div class="inline">
+                                        <div id="nr21_10-3-input" class="field tor">2</div>
+                                        <label for="nr21_10-3-input">x.3 tor</label>
+                                    </div>
+                                    w kierunku
+                                    <div class="inline">
+                                        <div id="nr21_10-4-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_10-4-input">x.4 posterunek</label>
+                                    </div>
+                                    <br>
+                                    Pominięcie sygnałów stój
+                                    <div class="inline">
+                                        <div id="nr21_10-5-input" class="field sem">S</div>
+                                        <label for="nr21_10-5-input">x.5 sygnalizator</label>
+                                    </div>
+                                    i
+                                    <div class="inline">
+                                        <div id="nr21_10-6-input" class="field sem">F</div>
+                                        <label for="nr21_10-6-input">x.6 sygnalizator</label>
+                                    </div>
+                                    i
+                                    <div class="inline">
+                                        <div id="nr21_10-7-input" class="field sem">K2</div>
+                                        <label for="nr21_10-7-input">x.7 sygnalizator</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="nr21_15" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_15-input"></div>
+                                    21.15
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    <strong>Zezwalam na wjazd</strong> z toru nr
+                                    <div class="inline">
+                                        <div id="nr21_15-1-input" class="field tor">2</div>
+                                        <label for="nr21_15-1-input">x.1 tor</label>
+                                    </div>
+                                    do
+                                    <div class="inline">
+                                        <div id="nr21_15-2-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_15-2-input">x.2 posterunek</label>
+                                    </div>
+                                    na tor nr
+                                    <div class="inline">
+                                        <div id="nr21_15-3-input" class="field tor">2</div>
+                                        <label for="nr21_15-3-input">x.3 tor</label>
+                                    </div>
+                                    <br>
+                                    Pominięcie sygnałów
+                                    <div class="inline">
+                                        <div id="nr21_15-4-input" class="field sem">S</div>
+                                        <label for="nr21_15-4-input">x.4 sygnalizator</label>
+                                    </div>
+                                    i
+                                    <div class="inline">
+                                        <div id="nr21_15-5-input" class="field sem">F</div>
+                                        <label for="nr21_15-5-input">x.5 sygnalizator</label>
+                                    </div>
+                                    i
+                                    <div class="inline">
+                                        <div id="nr21_15-6-input" class="field sem">K2</div>
+                                        <label for="nr21_15-6-input">x.6 sygnalizator</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="nr21_20" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_20-input"></div>
+                                    21.20
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    Od
+                                    <div class="inline">
+                                        <div id="nr21_20-1-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_20-1-input">x.1 posterunek</label>
+                                    </div>
+                                    do
+                                    <div class="inline">
+                                        <div id="nr21_20-2-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_20-2-input">x.2 posterunek</label>
+                                    </div>
+                                    po torze
+                                    <div class="inline">
+                                        <div id="nr21_20-3-input" class="field tor">2</div>
+                                        <label for="nr21_20-3-input">x.3 tor</label>
+                                    </div>
+                                    <br>
+                                    <strong style="text-decoration: 1px underline;">wskazania semaforów SBL są
+                                        nieważne.</strong>
+                                    <br>
+                                    <span style="text-decoration: 1px underline;">Zachować ostrożność od semafora ze
+                                        wskaźnikiem
+                                        <strong>W18.</strong></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="nr21_25" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_25-input"></div>
+                                    21.25
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    Zezwalam przejechać za (wskaźnik W5/ostatni rozjazd) w kierunku
+                                    <div class="inline">
+                                        <div id="nr21_25-1-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_25-1-input">x.1 posterunek</label>
+                                    </div>
+                                    <br>
+                                    torem
+                                    <div class="inline">
+                                        <div id="nr21_25-2-input" class="field tor">2</div>
+                                        <label for="nr21_25-2-input">x.2 tor</label>
+                                    </div>
+                                    do km
+                                    <div class="inline">
+                                        <div id="nr21_25-3-input" class="field km">21.300</div>
+                                        <label for="nr21_25-3-input">x.3 km</label>
+                                    </div>
+                                    do godz.
+                                    <div class="inline">
+                                        <div id="nr21_25-4-input" class="field godz">20:22</div>
+                                        <label for="nr21_25-4-input">x.4 godzina</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="nr21_35" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_35-input"></div>
+                                    21.35
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    <strong>Zezwalam na kontynuacje jazdy</strong> po torze nr
+                                    <div class="inline">
+                                        <div id="nr21_35-1-input" class="field tor">2</div>
+                                        <label for="nr21_35-1-input">x.1 tor</label>
+                                    </div>
+                                    w kierunku
+                                    <div class="inline">
+                                        <div id="nr21_35-2-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_35-2-input">x.2 posterunek</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="nr21_40" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_40-input"></div>
+                                    21.40
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    <strong>Zatrzymanie pociągu</strong> na posterunku/szlaku
+                                    <div class="inline">
+                                        <div id="nr21_40-1-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_40-1-input">x.1 posterunek</label>
+                                    </div>
+                                    |
+                                    <div class="inline">
+                                        <div id="nr21_40-2-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_40-2-input">x.2 posterunek</label>
+                                    </div>
+                                    <br>
+                                    w km
+                                    <div class="inline">
+                                        <div id="nr21_40-3-input" class="field km">21.300</div>
+                                        <label for="nr21_40-3-input">x.3 km</label>
+                                    </div>
+                                    celem
+                                    <div class="inline">
+                                        <div id="nr21_40-96-input" class="field inne">To jest ekran testowy! Test
+                                            długiego
+                                            opisu danego zatrzymania pociągu</div>
+                                        <label for="nr21_40-96-input">x.96 inne</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="nr21_45" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_45-input"></div>
+                                    21.45
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    Na
+                                    <div class="inline">
+                                        <div id="nr21_45-1-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_45-1-input">x.1 posterunek</label>
+                                    </div>
+                                    na sygnalizatorze
+                                    <div class="inline">
+                                        <div id="nr21_45-2-input" class="field sem">K2</div>
+                                        <label for="nr21_45-2-input">x.2 sygnalizator</label>
+                                    </div>
+                                    <br>
+                                    <strong>sygnał zezwalający jest nieważny, zatrzymać pociąg przed tym
+                                        sygnalizatorem.</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="nr21_50" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_50-input"></div>
+                                    21.50
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    <strong>Wskazania tarcz ostrzegawczych przejazdowych</strong> na
+                                    posterunku/szlaku
+                                    <br>
+                                    <div class="inline">
+                                        <div id="nr21_50-1-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_50-1-input">x.1 posterunek</label>
+                                    </div>
+                                    /
+                                    <div class="inline">
+                                        <div id="nr21_50-2-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_50-2-input">x.2 posterunek</label>
+                                    </div>
+                                    odnoszących się do przejazdu w km
+                                    <div class="inline">
+                                        <div id="nr21_50-3-input" class="field km">21.300</div>
+                                        <label for="nr21_50-3-input">x.3 km</label>
+                                    </div>
+                                    <br>
+                                    <strong>są nieważne. Jazda z prędkością rozkładową.</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="nr21_55" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_55-input"></div>
+                                    21.55
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    <strong>Uszkodzone urządzenia SHP</strong> na posterunku/szlaku
+                                    <br>
+                                    <div class="inline">
+                                        <div id="nr21_55-1-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_55-1-input">x.1 posterunek</label>
+                                    </div>
+                                    |
+                                    <div class="inline">
+                                        <div id="nr21_55-2-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_55-2-input">x.2 posterunek</label>
+                                    </div>
+                                    odnoszące się do sygnalizatora
+                                    <div class="inline">
+                                        <div id="nr21_55-3-input" class="field sem">K2</div>
+                                        <label for="nr21_55-3-input">x.3 sygnalizator</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="nr21_60" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_60-input"></div>
+                                    21.60
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    <strong>Zmiana trasy</strong> na odcinku od
+                                    <div class="inline">
+                                        <div id="nr21_60-1-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_60-1-input">x.1 posterunek</label>
+                                    </div>
+                                    do
+                                    <div class="inline">
+                                        <div id="nr21_60-2-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_60-2-input">x.2 posterunek</label>
+                                    </div>
+                                    <br>
+                                    jazda przez
+                                    <div class="inline">
+                                        <div id="nr21_60-3-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_60-3-input">x.3 posterunek</label>
+                                    </div>
+                                    linią
+                                    <div class="inline">
+                                        <div id="nr21_60-4-input" class="field linia">0</div>
+                                        <label for="nr21_60-4-input">x.4 linia</label>
+                                    </div>
+                                    z prędkością
+                                    <div class="inline">
+                                        <div id="nr21_60-5-input" class="field kmh">60</div>
+                                        <label for="nr21_60-5-input">x.5 km/h</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="nr21_65" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_65-input"></div>
+                                    21.65
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    <strong>Jazda z opuszczonymi pantografami</strong> na odcinku od
+                                    <div class="inline">
+                                        <div id="nr21_65-1-input" class="field km">21.300</div>
+                                        <label for="nr21_65-1-input">x.1 km</label>
+                                    </div>
+                                    do
+                                    <div class="inline">
+                                        <div id="nr21_65-2-input" class="field km">21.300</div>
+                                        <label for="nr21_65-2-input">x.2 km</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="nr21_70" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_70-input"></div>
+                                    21.70
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    <strong>Na odcinku</strong> od
+                                    <div class="inline">
+                                        <div id="nr21_70-1-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_70-1-input">x.1 posterunek</label>
+                                    </div>
+                                    do
+                                    <div class="inline">
+                                        <div id="nr21_70-2-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_70-2-input">x.2 posterunek</label>
+                                    </div>
+                                    linii nr
+                                    <div class="inline">
+                                        <div id="nr21_70-3-input" class="field linia">0</div>
+                                        <label for="nr21_70-3-input">x.3 linia</label>
+                                    </div>
+                                    <br>
+                                    <strong>jazda pociągu z łącznością analogową.</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table id="rozkaz-normalny-dol">
+                        <tbody>
+                            <tr class="tor-zamkniety">
+                                <th id="nr21_80" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_80-input"></div>
+                                    21.80
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    <strong>Polecam jazdę po torze zamkniętym</strong> nr
+                                    <div class="inline">
+                                        <div id="nr21_80-1-input" class="field tor">2</div>
+                                        <label for="nr21_80-1-input">x.1 tor</label>
+                                    </div>
+                                    w kierunku
+                                    <div class="inline">
+                                        <div id="nr21_80-2-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_80-2-input">x.2 posterunek</label>
+                                    </div>
+                                    <br>
+                                    do km
+                                    <div class="inline">
+                                        <div id="nr21_80-3-input" class="field km">21.300</div>
+                                        <label for="nr21_80-3-input">x.3 km</label>
+                                    </div>
+                                    zjazd do
+                                    <div class="inline">
+                                        <div id="nr21_80-4-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_80-4-input">x.4 posterunek</label>
+                                    </div>
+                                    do godz.
+                                    <div class="inline">
+                                        <div id="nr21_80-5-input" class="field godz">20:20</div>
+                                        <label for="nr21_80-5-input">x.5 godzina</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="tor-zamkniety">
+                                <th id="nr21_81" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_81-input"></div>
+                                    21.81
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    <strong>Tor zamknięty wolny od taboru.</strong>
+                                </td>
+                            </tr>
+                            <tr class="tor-zamkniety">
+                                <th id="nr21_82" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_82-input"></div>
+                                    21.82
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    <strong>Na torze pracuje pociąg</strong>
+                                    <div class="inline">
+                                        <div id="nr21_82-1-input" class="field num-poc">123456</div>
+                                        <label for="nr21_82-1-input">x.1 numer pociągu</label>
+                                    </div>
+                                    w km
+                                    <div class="inline">
+                                        <div id="nr21_82-2-input" class="field km">21.300</div>
+                                        <label for="nr21_82-2-input">x.2 km</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="tor-zamkniety">
+                                <th id="nr21_83" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_83-input"></div>
+                                    21.83
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    <strong>Na tor zostanie wyprawiony pociąg</strong>
+                                    <div class="inline">
+                                        <div id="nr21_83-1-input" class="field num-poc">123456</div>
+                                        <label for="nr21_83-1-input">x.1 numer pociągu</label>
+                                    </div>
+                                    do km
+                                    <div class="inline">
+                                        <div id="nr21_83-2-input" class="field km">21.300</div>
+                                        <label for="nr21_83-2-input">x.2 km</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="tor-zamkniety">
+                                <th id="nr21_85" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr21_85-input"></div>
+                                    21.85
+                                </th>
+                                <td class="roz-content" colspan="3" tabindex="0">
+                                    <strong>Zezwalam na wstawienie PSD</strong> na tor nr
+                                    <div class="inline">
+                                        <div id="nr21_85-1-input" class="field tor">2</div>
+                                        <label for="nr21_85-1-input">x.1 tor</label>
+                                    </div>
+                                    w km
+                                    <div class="inline">
+                                        <div id="nr21_85-2-input" class="field km">21.300</div>
+                                        <label for="nr21_85-2-input">x.2 km</label>
+                                    </div>
+                                    <br>
+                                    na szlaku
+                                    <div class="inline">
+                                        <div id="nr21_85-3-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_85-3-input">x.3 posterunek</label>
+                                    </div>
+                                    |
+                                    <div class="inline">
+                                        <div id="nr21_85-4-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr21_85-4-input">x.4 posterunek</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="nr23_10" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr23_10-input"></div>
+                                    23.10
+                                </th>
+                                <td class="roz-content all-bold" colspan="3" tabindex="0">
+                                    Nie przekraczać prędkości i zachować ostrożność:
+                                    <br><br>
+                                    1. Na posterunku/szlaku
+                                    <div class="inline">
+                                        <div id="nr23_10-1-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr23_10-1-input">x.1 posterunek</label>
+                                    </div>
+                                    /
+                                    <div class="inline">
+                                        <div id="nr23_10-2-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr23_10-2-input">x.2 posterunek</label>
+                                    </div>
+                                    tor nr
+                                    <div class="inline">
+                                        <div id="nr23_10-3-input" class="field tor">2</div>
+                                        <label for="nr23_10-3-input">x.3 tor</label>
+                                    </div>
+                                    <br>
+                                    &nbsp;&nbsp;<span class="normal-font">V</span>
+                                    <div class="inline">
+                                        <div id="nr23_10-4-input" class="field kmh">20</div>
+                                        <label for="nr23_10-4-input">x.4 km/h </label>
+                                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <span class="normal-font">od</span>
+                                    <div class="inline">
+                                        <div id="nr23_10-5-input" class="field km">21.300</div>
+                                        <label for="nr23_10-5-input">x.5 km</label>
+                                    </div>
+                                    <span class="normal-font">do</span>
+                                    <div class="inline">
+                                        <div id="nr23_10-6-input" class="field km">21.300</div>
+                                        <label for="nr23_10-6-input">x.6 km</label>
+                                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div class="inline">
+                                        <div id="nr23_10-95-input" class="field prz">Taka sobie długa przyczyna XD, nie
+                                            wiem
+                                            co jeszcze mogę dodać tu ...</div>
+                                        <label for="nr23_10-95-input">x.95 przyczyna</label>
+                                    </div>
+                                    <br>
 
-                                2. Na posterunku/szlaku
-                                <div class="inline">
-                                    <div id="nr23_10-7-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr23_10-7-input">x.7 posterunek</label>
-                                </div>
-                                /
-                                <div class="inline">
-                                    <div id="nr23_10-8-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr23_10-8-input">x.8 posterunek</label>
-                                </div>
-                                tor nr
-                                <div class="inline">
-                                    <div id="nr23_10-9-input" class="field tor">2</div>
-                                    <label for="nr23_10-9-input">x.9 tor</label>
-                                </div>
-                                <br>
-                                &nbsp;&nbsp;<span class="normal-font">V</span>
-                                <div class="inline">
-                                    <div id="nr23_10-10-input" class="field kmh">100</div>
-                                    <label for="nr23_10-10-input">x.10 km/h</label>
-                                </div>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <span class="normal-font">od</span>
-                                <div class="inline">
-                                    <div id="nr23_10-11-input" class="field km">21.300</div>
-                                    <label for="nr23_10-11-input">x.11 km</label>
-                                </div>
-                                <span class="normal-font">do</span>
-                                <div class="inline">
-                                    <div id="nr23_10-12-input" class="field km">21.300</div>
-                                    <label for="nr23_10-12-input">x.12 km</label>
-                                </div>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <div class="inline">
-                                    <div id="nr23_10-96-input" class="field prz">A może trochę krótsza</div>
-                                    <label for="nr23_10-96-input">x.96 przyczyna</label>
-                                </div>
-                                <br>
+                                    2. Na posterunku/szlaku
+                                    <div class="inline">
+                                        <div id="nr23_10-7-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr23_10-7-input">x.7 posterunek</label>
+                                    </div>
+                                    /
+                                    <div class="inline">
+                                        <div id="nr23_10-8-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr23_10-8-input">x.8 posterunek</label>
+                                    </div>
+                                    tor nr
+                                    <div class="inline">
+                                        <div id="nr23_10-9-input" class="field tor">2</div>
+                                        <label for="nr23_10-9-input">x.9 tor</label>
+                                    </div>
+                                    <br>
+                                    &nbsp;&nbsp;<span class="normal-font">V</span>
+                                    <div class="inline">
+                                        <div id="nr23_10-10-input" class="field kmh">100</div>
+                                        <label for="nr23_10-10-input">x.10 km/h</label>
+                                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <span class="normal-font">od</span>
+                                    <div class="inline">
+                                        <div id="nr23_10-11-input" class="field km">21.300</div>
+                                        <label for="nr23_10-11-input">x.11 km</label>
+                                    </div>
+                                    <span class="normal-font">do</span>
+                                    <div class="inline">
+                                        <div id="nr23_10-12-input" class="field km">21.300</div>
+                                        <label for="nr23_10-12-input">x.12 km</label>
+                                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div class="inline">
+                                        <div id="nr23_10-96-input" class="field prz">A może trochę krótsza</div>
+                                        <label for="nr23_10-96-input">x.96 przyczyna</label>
+                                    </div>
+                                    <br>
 
-                                3. Na posterunku/szlaku
-                                <div class="inline">
-                                    <div id="nr23_10-13-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr23_10-13-input">x.13 posterunek</label>
-                                </div>
-                                /
-                                <div class="inline">
-                                    <div id="nr23_10-14-input" class="field post">Włoszczowa Północ</div>
-                                    <label for="nr23_10-14-input">x.14 posterunek</label>
-                                </div>
-                                tor nr
-                                <div class="inline">
-                                    <div id="nr23_10-15-input" class="field tor">2</div>
-                                    <label for="nr23_10-15-input">x.15 tor</label>
-                                </div>
-                                <br>
-                                &nbsp;&nbsp;<span class="normal-font">V</span>
-                                <div class="inline">
-                                    <div id="nr23_10-16-input" class="field kmh"></div>
-                                    <label for="nr23_10-16-input">x.16 km/h</label>
-                                </div>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <span class="normal-font">od</span>
-                                <div class="inline">
-                                    <div id="nr23_10-17-input" class="field km">21.300</div>
-                                    <label for="nr23_10-17-input">x.17 km</label>
-                                </div>
-                                <span class="normal-font">do</span>
-                                <div class="inline">
-                                    <div id="nr23_10-18-input" class="field km">21.300</div>
-                                    <label for="nr23_10-18-input">x.18 km</label>
-                                </div>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <div class="inline">
-                                    <div id="nr23_10-97-input" class="field prz"></div>
-                                    <label for="nr23_10-97-input">x.97 przyczyna</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th id="nr23_11" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr23_11-input"></div>
-                                23.11
-                            </th>
-                            <td class="roz-content ios-fix-right" colspan="1" tabindex="0">
-                                <strong>Podawać sygnał „Baczność”</strong>
-                            </td>
-                            <td class="roz-content ios-fix-left" colspan="2" tabindex="0"></td>
-                        </tr>
-                        <tr>
-                            <th id="nr23_20" class="checkbox-col" colspan="1">
-                                <div class="checkbox" id="nr23_20-input"></div>
-                                23.20
-                            </th>
-                            <td class="roz-content text-area" colspan="3" tabindex="0">
-                                <label class="inne-dl-label" for="nr23_20-96-input">x.96 inne</label>
-                                <div class="field inne-dl" id="nr23_20-96-input">Bardzo długa informacja o tym jak należy prowadzić pociąg,
-                                    pewnie powinna być przeczytana, ale w sumie kto to czyta, nie wiem, ale taka sobie
-                                    długa informacja pozwoli sprawdzić działanie skryptu overflow.</div>
-                                <div class="field inne-dl" style="padding-left: 4em;"></div>
-                                <div class="field inne-dl"></div>
-                                <div class="field inne-dl"></div>
-                                <div class="field inne-dl"></div>
-                            </td>
-                        </tr>
-                        <tr class="center top-info">
-                            <td id="norm-V" colspan="2">
-                                <div id="norm-V-input" class="field id-people">888888</div>
-                                <label for="norm-V-input">V Identyfikator maszynisty</label>
-                            </td>
-                            <td id="norm-W" colspan="2">
-                                <div id="norm-W-input" class="field id-people">777777</div>
-                                <label for="norm-W-input">W Identyfikator nadawcy</label>
-                            </td>
-                        </tr>
-                        <tr class="center top-info">
-                            <td id="norm-Y" colspan="2">
-                                <div id="norm-Y-input" class="field godz">12:00</div>
-                                <label for="norm-Y-input">Y Godzina</label>
-                            </td>
-                            <td id="norm-Z" colspan="2">
-                                <div id="norm-Z-input" class="field id">RD-6-087654-25</div>
-                                <label for="norm-Z-input">Z Identyfikator rozkazu pisemnego</label>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr class="footnote">
-                            <td colspan="2">
-                                <div id="generator-info">Wygenerowano przy użyciu generozkaz.pages.dev</div>
-                            </td>
-                            <td colspan="2">
-                                <div id="print-date">00.00.0000</div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
+                                    3. Na posterunku/szlaku
+                                    <div class="inline">
+                                        <div id="nr23_10-13-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr23_10-13-input">x.13 posterunek</label>
+                                    </div>
+                                    /
+                                    <div class="inline">
+                                        <div id="nr23_10-14-input" class="field post">Włoszczowa Północ</div>
+                                        <label for="nr23_10-14-input">x.14 posterunek</label>
+                                    </div>
+                                    tor nr
+                                    <div class="inline">
+                                        <div id="nr23_10-15-input" class="field tor">2</div>
+                                        <label for="nr23_10-15-input">x.15 tor</label>
+                                    </div>
+                                    <br>
+                                    &nbsp;&nbsp;<span class="normal-font">V</span>
+                                    <div class="inline">
+                                        <div id="nr23_10-16-input" class="field kmh"></div>
+                                        <label for="nr23_10-16-input">x.16 km/h</label>
+                                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <span class="normal-font">od</span>
+                                    <div class="inline">
+                                        <div id="nr23_10-17-input" class="field km">21.300</div>
+                                        <label for="nr23_10-17-input">x.17 km</label>
+                                    </div>
+                                    <span class="normal-font">do</span>
+                                    <div class="inline">
+                                        <div id="nr23_10-18-input" class="field km">21.300</div>
+                                        <label for="nr23_10-18-input">x.18 km</label>
+                                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div class="inline">
+                                        <div id="nr23_10-97-input" class="field prz"></div>
+                                        <label for="nr23_10-97-input">x.97 przyczyna</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="nr23_11" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr23_11-input"></div>
+                                    23.11
+                                </th>
+                                <td class="roz-content ios-fix-right" colspan="1" tabindex="0">
+                                    <strong>Podawać sygnał „Baczność”</strong>
+                                </td>
+                                <td class="roz-content ios-fix-left" colspan="2" tabindex="0"></td>
+                            </tr>
+                            <tr>
+                                <th id="nr23_20" class="checkbox-col" colspan="1">
+                                    <div class="checkbox" id="nr23_20-input"></div>
+                                    23.20
+                                </th>
+                                <td class="roz-content text-area" colspan="3" tabindex="0">
+                                    <label class="inne-dl-label" for="nr23_20-96-input">x.96 inne</label>
+                                    <div class="field inne-dl" id="nr23_20-96-input">Bardzo długa informacja o tym jak
+                                        należy prowadzić pociąg,
+                                        pewnie powinna być przeczytana, ale w sumie kto to czyta, nie wiem, ale taka
+                                        sobie
+                                        długa informacja pozwoli sprawdzić działanie skryptu overflow.</div>
+                                    <div class="field inne-dl" style="padding-left: 4em;"></div>
+                                    <div class="field inne-dl"></div>
+                                    <div class="field inne-dl"></div>
+                                    <div class="field inne-dl"></div>
+                                </td>
+                            </tr>
+                            <tr class="center top-info">
+                                <td id="norm-V" colspan="2">
+                                    <div id="norm-V-input" class="field id-people">888888</div>
+                                    <label for="norm-V-input">V Identyfikator maszynisty</label>
+                                </td>
+                                <td id="norm-W" colspan="2">
+                                    <div id="norm-W-input" class="field id-people">777777</div>
+                                    <label for="norm-W-input">W Identyfikator nadawcy</label>
+                                </td>
+                            </tr>
+                            <tr class="center top-info">
+                                <td id="norm-Y" colspan="2">
+                                    <div id="norm-Y-input" class="field godz">12:00</div>
+                                    <label for="norm-Y-input">Y Godzina</label>
+                                </td>
+                                <td id="norm-Z" colspan="2">
+                                    <div id="norm-Z-input" class="field id">RD-6-087654-25</div>
+                                    <label for="norm-Z-input">Z Identyfikator rozkazu pisemnego</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="footnote">
+                                <td colspan="2">
+                                    <div id="generator-info">Wygenerowano przy użyciu generozkaz.pages.dev</div>
+                                </td>
+                                <td colspan="2">
+                                    <div id="print-date">00.00.0000</div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="button-box">
+            <button id="home-button" class="button" title="Wróć do generatora"><img
+                    src="./static/Siemens iX/home.svg"></button>
+            <button id="print-button" class="button" title="Drukuj"><img src="./static/Siemens iX/print.svg"></button>
+            <div class="buttons-group">
+                <button id="theme-button" class="button" title="Zmień motyw strony"><img
+                        src="./static/darkmode.svg"></button>
+                <button id="reset-button" class="button" title="Resetuj ustawienia"><img
+                        src="./static/Siemens iX/hard-reset.svg"></button>
             </div>
         </div>
     </div>
-
     <script type="module" src="view.js" async defer></script>
 </body>
 

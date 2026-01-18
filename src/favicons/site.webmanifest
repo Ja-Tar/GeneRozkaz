@@ -1,6 +1,7 @@
 {
   "name": "GeneRozkaz",
   "short_name": "GeneRoz",
+  "lang": "PL",
   "icons": [
     {
       "src": "/favicons/web-app-manifest-192x192.png",
@@ -17,5 +18,7 @@
   ],
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
-  "display": "standalone"
+  "display": "standalone",
+  "display_override": ["fullscreen", "minimal-ui"],
+  "id":"https://generozkaz.pages.dev/"
 }

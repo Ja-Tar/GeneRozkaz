@@ -2,7 +2,7 @@
 # PL 🇵🇱
 Generator online dla nowych kolejowych rozkazów pisemnych
 
-<img width="697" height="417" alt="obraz" src="https://github.com/user-attachments/assets/112305da-8c60-4c37-be8b-0692a6399099" />
+<img width="940" height="483" alt="obraz" src="https://github.com/user-attachments/assets/de3ff470-0762-422a-83cd-a63b334485f1" />
 
 > [!IMPORTANT]
 > Opracowano na podstawie **instrukcji Ir-1 (zm. 18)** oraz materiałów z kanału [Michał Piątkowski](https://www.youtube.com/@MichalPiatkowski).
@@ -16,8 +16,15 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 - [ ] Możliwość zapisu
   - [x] PDF / Drukowanie
   - [ ] TXT (do skopiowania, dla symulatorów)
-- [ ] Tryb integracji z symulatorem TD2 (automatyczne uzupełnianie pól)
-- [ ] Generator krok po kroku
+- [ ] Opcje automatycznego uzupełnianie pól (można je włączyć w ustawianiach)
+  - [ ] z symulatora TD2
+  - [x] aktualna data jako data wystawienia rozkazu
+  - [x] ustawienie stałego identyfikatora nadawcy
+  - [x] automatyczne zwiększanie numeru rozkazu
+  - [x] zachowywanie numeru rozkazu
+- [x] Tryb ciemny - na stronie
+  - [x] Podgląd
+  - [x] Generator
 
 ## Obsługiwane wersje rozkazu
 - [x] Normalna
@@ -45,9 +52,9 @@ Generator online dla nowych kolejowych rozkazów pisemnych
 
 
 # EN 🇬🇧
-Online generator for new Polish written orders
+Online generator for new Polish written orders for railways
 
-<img width="697" height="417" alt="obraz" src="https://github.com/user-attachments/assets/112305da-8c60-4c37-be8b-0692a6399099" />
+<img width="940" height="483" alt="obraz" src="https://github.com/user-attachments/assets/de3ff470-0762-422a-83cd-a63b334485f1" />
 
 > [!IMPORTANT]
 > Webpage is based on **Instruction Ir-1 (rev. 18)** and materials from [Michał Piątkowski's](https://www.youtube.com/@MichalPiatkowski) channel.
@@ -61,8 +68,15 @@ Online generator for new Polish written orders
 - [ ] Save options
   - [x] PDF and printing
   - [ ] TXT (to copy paste into simulators)
-- [ ] Integration with TD2 simulator (autocomplete fields)
-- [ ] Step-by-step generator
+- [ ] Autocomplete fields options (can be turned on in the settings)
+  - [ ] TD2 simulator
+  - [x] current date as the date of issue of the written order
+  - [x] permanent issuer ID
+  - [x] auto-incrementing order number
+  - [x] retention of order number
+- [x] Dark mode
+  - [x] View page
+  - [x] Main page
 
 # Supported written order versions
 - [x] Normal

@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <title>GeneRozkaz - Edytor</title>
     <meta name="description" content="Generator online dla nowych kolejowych rozkazów pisemnych">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="preload" href="loader.css" as="style">
     <link rel="stylesheet" href="loader.css">
     <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
     <link rel="shortcut icon" href="/favicons/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="GeneRoz" />
@@ -17,15 +17,25 @@
     <link rel="stylesheet" href="index.css">
     <script src="https://cdn.jsdelivr.net/npm/jsurl2@2.2.0/dist/index.js"
         integrity="sha256-/gTd9Y+SupxIun/6x21L1pIuDoAkMajT1OS/DfhEQBE=" crossorigin="anonymous"></script>
+    <meta name="theme-color" content="#fff" />
 </head>
 
 <body>
     <div id="loader">
         <img src="/favicons/web-app-manifest-512x512.png">
     </div>
+
+    <div id="top-box">
+        <div id="button-box">
+            <!-- TODO Finish dictate functionality!!! -->
+            <button disabled="" id="dictate-button" class="button dictate">Dyktuj</button>
+            <button id="save-wo-button" class="button save">Zapisz</button>
+            <button id="settings-button" class="button"><img src="./static/Siemens iX/cogwheel.svg"></button>
+        </div>
+    </div>
     <div id="instruction-box">
         <div class="fill-page">
-            <table id="rozkaz-normalny">
+            <table class="rozkaz-normalny top-part">
                 <tbody>
                     <tr class="table-head">
                         <th colspan="4">Rozkaz pisemny</th>
@@ -36,7 +46,7 @@
                             <label for="norm-A-input">A Nr pociągu | składu manewrowego</label>
                         </td>
                         <td id="norm-B" colspan="2">
-                            <input id="norm-B-input" type="date" style="padding: 0; height: auto;"><br>
+                            <input id="norm-B-input" type="date"><br>
                             <label for="norm-B-input">B Data</label>
                         </td>
                     </tr>
@@ -227,7 +237,7 @@
                             <div class="inline km"></div>
                         </td>
                     </tr>
-                    <tr class="bottom-double-line">
+                    <tr>
                         <td id="nr21_70" class="checkbox-col" colspan="1"></td>
                         <td class="roz-content" colspan="3">
                             <strong>Na odcinku</strong> od
@@ -240,6 +250,10 @@
                             <strong>jazda pociągu z łącznością analogową.</strong>
                         </td>
                     </tr>
+                </tbody>
+            </table>
+            <table class="rozkaz-normalny bottom-part">
+                <tbody>
                     <tr class="tor-zamkniety">
                         <td id="nr21_80" class="checkbox-col" colspan="1"></td>
                         <td class="roz-content" colspan="3">
@@ -358,9 +372,10 @@
                     </tr>
                     <tr>
                         <td id="nr23_11" class="checkbox-col" colspan="1"></td>
-                        <td class="roz-content" colspan="3">
+                        <td class="roz-content ios-fix-right" colspan="1">
                             <strong>Podawać sygnał „Baczność”</strong>
                         </td>
+                        <td class="roz-content ios-fix-left" colspan="2" tabindex=""></td>
                     </tr>
                     <tr>
                         <td id="nr23_20" class="checkbox-col" colspan="1"></td>
@@ -383,13 +398,14 @@
                     </tr>
                     <tr class="center top-info">
                         <td id="norm-Y" colspan="2">
-                            <input id="norm-Y-input" type="time" style="padding: 0; height: auto;"><br>
+                            <input id="norm-Y-input" type="time"><br>
                             <label for="norm-Y-input">Y Godzina</label>
                         </td>
                         <td id="norm-Z" colspan="2">
-                            <input id="norm-Z-input" type="text">
-                            <button id="norm-Z-button">GENERUJ IDENTYFIKATOR</button>
-                            <br>
+                            <div class="field-button">
+                                <input id="norm-Z-input" type="text">
+                                <button id="norm-Z-button">GENERUJ ID</button>
+                            </div>
                             <label for="norm-Z-input">Z Identyfikator rozkazu pisemnego</label>
                         </td>
                     </tr>
@@ -403,28 +419,18 @@
             </table>
         </div>
     </div>
-    <div id="toolbar-box">
-        <div id="toolbar-flex">
-            <div id="toolbar-inner-box">
-                <div id="size-holder">
-                    <div id="tools-box">
-                        <button class="button check" disabled>Sprawdź</button>
-                        <button id="save-written-order-button" class="button save">Zapisz</button>
-                        <div id="help-box">
-                            <div id="no-help">Kliknij na instrukcję lub pole, żeby zobaczyć pomoc</div>
-                            <div id="section-help"></div>
-                            <div id="field-help"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="toolbar-handle-box">
-                <img id="toolbar-handle" src="static/toolbar.svg">
-            </div>
+    <div id="bottom-box">
+        <div id="help-box">
+            <div id="no-help">Kliknij na instrukcję lub pole, żeby zobaczyć pomoc</div>
+            <div id="section-help"></div>
+            <div id="field-help"></div>
         </div>
+        <button id="button-hide-bar"><img src="./static/Siemens iX/chevron-down-bar.svg"></button>
     </div>
 
-    <dialog id="id-generator-dialog" class="large">
+    <!-- DIALOGS -->
+
+    <dialog id="id-generator-dialog" class="large" closedby="any">
         <div class="inner-dialog">
             <label for="select-printed">Czy rozkaz jest wydany na formularzu drukowanym?</label>
             <select class="large" id="select-printed" required>
@@ -432,11 +438,63 @@
                 <option value="">NIE</option>
             </select>
             <label for="written-order-number">Numer rozkazu pisemnego (w kolejności)</label>
-            <input id="written-order-number" type="number" inputmode="numeric" value="1" min="1" required>
+            <input class="required" id="written-order-number" type="number" inputmode="numeric" value="1" min="1"
+                required>
             <label for="posterunek-number">Kod posterunku</label>
-            <input id="posterunek-number" type="text" inputmode="numeric" placeholder="054929" required>
+            <input class="required" id="posterunek-number" type="text" inputmode="numeric" placeholder="054929"
+                required>
         </div>
-        <button class="large" id="set-id">Zastosuj</button>
+        <button class="large save" id="set-id">Zastosuj</button>
+    </dialog>
+
+    <dialog id="settings-dialog" class="large" closedby="none">
+        <div class="inner-dialog">
+            <label for="auto-date-input">Automatyczna data (dzisiaj):</label>
+            <input id="auto-date-input" type="checkbox">
+            <label for="save-issuer-id-input">Stały ID nadawcy:</label>
+            <input id="save-issuer-id-input" type="text">
+            <label for="auto-order-number-input">Automatyczny numer rozkazu (zwiększanie):</label>
+            <input id="auto-order-number-input" type="checkbox">
+            <label for="save-order-id-input">Zapisz identyfikator rozkazu:</label>
+            <input id="save-order-id-input" type="checkbox">
+            <hr>
+            <label for="theme-selection">Wybierz motyw</label>
+            <select id="theme-selection">
+                <option selected value="">Auto</option>
+                <option value="light">Jasny</option>
+                <option value="dark">Ciemny</option>
+            </select>
+        </div>
+        <button class="large save" id="save-settings" autofocus>Zapisz</button>
+    </dialog>
+
+    <dialog id="dictate-dialog" class="large" closedby="any">
+        <div step="1" class="step">
+            <div class="step-contents">
+                <label for="text-area-dictate">Treść do skopiowania / dyktowania: </label>
+                <div id="preview-dictate-first" class="preview-dictate">
+                    <i><b>Rozkaz pisemny</b></i><br>
+                    Pole A: 1234 |
+                    Pole B: 14.12.2025 <br>
+                    Pole C: ... |
+                    Pole D: ... <br>
+                    ---------------------- <br>
+                    Instrukcja 21.10, zezwalam na wyjazd z toru numer 1 z ... <br>
+                    na tor numer 1 w kierunku ... . <br>
+                    Pominięcie sygnałów stój, sygnalizator F. <br>
+                    -----------------------
+                </div>
+                <div class="inner-dialog">
+                    <label for="use-pa-input" style="text-decoration: line-through;">Użyj alfabetu fonetycznego</label>
+                    <input id="use-pa-input" type="checkbox" disabled>
+                </div>
+                <button id="copy-dictate-text">Skopiuj treść</button>
+            </div>
+            <div class="step-buttons">
+                <button class="cancel" disabled>Wstecz</button>
+                <button class="save" disabled>Dalej</button>
+            </div>
+        </div>
     </dialog>
 
     <script type="module" src="index.js" async defer></script>

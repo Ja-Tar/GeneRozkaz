@@ -1,4 +1,5 @@
 import { getFieldId, getCheckboxId } from "./modules/fields.js"
+import { setupTheme, toggleTheme } from "./modules/theme.js";
 
 // PAGE CLEANING ***
 
@@ -14,7 +15,7 @@ function cleanFields() {
 function getDataFromURI() {
     const uriEncodedJSURL = window.location.search.slice(1);
     if (uriEncodedJSURL) {
-        return JSURL.tryParse(uriEncodedJSURL, {}, { deURI: true });
+        return JSURL.tryParse(uriEncodedJSURL, {}, { deURI: true }); // skipcq: JS-0125
     }
     return {};
 }
@@ -70,12 +71,12 @@ function adjustInneField() {
         let nextElement = inneFieldDivs.item(i + 1);
 
         const textToCheck = element.innerText.split(" ");
-        for (let i = textToCheck.length - 1; i >= 0; i--) {
-            const word = textToCheck[i];
+        for (let l = textToCheck.length - 1; l >= 0; l--) {
+            const word = textToCheck[l];
             const fontSize = parseFloat(getComputedStyle(element).fontSize);
             if (element.clientHeight > elementHight) {
                 if (!nextElement) createFieldInneElement(inneFieldDivs[0].parentElement);
-                nextElement.textContent = `${word}${i === 1 ? "" : " " + nextElement.textContent}`;
+                nextElement.textContent = `${word}${l === 1 ? "" : " " + nextElement.textContent}`;
                 element.textContent = element.textContent.substring(0, element.textContent.trimEnd().lastIndexOf(" "));
             }
         }
@@ -102,12 +103,12 @@ function printingAdjustments() {
         let nextElement = inneFieldDivs.item(i + 1)
 
         const textToCheck = element.innerText.split(" ");
-        for (let i = textToCheck.length - 1; i >= 0; i--) {
-            const word = textToCheck[i];
+        for (let l = textToCheck.length - 1; l >= 0; l--) {
+            const word = textToCheck[l];
             const textLength = element.innerText.length;
             if (textLength > 80) {
                 if (!nextElement) createFieldInneElement(inneFieldDivs[0].parentElement);
-                nextElement.textContent = `${word}${i === 1 ? "" : " " + nextElement.textContent}`;
+                nextElement.textContent = `${word}${l === 1 ? "" : " " + nextElement.textContent}`;
                 element.textContent = element.textContent.substring(0, element.textContent.trimEnd().lastIndexOf(" "));
             }
         }
@@ -130,7 +131,40 @@ function adjustInneFieldAgain() {
     setTimeout(adjustInneField, 30);
 }
 
+// HOME PAGE BUTTON ***
+
+function goToHomepage() {
+    window.location.href = "/";
+}
+
+document.getElementById("home-button").addEventListener("click", goToHomepage)
+
+// PRINT BUTTON ***
+
+document.getElementById("print-button").addEventListener("click", () => print());
+
+// THEME BUTTON ***
+
+document.getElementById("theme-button").addEventListener("click", toggleTheme);
+
+// RESET SETTINGS BUTTON ***
+
+function resetSettings() {
+    localStorage.clear();
+    document.getElementById("loader").style.display = "flex";
+    setupTheme();
+    hideLoaderAfterDelay();
+}
+
+document.getElementById("reset-button").addEventListener("click", resetSettings);
+
 // START LOADING DATA ***
+
+function hideLoaderAfterDelay() {
+    setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+    }, 500);
+}
 
 cleanFields();
 fillFields();
@@ -138,6 +172,6 @@ adjustInneField();
 addEventListener("beforeprint", printingAdjustments);
 addEventListener("afterprint", adjustInneFieldAgain);
 
-setTimeout(() => {
-    document.getElementById("loader").remove();
-}, 500);
+setupTheme();
+
+hideLoaderAfterDelay();

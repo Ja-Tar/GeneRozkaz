@@ -1,4 +1,5 @@
-import { getSection, formatSectionName, formatSectionIdFromId, formatInstructionIdFromId, formatFieldIdFromId, getField } from "./modules/fields.js"
+import { getSection, getElementsInSection, formatSectionName, formatInstructionIdFromId, formatFieldIdFromId, getField, getLabelForField } from "./modules/fields.js"
+import { setupTheme, selectTheme } from "./modules/theme.js";
 
 const mainApiUrl = window.location.origin + "/api";
 
@@ -10,6 +11,20 @@ const FIELDS = {
     inputsDOM: null,
 };
 
+// DEFAULT SETTINGS
+const SETTINGS = {
+    "auto-date": 1,
+    "save-issuer-id": "",
+    "auto-order-number": 0,
+    "save-order-id": 0
+}
+
+// NATO PHONETIC ALPHABET (polish version)
+
+const PH_ALPHABET_PL = {
+    // TODO: ADD
+}
+
 // See schema !!!
 let VALIDATION = {};
 let HELP = {};
@@ -17,7 +32,7 @@ let EXAMPLES = {}
 
 // Enums
 
-const ROZKAZ_ELEMENT_ID = {
+const ROZKAZ_ELEMENT_CLASS = {
     NORMAL: "rozkaz-normalny"
 }
 
@@ -27,6 +42,20 @@ const ROZKAZ_TYPE = {
 }
 
 // HELPER FUNCTIONS ***
+
+/**
+ * @param {object} obj 
+ * @returns 
+ */
+function isEmpty(obj) {
+    for (const prop in obj) {
+        if (Object.hasOwn(obj, prop)) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 // get data ---
 
@@ -77,14 +106,22 @@ async function loadInputTypes() {
         }
         FIELDS.inputTypes.push(domChild.classList[1]);
     }
-    console.debug(FIELDS.inputTypes);
+}
+
+/**
+ * @param {string} tableClass
+ */
+function addInputsToTables(tableClass) {
+    const tableIDs = document.getElementsByClassName(tableClass);
+    for (const i of Object.keys(tableIDs)) {
+        addInputsToDivs(tableIDs[i]);
+    }
 }
 
 /**
  * @param {string} tableID 
  */
-function addInputsToDivs(tableID) {
-    const table = document.getElementById(tableID);
+function addInputsToDivs(table) {
     const parentsOfReplacedElements = [];
 
     for (let i = 0; i < FIELDS.inputTypes.length; i++) {
@@ -351,9 +388,11 @@ function addDisallowedOverlay(clickedNumber) {
         if (!(itemElement instanceof Element)) {
             return;
         }
-        const overlayDiv = document.createElement("div");
-        overlayDiv.classList.add("overlay-disallowed")
-        itemElement.children[0].appendChild(overlayDiv);
+        restrictKeyboardAccess(itemElement);
+        for (let l = 0; l < itemElement.children.length; l++) {
+            const child = itemElement.children[l];
+            child.classList.add("overlay-disallowed");
+        }
     }
 }
 
@@ -375,88 +414,56 @@ function removeDisallowedOverlay(clickedNumber) {
         if (!(itemElement instanceof Element)) {
             return;
         }
-        itemElement.querySelector(".overlay-disallowed").remove();
-    }
-}
-
-function checkForCheckedCheckboxes() {
-    const checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
-
-    highlightCheckedFields();
-
-    function highlightCheckedFields() {
-        for (let i = 0; i < checkboxes.length; i++) {
-            const boxID = formatSectionIdFromId(checkboxes[i].id);
-            /** @type {string[] | null} */
-            const neededFields = VALIDATION[boxID]?.fieldsNeeded;
-            if (neededFields) {
-                highlightFields(neededFields, boxID);
-            } else {
-                console.warn(`Fields to highlight in ${boxID} not found`);
-            }
+        enableKeyboardAccess(itemElement);
+        for (let l = 0; l < itemElement.children.length; l++) {
+            const child = itemElement.children[l];
+            child.classList.remove("overlay-disallowed");
         }
     }
 }
 
+/**
+ * @param {Element} section 
+ */
+function restrictKeyboardAccess(section) {
+    const checkbox = section.querySelector("input[type='checkbox'");
+    checkbox.setAttribute("tabindex", "-1");
+
+}
+
+/**
+ * @param {Element} section 
+ */
+function enableKeyboardAccess(section) {
+    const checkbox = section.querySelector("input[type='checkbox'");
+    checkbox.removeAttribute("tabindex");
+}
+
 // AUTO RESIZE ***
 
-let tableWidth = 700;
+const tableWidth = 650;
 
 function adjustTableSize() {
-    const currentTableDiv = document.querySelector(".fill-page:not([style*='none'])");
+    const currentTableDiv = document.querySelector("table:not([style*='none'])");
     const instructionBox = document.getElementById("instruction-box");
+    let currentTableWidth = tableWidth;
+
+    if (document.body.clientWidth > 1200) {
+        currentTableWidth = tableWidth * 2;
+    } else if (document.body.clientWidth < 900) {
+        currentTableWidth = 700;
+    }
 
     if (currentTableDiv) {
-        let tableScale = Math.max(1, instructionBox.clientWidth / tableWidth);
-        tableScale = Math.round(tableScale * 1000) / 1000;
+        let tableFontSize = Math.max(0.1, instructionBox.clientWidth / currentTableWidth);
+        tableFontSize = Math.round(tableFontSize * 1000) / 1000;
+        console.debug("Font size:", tableFontSize);
 
         requestAnimationFrame(() => {
-            document.documentElement.style.setProperty("--scale-instruction", tableScale);
-            document.documentElement.style.setProperty("--toolbox-hight", currentTableDiv.clientHeight + "px");
+            document.documentElement.style.setProperty("--table-font-size", `${tableFontSize}em`);
+            document.documentElement.style.setProperty("--toolbox-hight", `${currentTableDiv.clientHeight}px`);
         });
     }
-}
-
-// TOOLBAR ***
-
-const ToolbarState = Object.freeze({
-    CLOSED: 0,
-    OPEN: 1,
-});
-
-const toolbarGrid = document.getElementById("toolbar-inner-box");
-const sizeHolder = document.getElementById("size-holder");
-const toolbarHandle = document.getElementById("toolbar-handle");
-// TODO Add option to hold handle to adjust toolbar size
-
-function hideToolbar() {
-    sizeHolder.style.width = "0"
-
-    localStorage.setItem("toolbar-state", ToolbarState.CLOSED);
-    setTimeout(() => {
-        toolbarGrid.style.display = "none"
-    }, 510);
-}
-
-function showToolbar() {
-    toolbarGrid.style.display = "grid";
-
-    setTimeout(() => {
-        sizeHolder.style.width = "20vw"
-    }, 10);
-
-    localStorage.setItem("toolbar-state", ToolbarState.OPEN)
-}
-
-function toggleToolBar() {
-    const toolbarState = parseInt(localStorage.getItem("toolbar-state")) ?? ToolbarState.OPEN;
-
-    if (toolbarState) {
-        hideToolbar();
-    } else {
-        showToolbar();
-    }
-    setTimeout(adjustTableSize, 600)
 }
 
 // HELP BOX ***
@@ -647,15 +654,6 @@ function triggerHelpInfo() {
     }
 }
 
-// BUTTON FOCUS FIX ***
-
-/**
- * @param {Event} event 
- */
-function stopFocus(event) {
-    event.preventDefault();
-}
-
 // GENERATE FIELD "Z" (ID) ***
 
 function prepareIDGeneratorBox() {
@@ -668,22 +666,30 @@ function prepareIDGeneratorBox() {
     });
 
     setIdButton.addEventListener("click", () => {
-        if (!validateRequiredFields(dialog)) return;
-
-        const fieldZ = document.getElementById("norm-Z-input");
-        const selectPrintedValue = document.getElementById("select-printed").value;
         const writtenOrderNumber = document.getElementById("written-order-number").value;
-        const posterunekNumber = document.getElementById("posterunek-number").value;
-
-        const today = new Date();
-        const yearNumbers = today.getFullYear().toString().slice(2);
-
-        fieldZ.value = `R${selectPrintedValue}-${writtenOrderNumber}-${posterunekNumber}-${yearNumbers}`;
-
-        console.log(selectPrintedValue, writtenOrderNumber, posterunekNumber);
-        dialog.close();
+        if (generateOrderID(writtenOrderNumber)) dialog.close();
     });
 
+}
+
+/**
+ * @param {number} orderNumber 
+ * @returns {Boolean} success state
+ */
+function generateOrderID(orderNumber) {
+    const dialog = document.getElementById("id-generator-dialog");
+    if (!validateRequiredFields(dialog)) return false;
+    const fieldZ = document.getElementById("norm-Z-input");
+    const selectPrintedValue = document.getElementById("select-printed").value;
+    const posterunekNumber = document.getElementById("posterunek-number").value;
+
+    const today = new Date();
+    const yearNumbers = today.getFullYear().toString().slice(2);
+
+    fieldZ.value = `R${selectPrintedValue}-${orderNumber}-${posterunekNumber}-${yearNumbers}`;
+
+    console.debug(selectPrintedValue, orderNumber, posterunekNumber);
+    return true;
 }
 
 // TAB INDEX ADDER ***
@@ -693,23 +699,25 @@ function addTabIndexToTable() {
 
     for (let i = 0; i < cells.length; i++) {
         const cell = cells[i];
+        if (cell.hasAttribute("tabindex")) continue;
         cell.setAttribute("tabindex", "0");
     }
 }
 
 // PRINT FUNCTIONS ***
 
-const saveButton = document.getElementById("save-written-order-button");
+const saveButton = document.getElementById("save-wo-button");
 saveButton.addEventListener("click", openViewPage);
-saveButton.addEventListener('mousedown', stopFocus)
 
 function openViewPage() {
     const instructionBox = document.getElementById('instruction-box')
     if (!validateRozkazFields(instructionBox)) return;
 
     const viewURL = window.location.origin + "/view.html";
-    const processedJSURL = JSURL.stringify(getJSONFromFields());
+    const processedJSURL = JSURL.stringify(getObjectFromFields()); // skipcq: JS-0125
     const safeJSURL = encodeURIComponent(processedJSURL);
+
+    autoIncrementOrderId();
     window.open(`${viewURL}?${safeJSURL}`);
 }
 
@@ -742,7 +750,11 @@ function validateRequiredFields(element) {
     return true;
 }
 
-function getJSONFromFields() {
+/**
+ * 
+ * @returns {{'sectionName': {"fieldName": "fieldValue"}, 'generatedDate': string}}
+ */
+function getObjectFromFields() {
     // STRUCTURE:
     // {
     //     "normal": {
@@ -780,7 +792,7 @@ function getJSONFromFields() {
 
 /**
  * @param {NodeListOf<Element>} inputFields 
- * @returns {{"fieldsName": "fieldContent"}}
+ * @returns {{"<fieldName>": "<fieldContent>"}}
  */
 function collectFieldsData(inputFields) {
     const fieldsData = {};
@@ -795,6 +807,171 @@ function collectFieldsData(inputFields) {
     return fieldsData;
 }
 
+// DICTATE FUNCTIONS ***
+
+const dictateButton = document.getElementById("dictate-button");
+dictateButton.addEventListener("click", openDictateDialog);
+
+function openDictateDialog() {
+    const dialog = document.getElementById("dictate-dialog");
+    const instructionBox = document.getElementById('instruction-box');
+    const usePaInput = document.getElementById("use-pa-input");
+    if (!validateRozkazFields(instructionBox)) return;
+
+    generateDictation(usePaInput.checked);
+
+    dialog.showModal();
+}
+
+function generateDictation(paNeeded) {
+    const previewDictateDiv = document.getElementById("preview-dictate-first");
+    const instructionBox = document.getElementById('instruction-box');
+
+    previewDictateDiv.innerHTML = "";
+
+    const fieldsObject = getObjectFromFields();
+    let generatedHtml = "";
+    let topFields = "";
+    let bottomFields = "";
+
+    for (const sectionName of Object.keys(fieldsObject)) {
+        const section = fieldsObject[sectionName];
+        if (sectionName === "generatedDate") continue;
+
+        if (Object.values(ROZKAZ_TYPE).includes(sectionName)) {
+            topFields = `Pole <b>A</b>: ${section.A} | Pole <b>B</b>: ${section.B} |
+            Pole <b>C</b>: ${section.C} | Pole <b>D</b>: ${section.D} <br>`;
+            bottomFields = `Pole <b>W</b>: ${section.W} |
+            Pole <b>Z</b>: ${section.Z} <br>`;
+            // TODO: Popraw formatowanie, tak żeby działało w czacie w TD2 (może)
+            delete fieldsObject[sectionName];
+            continue;
+        }
+
+        const orderSectionElement = getElementsInSection(sectionName);
+        /** @type {string} */
+        let currentText = orderSectionElement[1].innerText.replace(/\s+/g,' ');
+
+        for (const fieldName of Object.keys(section)) {
+            const labelElement = getLabelForField(fieldName, sectionName);
+            console.log(labelElement.innerText);
+            const fieldValue = section[fieldName];
+            currentText = currentText.replace(labelElement.innerText.trim(), fieldValue)
+            // BUG: Use other method, this does't work!!!
+        }
+
+        generatedHtml += currentText;
+    }
+
+    if (!generatedHtml) generatedHtml = "<i>Pusty rozkaz</i>";
+    generatedHtml = `<i><b>Rozkaz pisemny</b></i><br> 
+    ================ <br>
+    ${topFields} 
+    ---------------- <br>
+    ${generatedHtml} <br>
+    ---------------- <br>
+    ${bottomFields}`;
+
+    previewDictateDiv.innerHTML = generatedHtml;
+}
+
+function copyDictateField() {
+    const previewDictateDiv = document.getElementById("preview-dictate-first");
+    const dialog = document.getElementById("dictate-dialog");
+    navigator.clipboard.writeText(previewDictateDiv.innerHTML.replaceAll("<br>", ""));
+    dialog.close();
+}
+
+document.getElementById("copy-dictate-text").addEventListener("click", copyDictateField)
+
+// SETTINGS STORAGE ***
+
+function loadSettingsFromStorage() {
+    for (const settingName of Object.keys(SETTINGS)) {
+        let settingValue = localStorage.getItem(settingName);
+        if (typeof SETTINGS[settingName] === "number") {
+            settingValue = parseInt(settingValue);
+        } else if (typeof SETTINGS[settingName] !== "string") {
+            throw new TypeError(`Wrong setting type!!! ${settingName}`);
+        }
+
+        if (!settingValue || isNaN(settingValue)) {
+            localStorage.setItem(settingName, SETTINGS[settingName]);
+        } else {
+            SETTINGS[settingName] = settingValue;
+            console.debug(`Setting: ${settingName}, type: ${typeof settingValue}; V:`, settingValue);
+        }
+    }
+}
+
+function saveSettingsToStorage() {
+    for (const settingName of Object.keys(SETTINGS)) {
+        localStorage.setItem(settingName, SETTINGS[settingName]);
+    }
+}
+
+// SETTINGS DIALOG ***
+
+function prepareSettingsDialog() {
+    const dialog = document.getElementById("settings-dialog");
+    const openSettingsButton = document.getElementById("settings-button");
+
+    callOnDialogInputs(loadDialogInput);
+
+    openSettingsButton.addEventListener("click", () => {
+        dialog.showModal();
+    });
+}
+
+/**
+ * @param {Function} inputElementFunction 
+ */
+function callOnDialogInputs(inputElementFunction) {
+    const dialog = document.getElementById("settings-dialog");
+
+    for (const settingName of Object.keys(SETTINGS)) {
+        const inputElement = dialog.querySelector(`[id*="${settingName}"`);
+        if (inputElement?.tagName === "INPUT") {
+            inputElementFunction(inputElement, settingName)
+        }
+    }
+}
+
+/**
+ * @param {Element} inputElement 
+ * @param {string} settingName 
+ */
+function loadDialogInput(inputElement, settingName) {
+    if (inputElement.getAttribute("type") === "checkbox") {
+        inputElement.checked = Boolean(SETTINGS[settingName]);
+    } else {
+        inputElement.value = SETTINGS[settingName];
+    }
+}
+
+/**
+ * @param {Element} inputElement 
+ * @param {string} settingName 
+ */
+function saveDialogInput(inputElement, settingName) {
+    if (inputElement.getAttribute("type") === "checkbox") {
+        SETTINGS[settingName] = Number(inputElement.checked);
+    } else {
+        SETTINGS[settingName] = inputElement.value;
+    }
+}
+
+function saveSettingsFromDialog() {
+    const dialog = document.getElementById("settings-dialog");
+
+    callOnDialogInputs(saveDialogInput);
+    saveSettingsToStorage();
+    runOptionalFunctions();
+    dialog.close();
+}
+
+document.getElementById("save-settings").addEventListener("click", saveSettingsFromDialog);
+
 // RESET FIELDS ***
 
 function resetNotNeededFields() {
@@ -804,25 +981,99 @@ function resetNotNeededFields() {
         "norm-W-input"
     ]
 
-    const disableSkipList = [
-        "norm"
-    ]
-
     const fields = instructionBox.querySelectorAll("input:not([type='checkbox']), textarea");
     fields.forEach(field => {
         if (!skipList.includes(field.id)) {
             field.value = '';
         }
 
-        if (!disableSkipList.filter(option => option.startsWith(field.id))) {
-            field.disabled = true;
-        }
+        // Disable all fields - it changes later when highlighting fields
+        field.disabled = true;
     });
 
     const checkboxes = instructionBox.querySelectorAll("table input[type='checkbox']");
     checkboxes.forEach(box => {
         box.checked = false;
     });
+}
+
+// THEME SELECTION
+
+document.getElementById("theme-selection").addEventListener("change", (ev) => selectTheme(ev.target.value));
+
+// HIDE BOTTOM BAR
+
+function toggleBottomBar() {
+    const bottomBar = document.getElementById("bottom-box");
+
+    if (bottomBar.classList.contains("bottom-hidden")) {
+        bottomBar.classList.remove("bottom-hidden");
+    } else {
+        bottomBar.classList.add("bottom-hidden");
+    }
+}
+
+document.getElementById("button-hide-bar").addEventListener("click", toggleBottomBar);
+
+// AUTO DAY
+
+function setAutoDay() {
+    if (!SETTINGS["auto-date"]) return;
+
+    const dateField = document.querySelector("input[id*='B-input'][class*='required']");
+
+    const today = new Date();
+    dateField.valueAsDate = today;
+}
+
+// AUTO FILL ISSUER ID
+
+function autoFillIssuerId() {
+    if (!SETTINGS["save-issuer-id"]) return;
+    // TODO When connected to Username in TD2 - disable setting
+
+    const issuerIdField = document.querySelector("input[id*='W-input'][class*='required']");
+    issuerIdField.value = SETTINGS["save-issuer-id"];
+}
+
+// KEEP ORDER ID
+
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+        saveOrderId();
+    }
+});
+
+function saveOrderId() {
+    const orderIdField = document.getElementById("norm-Z-input");
+    localStorage.setItem("order-id", orderIdField.value);
+}
+
+function loadOrderId() {
+    const orderIdField = document.getElementById("norm-Z-input");
+    if (!SETTINGS["save-order-id"] || orderIdField.value) return;
+    orderIdField.value = localStorage.getItem("order-id");
+}
+
+// AUTO INCREMENT ORDER ID
+
+function autoIncrementOrderId() {
+    if (!SETTINGS["auto-order-number"]) return;
+
+    const orderNumberField = document.getElementById("written-order-number");
+    const incrementedNumber = orderNumberField.valueAsNumber + 1;
+    orderNumberField.value = incrementedNumber;
+    if (isNaN(incrementedNumber)) return;
+    generateOrderID(incrementedNumber);
+}
+
+// OPTIONAL SETTINGS FUNCTIONS
+
+function runOptionalFunctions() {
+    // FUNCTIONS THAT USE SETTINGS
+    setAutoDay();
+    autoFillIssuerId();
+    loadOrderId();
 }
 
 // START LOADING DATA ***
@@ -857,25 +1108,26 @@ function limitFunction(fn, wait = 100) {
     return limited;
 }
 
+setupTheme();
 loadInputTypes().then(() => {
-    resetNotNeededFields(); // TODO: When adding simulator support change it
-    addInputsToDivs(ROZKAZ_ELEMENT_ID.NORMAL);
+    // REMOVE Comment
+    //resetNotNeededFields(); // TODO: When adding simulator support change it
+    addInputsToTables(ROZKAZ_ELEMENT_CLASS.NORMAL);
     addClickEventToCheckboxes();
     loadValidationData().then(() => {
         loadDefaultHighlights();
         addTabIndexToTable()
 
-        // adjust for fontsize and browser rendering
-        tableWidth = document.getElementById(ROZKAZ_ELEMENT_ID.NORMAL).getBoundingClientRect().width
-
         adjustTableSize();
-
         addEventListener('resize', limitFunction(adjustTableSize, 120));
-        toolbarHandle.addEventListener('click', limitFunction(toggleToolBar, 120));
 
         loadHelpData(ROZKAZ_TYPE.NORMAL).then(() => {
             loadHelpTriggers();
-            prepareIDGeneratorBox()
+            prepareIDGeneratorBox();
+            loadSettingsFromStorage();
+            prepareSettingsDialog();
+
+            runOptionalFunctions();
 
             setTimeout(() => {
                 document.getElementById("loader").remove();

@@ -1,9 +1,13 @@
 /* LOADER */
 
+:root:not([data-theme]) {
+    --background: #ffffff;
+}
+
 #loader {
     position: fixed;
     display: flex;
-    background-color: #ffffff;
+    background-color: var(--background);
     top: 0px;
     left: 0px;
     height: 100%;
@@ -11,6 +15,7 @@
     z-index: 20;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.1s;
 }
 
 #loader img {
